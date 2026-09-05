@@ -1,0 +1,2634 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HL8006 Studios</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            zinc: {
+              850: '#202024',
+              900: '#18181b',
+              950: '#09090b',
+            }
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            'slide-down': 'slideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(16px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            slideDown: {
+              '0%': { opacity: '0', transform: 'translateY(-12px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #09090b;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      position: relative;
+    }
+
+    .bg-grid-mesh {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 85% 25%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 15% 70%, rgba(244, 114, 182, 0.04) 0%, transparent 45%),
+        radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 30px 30px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    @media (min-width: 768px) { ::-webkit-scrollbar { width: 8px; } }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
+
+    @keyframes rotateBorderBeam {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .glabs-card, .rotating-border-card {
+      position: relative;
+      border-radius: 28px;
+      background-color: #121215;
+      overflow: hidden;
+      isolation: isolate;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), 
+                  box-shadow 0.28s ease,
+                  border-color 0.28s ease;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .glabs-card::before, .rotating-border-card::before {
+      content: '';
+      position: absolute;
+      width: 300%;
+      height: 300%;
+      top: -100%;
+      left: -100%;
+      background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        transparent 140deg,
+        rgba(99, 102, 241, 0.15) 210deg,
+        rgba(99, 102, 241, 0.6) 280deg,
+        rgba(255, 255, 255, 0.95) 345deg,
+        #ffffff 360deg
+      );
+      animation: rotateBorderBeam 3.6s linear infinite;
+      animation-play-state: paused;
+      opacity: 0;
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    .glabs-card::after, .rotating-border-card::after {
+      content: '';
+      position: absolute;
+      inset: 1.5px;
+      border-radius: 26.5px;
+      background-color: #121215;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .glabs-card {
+      width: 300px;
+      flex-shrink: 0;
+    }
+    @media (min-width: 640px) {
+      .glabs-card {
+        width: 320px;
+      }
+    }
+
+    .glabs-card:hover, .rotating-border-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.9), 0 0 28px -2px rgba(99, 102, 241, 0.35);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .glabs-card:hover::before, .rotating-border-card:hover::before {
+      opacity: 1;
+      animation-play-state: running;
+    }
+
+    .btn-reactive {
+      position: relative;
+      background: #18181b;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-bottom: 2px solid rgba(255, 255, 255, 0.28);
+      transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+                  background 0.22s ease,
+                  border-color 0.22s ease,
+                  box-shadow 0.22s ease;
+      cursor: pointer;
+    }
+
+    .btn-reactive:hover {
+      transform: translateY(-2px);
+      background: #232328;
+      border-color: rgba(255, 255, 255, 0.3);
+      border-bottom-color: rgba(255, 255, 255, 0.95);
+      box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.8),
+                  0 6px 20px -3px rgba(99, 102, 241, 0.35);
+    }
+
+    .btn-reactive:active {
+      transform: translateY(0.5px) scale(0.98);
+      border-bottom-color: #ffffff;
+    }
+
+    .footer-solid-black {
+      background-color: #000000 !important;
+      position: relative;
+      z-index: 40;
+    }
+
+    .view-container {
+      display: none;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .active-view {
+      display: block;
+    }
+    .view-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .horizontal-scroller {
+      display: flex;
+      gap: 1.25rem;
+      overflow-x: auto;
+      padding-top: 1rem;
+      padding-bottom: 1.25rem;
+      scroll-behavior: auto;
+    }
+
+    .reveal-on-scroll {
+      opacity: 0;
+      filter: blur(10px);
+      transform: translateY(28px) scale(0.985);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, filter, transform;
+    }
+    .reveal-on-scroll.revealed {
+      opacity: 1;
+      filter: blur(0px);
+      transform: translateY(0) scale(1);
+    }
+
+    .faq-content {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .faq-content.open { grid-template-rows: 1fr; }
+    .faq-inner { overflow: hidden; }
+  </style>
+</head>
+<body class="antialiased selection:bg-white selection:text-black">
+
+  <div class="bg-grid-mesh" aria-hidden="true"></div>
+  <canvas id="waveParticleCanvas" class="fixed inset-0 pointer-events-none z-0 w-full h-full" aria-hidden="true"></canvas>
+
+  <nav class="fixed w-full top-0 z-50 bg-zinc-950 border-b border-zinc-800" id="navbar">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16 sm:h-20">
+        
+        <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('home'); handleNavAnchor('hero');">
+          <div class="w-8 h-8 rounded-xl bg-white text-black flex items-center justify-center font-black text-sm tracking-tighter shadow-sm">
+            HL
+          </div>
+          <div>
+            <span class="font-bold text-base sm:text-lg tracking-tight text-white block leading-none">HL8006 Studios</span>
+            <span class="text-[10px] text-zinc-400 font-mono tracking-wider block mt-0.5">Made by Youtae Choi</span>
+          </div>
+        </div>
+        
+        <div class="hidden md:flex items-center space-x-2 lg:space-x-4">
+          <button onclick="navigateTo('home'); handleNavAnchor('hero');" class="nav-btn text-xs lg:text-sm text-white font-medium transition-all px-3 py-1.5 rounded-full" data-nav="home" data-view="home">Home</button>
+          <button onclick="handleNavAnchor('branches')" class="nav-btn text-xs lg:text-sm text-zinc-400 hover:text-white transition-all px-3 py-1.5 rounded-full" data-nav="branches">Branches</button>
+          <button onclick="handleNavAnchor('play-store')" class="nav-btn text-xs lg:text-sm text-zinc-400 hover:text-white transition-all px-3 py-1.5 rounded-full" data-nav="play-store">Google Play</button>
+          <button onclick="navigateTo('library')" class="nav-btn text-xs lg:text-sm text-zinc-400 hover:text-white transition-all px-3 py-1.5 rounded-full" data-nav="library" data-view="library">HL8006 Library</button>
+          <button onclick="navigateTo('portfolio')" class="nav-btn text-xs lg:text-sm text-zinc-400 hover:text-white transition-all px-3 py-1.5 rounded-full" data-nav="portfolio" data-view="portfolio">About Youtae</button>
+          <button onclick="navigateTo('beta')" class="nav-btn text-xs lg:text-sm text-zinc-400 hover:text-white transition-all px-3 py-1.5 rounded-full" data-nav="beta" data-view="beta">Beta Testing</button>
+          <a href="https://forms.gle/WvfUExXq2PBuV8bo6" target="_blank" rel="noopener noreferrer" class="btn-reactive px-4 py-2 rounded-full bg-white text-black hover:bg-zinc-200 transition-colors text-xs font-semibold">Join Beta</a>
+        </div>
+
+        <div class="md:hidden flex items-center gap-2">
+          <button onclick="navigateTo('library')" class="px-3 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-medium">
+            Library
+          </button>
+          <button onclick="navigateTo('beta')" class="btn-reactive px-3 py-1.5 rounded-full bg-white text-black text-xs font-medium">
+            Beta
+          </button>
+          <button id="mobile-menu-btn" class="text-zinc-300 p-2 focus:outline-none" aria-label="Toggle navigation menu">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden bg-zinc-900 border-b border-zinc-800 absolute w-full left-0 origin-top z-50">
+      <div class="px-4 py-4 flex flex-col space-y-2">
+        <button onclick="navigateTo('home'); handleNavAnchor('hero'); toggleMobileMenu(false);" class="text-left px-4 py-3 rounded-xl text-zinc-300 hover:bg-zinc-800 transition-colors font-medium text-sm">Home</button>
+        <button onclick="navigateTo('home'); handleNavAnchor('branches'); toggleMobileMenu(false);" class="text-left px-4 py-3 rounded-xl text-zinc-300 hover:bg-zinc-800 transition-colors font-medium text-sm">Branches</button>
+        <button onclick="navigateTo('home'); handleNavAnchor('play-store'); toggleMobileMenu(false);" class="text-left px-4 py-3 rounded-xl text-zinc-300 hover:bg-zinc-800 transition-colors font-medium text-sm">Google Play</button>
+        <button onclick="navigateTo('library'); toggleMobileMenu(false);" class="text-left px-4 py-3 rounded-xl text-zinc-300 hover:bg-zinc-800 transition-colors font-medium text-sm flex items-center justify-between">
+          <span>HL8006 Library</span>
+        </button>
+        <button onclick="navigateTo('portfolio'); toggleMobileMenu(false);" class="text-left px-4 py-3 rounded-xl text-zinc-300 hover:bg-zinc-800 transition-colors font-medium text-sm">About Youtae Choi (Portfolio)</button>
+        <button onclick="navigateTo('beta'); toggleMobileMenu(false);" class="text-left px-4 py-3 rounded-xl text-zinc-300 hover:bg-zinc-800 transition-colors font-medium text-sm">Beta Testing Enrolment</button>
+        <a href="https://forms.gle/WvfUExXq2PBuV8bo6" target="_blank" rel="noopener noreferrer" class="btn-reactive px-4 py-3 mt-2 rounded-full bg-white text-black text-center font-semibold text-sm">
+          Join Google Play Beta Track
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================================================================= -->
+  <!-- VIEW 1: MAIN HOMEPAGE VIEW                                        -->
+  <!-- ================================================================= -->
+  <div id="view-home" class="view-container active-view view-visible">
+
+    <main class="relative pt-32 pb-16 sm:pt-44 sm:pb-24 flex flex-col justify-center" id="hero">
+      <div class="max-w-4xl mx-auto px-5 sm:px-6 flex flex-col text-center">
+
+        <div class="inline-flex items-center justify-center gap-2 mb-4 animate-fade-in-up">
+          <span class="text-xs sm:text-sm font-mono tracking-widest uppercase text-zinc-400 bg-zinc-900 border border-zinc-800 px-4 py-1.5 rounded-full">
+            Made by Youtae Choi
+          </span>
+        </div>
+
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-6 animate-fade-in-up leading-[1.1]">
+          <span class="text-zinc-500">Welcome to</span><br>
+          <span class="text-white">HL8006 Studios</span>
+        </h1>
+        
+        <p class="text-base sm:text-lg text-zinc-400 font-light leading-relaxed max-w-2xl mx-auto animate-fade-in-up" style="animation-delay: 0.1s;">
+          The official home of next generation software, created by Youtae. Explore the studio branches, and learn more about HL8006 Projects led by HL8006 Productions and NSNC below.
+        </p>
+
+        <!-- Shortcut Buttons All in One Single Row -->
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-3 w-full animate-fade-in-up" style="animation-delay: 0.2s;">
+          <button onclick="navigateTo('library')" class="btn-reactive px-5 py-3 rounded-full bg-white text-black hover:bg-zinc-200 text-xs sm:text-sm font-semibold flex items-center gap-2">
+            <span>HL8006 Library</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </button>
+
+          <a href="https://hl8006-beta.github.io/NSNC-Website/" target="_blank" rel="noopener noreferrer" class="btn-reactive px-5 py-3 rounded-full bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white text-xs sm:text-sm font-medium flex items-center gap-2">
+            <span>NSNC Platform</span>
+            <svg class="w-3.5 h-3.5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+
+          <a href="https://bhs-official-website.my.canva.site/" target="_blank" rel="noopener noreferrer" class="btn-reactive px-5 py-3 rounded-full bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white text-xs sm:text-sm font-medium flex items-center gap-2">
+            <span>BHS Official Website</span>
+            <svg class="w-3.5 h-3.5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+
+          <button onclick="navigateTo('portfolio')" class="btn-reactive px-5 py-3 rounded-full bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-300 text-xs sm:text-sm font-medium flex items-center gap-2">
+            <span>About Youtae Choi</span>
+            <svg class="w-3.5 h-3.5 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-16 pt-10 border-t border-zinc-900 text-left">
+          <div class="bg-zinc-900 p-5 rounded-2xl border border-zinc-800 cursor-pointer hover:border-zinc-700 transition-colors" onclick="navigateTo('library'); setCategory('naval');">
+            <div class="text-2xl sm:text-3xl font-bold text-white mb-1" id="stat-naval">29</div>
+            <div class="text-zinc-400 text-xs font-medium">Naval Fleet Models</div>
+            <div class="text-[10px] text-zinc-500 font-mono mt-1">DDG, AAS, FFG, SSBN →</div>
+          </div>
+          <div class="bg-zinc-900 p-5 rounded-2xl border border-zinc-800 cursor-pointer hover:border-zinc-700 transition-colors" onclick="navigateTo('library'); setCategory('kq-jets');">
+            <div class="text-2xl sm:text-3xl font-bold text-white mb-1" id="stat-jets">12</div>
+            <div class="text-zinc-400 text-xs font-medium">KQ Jet Series</div>
+            <div class="text-[10px] text-zinc-500 font-mono mt-1">KQ-12 to KQ-1 Fighters →</div>
+          </div>
+          <div class="bg-zinc-900 p-5 rounded-2xl border border-zinc-800 cursor-pointer hover:border-zinc-700 transition-colors" onclick="navigateTo('library'); setCategory('coding');">
+            <div class="text-2xl sm:text-3xl font-bold text-white mb-1" id="stat-apps">44</div>
+            <div class="text-zinc-400 text-xs font-medium">Coding &amp; Software Builds</div>
+            <div class="text-[10px] text-zinc-500 font-mono mt-1">Full 44 Build Suite →</div>
+          </div>
+          <div class="bg-zinc-900 p-5 rounded-2xl border border-zinc-800 cursor-pointer hover:border-zinc-700 transition-colors" onclick="handleNavAnchor('play-store')">
+            <div class="text-2xl sm:text-3xl font-bold text-white mb-1" id="stat-play">4</div>
+            <div class="text-zinc-400 text-xs font-medium">Google Play Releases</div>
+            <div class="text-[10px] text-zinc-500 font-mono mt-1">Live Store Packages →</div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Studio Branches Section -->
+    <section id="branches" class="py-16 sm:py-20 border-t border-zinc-900 bg-zinc-950">
+      <div class="max-w-5xl mx-auto px-5 sm:px-6">
+        <div class="mb-10 text-center max-w-2xl mx-auto reveal-on-scroll">
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Studio Branches</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal-on-scroll">
+          
+          <!-- Branch 1: HL8006 Productions -->
+          <div class="rotating-border-card p-6 sm:p-7 flex flex-col justify-between space-y-6">
+            <div class="space-y-4">
+              <div>
+                <h3 class="text-lg font-bold text-white tracking-tight">HL8006 Productions</h3>
+                <p class="text-xs text-zinc-400 font-light leading-relaxed mt-1.5">
+                  Production house for Autodesk Inventor naval fleet engineering, supersonic aerospace jet airframes, and offline software builds.
+                </p>
+              </div>
+              <ul class="space-y-1.5 text-xs text-zinc-400 font-light">
+                <li class="flex items-center gap-2">
+                  <span class="w-1 h-1 rounded-full bg-zinc-500"></span>
+                  <span>46 Autodesk Inventor CAD Models</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1 h-1 rounded-full bg-zinc-500"></span>
+                  <span>44 Software Releases in Library</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1 h-1 rounded-full bg-zinc-500"></span>
+                  <span>Project Super Kilo Architecture</span>
+                </li>
+              </ul>
+            </div>
+            
+            <button onclick="navigateTo('library')" class="btn-reactive w-full py-2.5 rounded-full bg-white text-black hover:bg-zinc-200 text-xs font-semibold flex items-center justify-center gap-1.5">
+              <span>Explore HL8006 Library</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+          </div>
+
+          <!-- Branch 2: NSNC -->
+          <div class="rotating-border-card p-6 sm:p-7 flex flex-col justify-between space-y-6">
+            <div class="space-y-4">
+              <div>
+                <h3 class="text-lg font-bold text-white tracking-tight">NSW Student News Community</h3>
+                <p class="text-xs text-zinc-400 font-light leading-relaxed mt-1.5">
+                  Independent volunteer news reporting organisation serving secondary students across New South Wales with verified global and Australian news.
+                </p>
+              </div>
+              <ul class="space-y-1.5 text-xs text-zinc-400 font-light">
+                <li class="flex items-center gap-2">
+                  <span class="w-1 h-1 rounded-full bg-zinc-500"></span>
+                  <span>9 Volunteer Administration Team</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1 h-1 rounded-full bg-zinc-500"></span>
+                  <span>Zero Ads, Objective Student Reporting</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1 h-1 rounded-full bg-zinc-500"></span>
+                  <span>Published NSNC Aerospace News App</span>
+                </li>
+              </ul>
+            </div>
+            
+            <a href="https://hl8006-beta.github.io/NSNC-Website/" target="_blank" rel="noopener noreferrer" class="btn-reactive w-full py-2.5 rounded-full bg-zinc-950 hover:bg-zinc-800 text-white border border-zinc-800 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors">
+              <span>Open NSNC Platform</span>
+              <svg class="w-3.5 h-3.5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+
+          <!-- Branch 3: BHS -->
+          <div class="rotating-border-card p-6 sm:p-7 flex flex-col justify-between space-y-6">
+            <div class="space-y-4">
+              <div>
+                <h3 class="text-lg font-bold text-white tracking-tight">Broadmeadow High School</h3>
+                <p class="text-xs text-zinc-400 font-light leading-relaxed mt-1.5">
+                  Academic resources, student leadership archives, and community platforms developed in collaboration with Broadmeadow High School.
+                </p>
+              </div>
+              <ul class="space-y-1.5 text-xs text-zinc-400 font-light">
+                <li class="flex items-center gap-2">
+                  <span class="w-1 h-1 rounded-full bg-zinc-500"></span>
+                  <span>BHS Leadership Applications</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1 h-1 rounded-full bg-zinc-500"></span>
+                  <span>Student Representative Form Portals</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1 h-1 rounded-full bg-zinc-500"></span>
+                  <span>Stage 4 and 5 Open Notes</span>
+                </li>
+              </ul>
+            </div>
+            
+            <a href="https://bhs-official-website.my.canva.site/" target="_blank" rel="noopener noreferrer" class="btn-reactive w-full py-2.5 rounded-full bg-zinc-950 hover:bg-zinc-800 text-white border border-zinc-800 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors">
+              <span>Open BHS Portal</span>
+              <svg class="w-3.5 h-3.5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Google Play Official Releases Section -->
+    <section id="play-store" class="py-20 sm:py-24 border-t border-zinc-900 bg-zinc-950">
+      <div class="max-w-5xl mx-auto px-5 sm:px-6">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 reveal-on-scroll">
+          <div>
+            <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+              HL8006 in Google Play
+            </h2>
+            <p class="text-sm sm:text-base text-zinc-400 font-light mt-2 max-w-xl">
+              Production mobile applications engineered by HL8006 Studios. Available directly through Google Play with strict offline functionality and zero third-party telemetry.
+            </p>
+          </div>
+          
+          <div class="flex items-center">
+            <span class="text-xs font-mono text-zinc-400 bg-zinc-900 border border-zinc-800 px-3 py-1 rounded-full">Developer ID: HL8006</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 reveal-on-scroll">
+          
+          <!-- App 1: Poly Blast Puzzles! -->
+          <div class="rotating-border-card p-6 sm:p-7 flex flex-col justify-between space-y-6 group">
+            <div class="space-y-4">
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <h3 class="text-xl font-bold text-white tracking-tight">Poly Blast Puzzles!</h3>
+                  <p class="text-xs font-mono text-zinc-400 mt-0.5">com.hl8006.polyblastpuzzles</p>
+                </div>
+                <div class="flex items-center gap-1.5 flex-wrap justify-end">
+                  <span class="text-[10px] font-mono bg-zinc-800 text-zinc-300 px-2 py-0.5 rounded-full">v1.9.9 (Play Store)</span>
+                  <span class="text-[10px] font-mono bg-zinc-800 text-zinc-300 px-2 py-0.5 rounded-full">Puzzle / Logic</span>
+                </div>
+              </div>
+              <p class="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
+                A 100% offline, optimised, ad-free spatial block puzzle game. Features Classic (8x8), Mini (6x6), and Time Attack modes with on-device AES GCM match encryption.
+              </p>
+            </div>
+            <a href="https://play.google.com/store/apps/details?id=com.hl8006.polyblastpuzzles" target="_blank" rel="noopener noreferrer" class="btn-reactive w-full py-2.5 rounded-full bg-white text-black hover:bg-zinc-200 text-xs font-semibold flex items-center justify-center gap-2">
+              <span>Get on Google Play</span>
+            </a>
+          </div>
+
+          <!-- App 2: NSNC Aerospace News -->
+          <div class="rotating-border-card p-6 sm:p-7 flex flex-col justify-between space-y-6 group">
+            <div class="space-y-4">
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <h3 class="text-xl font-bold text-white tracking-tight">NSNC Aerospace News</h3>
+                  <p class="text-xs font-mono text-zinc-400 mt-0.5">com.hl8006.hlnews</p>
+                </div>
+                <div class="flex items-center gap-1.5 flex-wrap justify-end">
+                  <span class="text-[10px] font-mono bg-zinc-800 text-zinc-300 px-2.5 py-0.5 rounded-full">v2.6.1 (Play Store)</span>
+                  <span class="text-[10px] font-mono bg-zinc-800 text-zinc-300 px-2 py-0.5 rounded-full">News &amp; Media</span>
+                </div>
+              </div>
+              <p class="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
+                The flagship media mobile platform from NSW Student News Community. Delivers real-time aerospace updates and global news summaries powered by the on-device HL Assistant neural summariser.
+              </p>
+            </div>
+            <a href="https://play.google.com/store/apps/details?id=com.hl8006.hlnews" target="_blank" rel="noopener noreferrer" class="btn-reactive w-full py-2.5 rounded-full bg-white text-black hover:bg-zinc-200 text-xs font-semibold flex items-center justify-center gap-2">
+              <span>Get on Google Play</span>
+            </a>
+          </div>
+
+          <!-- App 3: HL Clock -->
+          <div class="rotating-border-card p-6 sm:p-7 flex flex-col justify-between space-y-6 group">
+            <div class="space-y-4">
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <h3 class="text-xl font-bold text-white tracking-tight">HL Clock</h3>
+                  <p class="text-xs font-mono text-zinc-400 mt-0.5">com.hl8006.clock</p>
+                </div>
+                <div class="flex items-center gap-1.5 flex-wrap justify-end">
+                  <span class="text-[10px] font-mono bg-zinc-800 text-zinc-300 px-2.5 py-0.5 rounded-full">v3.4 (Play Store)</span>
+                  <span class="text-[10px] font-mono bg-zinc-800 text-zinc-300 px-2 py-0.5 rounded-full">Tools &amp; Utilities</span>
+                </div>
+              </div>
+              <p class="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
+                Precision minimalist chronometer and alarms suite. Designed for low battery consumption with high refresh rate lap tracking, multi-zone world clocks, and floating stopwatch interfaces.
+              </p>
+            </div>
+            <a href="https://play.google.com/store/apps/details?id=com.hl8006.clock" target="_blank" rel="noopener noreferrer" class="btn-reactive w-full py-2.5 rounded-full bg-white text-black hover:bg-zinc-200 text-xs font-semibold flex items-center justify-center gap-2">
+              <span>Get on Google Play</span>
+            </a>
+          </div>
+
+          <!-- App 4: MindSpace -->
+          <div class="rotating-border-card p-6 sm:p-7 flex flex-col justify-between space-y-6 group">
+            <div class="space-y-4">
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <h3 class="text-xl font-bold text-white tracking-tight">MindSpace</h3>
+                  <p class="text-xs font-mono text-zinc-400 mt-0.5">com.hl8006.mindspace</p>
+                </div>
+                <div class="flex items-center gap-1.5 flex-wrap justify-end">
+                  <span class="text-[10px] font-mono bg-zinc-800 text-zinc-300 px-2.5 py-0.5 rounded-full">v1.2 (Play Store)</span>
+                  <span class="text-[10px] font-mono bg-zinc-800 text-zinc-300 px-2 py-0.5 rounded-full">Wellbeing</span>
+                </div>
+              </div>
+              <p class="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
+                Quiet space mindfulness and student focus application. Offers distraction-free breathing exercises, binaural soundscapes, and digital wellbeing session trackers stored entirely offline.
+              </p>
+            </div>
+            <a href="https://play.google.com/store/apps/details?id=com.hl8006.mindspace" target="_blank" rel="noopener noreferrer" class="btn-reactive w-full py-2.5 rounded-full bg-white text-black hover:bg-zinc-200 text-xs font-semibold flex items-center justify-center gap-2">
+              <span>Get on Google Play</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 sm:py-24 border-t border-zinc-900 bg-zinc-950">
+      <div class="max-w-3xl mx-auto px-5 sm:px-6 reveal-on-scroll">
+        <div class="mb-10 sm:mb-12">
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Frequently Asked Questions</h2>
+          <p class="text-zinc-400 text-sm font-light mt-1">Official studio operations, data safety policies, and access channels.</p>
+        </div>
+        
+        <div class="divide-y divide-zinc-800 border-t border-zinc-800" id="faq-container">
+          <!-- Injected via JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 sm:py-24 border-t border-zinc-900 bg-zinc-900/40">
+      <div class="max-w-3xl mx-auto px-5 sm:px-6 text-center reveal-on-scroll">
+        <div class="space-y-6">
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">HL8006 Studio Support</h2>
+          <p class="text-zinc-400 font-light text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
+            For technical assistance regarding Google Play store releases, closed cohort testing queries, or collaboration with HL8006 Studios.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-3 w-full pt-2">
+            <div class="px-5 py-3.5 flex items-center justify-center gap-3 bg-zinc-950 border border-zinc-800 rounded-full w-full sm:w-auto">
+              <svg class="w-4 h-4 text-zinc-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              <span class="text-white font-mono text-sm" id="studio-email">support.hl8006@gmail.com</span>
+            </div>
+            
+            <button onclick="copyStudioEmail()" class="btn-reactive w-full sm:w-auto px-6 py-3.5 bg-white text-black font-semibold text-sm rounded-full hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+              <span>Copy Email</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ================================================================= -->
+  <!-- VIEW 2: DEDICATED HL8006 LIBRARY (FLEET CAD & CODING BUILDS)      -->
+  <!-- ================================================================= -->
+  <div id="view-library" class="view-container">
+    <main class="relative pt-32 pb-24 sm:pt-40 sm:pb-32 min-h-screen">
+      <div class="max-w-6xl mx-auto px-5 sm:px-6">
+        
+        <div class="flex items-center justify-between mb-8 pb-4 border-b border-zinc-800">
+          <button onclick="navigateTo('home')" class="btn-reactive inline-flex items-center gap-2 text-xs font-mono text-zinc-400 hover:text-white transition-colors px-3 py-1.5 rounded-full">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+            <span>Return to HL8006 Studios Home</span>
+          </button>
+        </div>
+
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 reveal-on-scroll">
+          <div class="space-y-2">
+            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
+              HL8006 Library
+            </h1>
+            <p class="text-sm text-zinc-400 font-light max-w-2xl leading-relaxed">
+              Explore the entire engineering catalog: 44 Coding Projects, 29 Naval Fleets (DDG 12 to 1, AAS 10 to 1, FFG 6 to 1, SSBN 1), 12 KQ Aerospace Fighters, and Hardware CAD.
+            </p>
+          </div>
+
+          <div class="relative w-full md:w-80">
+            <input 
+              type="text" 
+              id="searchInput" 
+              placeholder="Search naval, jets, or code..." 
+              oninput="filterApps()"
+              class="w-full bg-zinc-900 text-sm text-white placeholder-zinc-500 px-4 py-3 pl-10 rounded-full border border-zinc-800 focus:outline-none focus:border-white transition-colors"
+            />
+            <svg class="w-4 h-4 text-zinc-500 absolute left-3.5 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <span id="matchCount" class="absolute right-3.5 top-3 text-[10px] font-mono text-zinc-400 bg-zinc-800 px-2 py-0.5 rounded-full">90</span>
+          </div>
+        </div>
+
+        <!-- Google Labs Style Featured Showcase Scroller with Rotating Outline Beams -->
+        <div class="pt-4 pb-12 reveal-on-scroll">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-2.5">
+              <span class="text-xs font-mono uppercase tracking-wider text-zinc-300 font-semibold">Explore the projects</span>
+            </div>
+            <div class="text-[11px] font-mono text-zinc-500 hidden sm:block">
+              Organic glide &bull; Variable velocity
+            </div>
+          </div>
+
+          <div id="horizontalShowcase" class="horizontal-scroller no-scrollbar" onmouseenter="pauseShowcaseAutoScroll(true)" onmouseleave="pauseShowcaseAutoScroll(false)">
+            <!-- Populated dynamically via JavaScript with Google Labs card layouts -->
+          </div>
+
+          <!-- Centered Navigation Controls -->
+          <div class="flex items-center justify-center gap-3 pt-3">
+            <button onclick="scrollShowcase(-320)" class="btn-reactive w-10 h-10 rounded-full border border-zinc-800 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white flex items-center justify-center transition-all shadow-md" aria-label="Previous card">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <button onclick="scrollShowcase(320)" class="btn-reactive w-10 h-10 rounded-full border border-zinc-800 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white flex items-center justify-center transition-all shadow-md" aria-label="Next card">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Master Project Grid (90 Projects) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 reveal-on-scroll" id="appsGrid">
+          <!-- Rendered dynamically by JavaScript -->
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- ================================================================= -->
+  <!-- VIEW 3: DEDICATED BETA TESTING WEBPAGE VIEW                       -->
+  <!-- ================================================================= -->
+  <div id="view-beta" class="view-container">
+    <main class="relative pt-32 pb-24 sm:pt-40 sm:pb-32 min-h-screen">
+      <div class="max-w-4xl mx-auto px-5 sm:px-6">
+        
+        <div class="flex items-center justify-between mb-8 pb-4 border-b border-zinc-800">
+          <button onclick="navigateTo('home')" class="btn-reactive inline-flex items-center gap-2 text-xs font-mono text-zinc-400 hover:text-white transition-colors px-3 py-1.5 rounded-full">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+            <span>Return to HL8006 Studios Home</span>
+          </button>
+        </div>
+
+        <div class="space-y-4 mb-12 reveal-on-scroll">
+          <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
+            HL8006 Android Closed Beta Testing
+          </h1>
+          <p class="text-sm sm:text-base text-zinc-400 font-light max-w-2xl leading-relaxed">
+            Welcome to the official testing enrolment portal for pre-release builds developed by HL8006 Studios. Volunteer testers help ensure that local encryption routines, low memory models, and zero cloud runtimes perform cleanly across real hardware.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12 reveal-on-scroll">
+          <div class="bg-zinc-900 p-5 rounded-2xl border border-zinc-800">
+            <div class="text-xs font-mono text-zinc-500 uppercase">Requirement 01</div>
+            <div class="text-lg font-bold text-white mt-1">3 to 10 Minutes</div>
+            <p class="text-xs text-zinc-400 font-light mt-1">Daily interaction window across a continuous 14-day test cycle.</p>
+          </div>
+          <div class="bg-zinc-900 p-5 rounded-2xl border border-zinc-800">
+            <div class="text-xs font-mono text-zinc-500 uppercase">Requirement 02</div>
+            <div class="text-lg font-bold text-white mt-1">Android 10 to 17</div>
+            <p class="text-xs text-zinc-400 font-light mt-1">Direct Google Play Console download capability on verified hardware.</p>
+          </div>
+          <div class="bg-zinc-900 p-5 rounded-2xl border border-zinc-800">
+            <div class="text-xs font-mono text-zinc-500 uppercase">Requirement 03</div>
+            <div class="text-lg font-bold text-white mt-1">Objective Feedback</div>
+            <p class="text-xs text-zinc-400 font-light mt-1">Reporting anomalies, UI performance, and thermal profiles honestly.</p>
+          </div>
+        </div>
+
+        <div class="bg-zinc-900 rounded-3xl p-6 sm:p-10 border border-zinc-800 space-y-6 reveal-on-scroll">
+          <div class="space-y-2">
+            <h2 class="text-xl font-bold text-white">Google Play Beta Registration</h2>
+            <p class="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
+              We process applications directly through our Google Forms tester intake sheet. Please follow the link below to submit your Gmail address, exact phone model, and Android version to receive an invite.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-zinc-950 border border-zinc-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div class="space-y-1">
+              <div class="text-sm font-semibold text-white">Google Play Closed Beta Form</div>
+              <div class="text-xs text-zinc-400 font-light">Official Google Form hosted by HL8006 Studios</div>
+            </div>
+            <a href="https://forms.gle/WvfUExXq2PBuV8bo6" target="_blank" rel="noopener noreferrer" class="btn-reactive px-6 py-3 rounded-full bg-white text-black hover:bg-zinc-200 text-xs font-bold flex items-center gap-2">
+              <span>Open Google Form</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- ================================================================= -->
+  <!-- VIEW 4: DEDICATED PORTFOLIO VIEW (ABOUT YOUTAE CHOI)             -->
+  <!-- ================================================================= -->
+  <div id="view-portfolio" class="view-container">
+    <main class="relative pt-32 pb-24 sm:pt-40 sm:pb-32 min-h-screen">
+      <div class="max-w-5xl mx-auto px-5 sm:px-6">
+        
+        <div class="flex items-center justify-between mb-8 pb-4 border-b border-zinc-800">
+          <button onclick="navigateTo('home')" class="btn-reactive inline-flex items-center gap-2 text-xs font-mono text-zinc-400 hover:text-white transition-colors px-3 py-1.5 rounded-full">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+            <span>Return to HL8006 Studios Home</span>
+          </button>
+        </div>
+
+        <div class="space-y-4 mb-12 reveal-on-scroll">
+          <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
+            Youtae Choi
+          </h1>
+          <p class="text-base sm:text-lg text-zinc-300 font-light max-w-3xl leading-relaxed">
+            A 15-year-old student pilot who has flown solo and is training for the Recreational Pilot Licence (RPL), CAD designer in Autodesk Inventor, investigative student journalist on NSNC, H2GP PRO endurance racer, native Android developer, and golfer (14 handicap) based in New South Wales.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-14 reveal-on-scroll">
+          
+          <div class="rotating-border-card p-6 flex flex-col justify-between space-y-4">
+            <div class="space-y-3">
+              <span class="text-xs font-mono text-white uppercase tracking-wider block font-semibold">Aviation</span>
+              <h3 class="text-lg font-bold text-white">Student Pilot (Flown Solo, Going for RPL)</h3>
+              <p class="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
+                Currently 15 years old, has completed his first solo flight, and is actively undergoing flight training towards a Recreational Pilot Licence (RPL). Studies aeronautical meteorology, crosswind vector arrivals, and glide slopes that inform flight simulation aerodynamics.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-zinc-800 text-[11px] font-mono text-zinc-500">
+              Focus: General Aviation &amp; Aerodynamics
+            </div>
+          </div>
+
+          <div class="rotating-border-card p-6 flex flex-col justify-between space-y-4">
+            <div class="space-y-3">
+              <span class="text-xs font-mono text-white uppercase tracking-wider block font-semibold">CAD Design</span>
+              <h3 class="text-lg font-bold text-white">CAD &amp; Naval Designer</h3>
+              <p class="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
+                Authored 46 Autodesk Inventor models across the 29-vessel naval fleet (DDG 12 to 1, AAS 10 to 1, FFG 6 to 1, SSBN 1), the 12 KQ fighters, Project Lumina Eco Arch Lamp, and ARC Technologies hardware.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-zinc-800 text-[11px] font-mono text-zinc-500">
+              Tooling: Autodesk Inventor (.iam / .ipt)
+            </div>
+          </div>
+
+          <div class="rotating-border-card p-6 flex flex-col justify-between space-y-4">
+            <div class="space-y-3">
+              <span class="text-xs font-mono text-white uppercase tracking-wider block font-semibold">Journalism</span>
+              <h3 class="text-lg font-bold text-white">Journalist &amp; NSNC Founder</h3>
+              <p class="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
+                Directs and writes news for the New South Wales Student News Community (NSNC). Delivers objective, verified aerospace, science, and Australian current events to over 1,500 active secondary students.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-zinc-800 text-[11px] font-mono text-zinc-500">
+              Reach: 1,500+ Secondary Students across NSW
+            </div>
+          </div>
+
+          <div class="rotating-border-card p-6 flex flex-col justify-between space-y-4">
+            <div class="space-y-3">
+              <span class="text-xs font-mono text-white uppercase tracking-wider block font-semibold">Motorsport</span>
+              <h3 class="text-lg font-bold text-white">H2GP PRO Racer</h3>
+              <p class="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
+                Designer and telemetry specialist for the Horizon Hydrogen Grand Prix (H2GP PRO) endurance vehicle. Engineered the Middle Plate J10 crash-absorption frame and aerodynamic cooling ducts in Autodesk Inventor.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-zinc-800 text-[11px] font-mono text-zinc-500">
+              Focus: Hydrogen Fuel Cell RC Racing
+            </div>
+          </div>
+
+          <div class="rotating-border-card p-6 flex flex-col justify-between space-y-4">
+            <div class="space-y-3">
+              <span class="text-xs font-mono text-white uppercase tracking-wider block font-semibold">Software Development</span>
+              <h3 class="text-lg font-bold text-white">Android Developer</h3>
+              <p class="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
+                Verified Google Play developer (Developer ID: HL8006). Creator of 4 live store packages and 44 catalogued coding builds featuring local on-device processing and hardware AES GCM encryption.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-zinc-800 text-[11px] font-mono text-zinc-500">
+              ID: HL8006 on Google Play
+            </div>
+          </div>
+
+          <div class="rotating-border-card p-6 flex flex-col justify-between space-y-4">
+            <div class="space-y-3">
+              <span class="text-xs font-mono text-white uppercase tracking-wider block font-semibold">Golf</span>
+              <h3 class="text-lg font-bold text-white">Golfer (14 Handicap)</h3>
+              <p class="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
+                Regular golfer playing off a 14 handicap. Devotes time each week to swing mechanics, course strategy, and practicing on the course.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-zinc-800 text-[11px] font-mono text-zinc-500">
+              Discipline: Biomechanics &amp; Course Management
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Professional Solid Black Footer Bar -->
+  <footer class="footer-solid-black py-12 border-t border-zinc-900">
+    <div class="max-w-6xl mx-auto px-5 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="text-center md:text-left space-y-1">
+        <span class="font-bold text-white text-base tracking-tight">HL8006 Studios</span>
+        <p class="text-xs text-zinc-400 font-light">
+          Directed by Youtae Choi. Creative productions, software engineering, naval architecture, and community systems.
+        </p>
+      </div>
+
+      <div class="text-center md:text-right">
+        <span class="text-zinc-500 text-xs font-mono">&copy; 2024 to 2026 HL8006 Studios. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Build & CAD Inspector Slide-Over Drawer -->
+  <div id="inspectorDrawer" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex justify-end">
+    <div class="bg-zinc-950 border-l border-zinc-800 w-full max-w-xl h-full p-6 sm:p-8 flex flex-col justify-between overflow-y-auto">
+      <div class="space-y-6">
+        <div class="flex items-center justify-between pb-4 border-b border-zinc-800">
+          <span class="text-xs font-mono text-zinc-400 uppercase tracking-wider">Project Specification</span>
+          <button onclick="closeInspector()" class="text-zinc-400 hover:text-white p-1 rounded-lg">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <div>
+          <span class="text-[10px] font-mono px-2.5 py-1 rounded-full bg-zinc-900 text-zinc-300 border border-zinc-800" id="drawerBadge">Specification</span>
+          <h3 class="text-2xl font-bold text-white mt-3" id="drawerTitle">Project Title</h3>
+          <div class="text-xs font-mono text-zinc-400 mt-1" id="drawerVersions">Version / File Tag</div>
+        </div>
+
+        <div class="space-y-4">
+          <p class="text-xs sm:text-sm text-zinc-300 font-light leading-relaxed" id="drawerDescription">
+            Detailed overview will be populated here.
+          </p>
+
+          <div class="space-y-3 pt-2">
+            <div class="bg-zinc-900 p-3.5 rounded-xl border border-zinc-800">
+              <div class="text-[10px] font-mono text-zinc-500 uppercase">Architecture / Tooling</div>
+              <div class="text-xs font-medium text-white mt-0.5" id="drawerArch">Autodesk Inventor</div>
+            </div>
+            <div class="bg-zinc-900 p-3.5 rounded-xl border border-zinc-800">
+              <div class="text-[10px] font-mono text-zinc-500 uppercase">Operational Status</div>
+              <div class="text-xs font-medium text-white mt-0.5" id="drawerStatus">Combat Ready Flagship</div>
+            </div>
+            <div class="bg-zinc-900 p-3.5 rounded-xl border border-zinc-800">
+              <div class="text-[10px] font-mono text-zinc-500 uppercase">Technical Specification</div>
+              <div class="text-xs font-medium text-white mt-0.5" id="drawerSpec">Specifications detail</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-6 border-t border-zinc-800">
+        <button onclick="closeInspector()" class="btn-reactive w-full py-2.5 rounded-full bg-white hover:bg-zinc-200 text-black text-xs font-semibold transition-colors">
+          Close Overview
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastNotification" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="bg-zinc-900 border border-zinc-700 text-white text-xs px-4 py-3 rounded-2xl shadow-2xl flex items-center gap-2">
+      <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+      <span id="toastMessage">Action completed</span>
+    </div>
+  </div>
+
+  <script>
+    /* 46 Autodesk Inventor CAD Projects: DDG 12 to 1, AAS 10 to 1, FFG 6 to 1, SSBN 1, KQ 12 to 1, Super Kilo, Hardware */
+    const cadProjectsData = [
+      {
+        id: "ddg-12",
+        name: "DDG 12: Next-Gen Guided Missile Destroyer (Flagship)",
+        fileTag: "DDG12_Flagship_Hull.iam",
+        category: "ddg",
+        type: "cad",
+        status: "Combat Ready Flagship",
+        material: "High-Tensile HY-80 Naval Steel Hull Assembly",
+        tooling: "Autodesk Inventor",
+        description: "The complete, operational flagship guided-missile destroyer of the HL8006 naval architecture line. Fully outfitted with a 96-cell strike-length VLS, phased array radar superstructure, and integrated electric drive.",
+        spec: "Displacement: 10,800t | Length: 172m | Weapons: 96-Cell VLS, 127mm Naval Gun"
+      },
+      {
+        id: "ddg-11",
+        name: "DDG 11: Advanced Integrated Air Defense Destroyer",
+        fileTag: "DDG11_AirDefense_FlightIV.iam",
+        category: "ddg",
+        type: "cad",
+        status: "Production Frame (Flight IV)",
+        material: "HY-80 High Tensile Steel Frame",
+        tooling: "Autodesk Inventor",
+        description: "Flight IV pre-production prototype modeled in Autodesk Inventor. Serves as the production test frame for the elevated active phased array radar mast and extended cooling manifolds.",
+        spec: "Displacement: 10,400t | Length: 170m | Primary Role: Wide-Area Air Defense Testbed"
+      },
+      {
+        id: "ddg-10",
+        name: "DDG 10: Multi-Mission Surface Combatant",
+        fileTag: "DDG10_MultiMission_Hull.iam",
+        category: "ddg",
+        type: "cad",
+        status: "Production Frame (Flight III)",
+        material: "Reinforced Naval Steel & Composite Mast",
+        tooling: "Autodesk Inventor",
+        description: "Flight III production hull featuring modular midship bay configurations for anti-submarine torpedo tubes and secondary rigid-inflatable boat launch cranes.",
+        spec: "Displacement: 9,900t | Length: 168m | Primary Role: Multi-Mission Escort"
+      },
+      {
+        id: "ddg-9",
+        name: "DDG 9: Long-Range Strike Destroyer Frame",
+        fileTag: "DDG9_StrikeFrame_PreProduction.iam",
+        category: "ddg",
+        type: "cad",
+        status: "Production Frame (Strike Trial)",
+        material: "Structural Steel Frame",
+        tooling: "Autodesk Inventor",
+        description: "Developmental hull iteration engineered specifically to assess longitudinal stress loads during sustained missile launch sequences from forward 64-cell VLS silos.",
+        spec: "Displacement: 9,600t | Length: 165m | Primary Role: VLS Load Stress Testing"
+      },
+      {
+        id: "ddg-8",
+        name: "DDG 8: High-Power Sensor & Radar Test Frame",
+        fileTag: "DDG8_RadarSuperstructure.iam",
+        category: "ddg",
+        type: "cad",
+        status: "Production Frame (Sensor Rig)",
+        material: "Aluminum Superstructure / Steel Hull",
+        tooling: "Autodesk Inventor",
+        description: "Specialised engineering frame built to test weight distribution, center of gravity, and generator room thermal balance for dual-band active radar arrays.",
+        spec: "Displacement: 9,400t | Length: 163m | Primary Role: Power & Sensor Integration"
+      },
+      {
+        id: "ddg-7",
+        name: "DDG 7: Dual-Hangar Aviation Operations Destroyer",
+        fileTag: "DDG7_AviationDeck_Assembly.iam",
+        category: "ddg",
+        type: "cad",
+        status: "Production Frame (Aviation Deck)",
+        material: "Structural Steel & Non-Skid Deck Coating",
+        tooling: "Autodesk Inventor",
+        description: "Production trial frame evaluating twin MH-60R Seahawk helicopter hangar clearance, traverse winch systems, and aft stern turbulence mitigation.",
+        spec: "Displacement: 9,200t | Length: 160m | Primary Role: Aviation Operations Interface"
+      },
+      {
+        id: "ddg-6",
+        name: "DDG 6: Anti-Submarine Warfare Acoustic Test Frame",
+        fileTag: "DDG6_SonarBow_Acoustic.iam",
+        category: "ddg",
+        type: "cad",
+        status: "Production Frame (Acoustic Keel)",
+        material: "Damped Composite Bow Dome",
+        tooling: "Autodesk Inventor",
+        description: "Developmental hull testbed configured with an enlarged bulbous bow dome to simulate acoustic hydrodynamic dampening and towed array winch mechanics.",
+        spec: "Displacement: 8,900t | Length: 158m | Primary Role: ASW Sonar Hydrodynamics"
+      },
+      {
+        id: "ddg-5",
+        name: "DDG 5: High-Speed Sprint Propulsion Hull",
+        fileTag: "DDG5_ShaftAlignment_Hull.iam",
+        category: "ddg",
+        type: "cad",
+        status: "Production Frame (Propulsion)",
+        material: "Cast Bronze Struts & High-Yield Steel",
+        tooling: "Autodesk Inventor",
+        description: "Mechanical drive alignment model designed in Autodesk Inventor to stress-test dual controllable-pitch propeller shafts and gas-turbine gearbox mounts.",
+        spec: "Displacement: 8,600t | Length: 155m | Primary Role: 32+ Knot Hydrodynamics"
+      },
+      {
+        id: "ddg-4",
+        name: "DDG 4: Midship Missile Canister Modular Frame",
+        fileTag: "DDG4_CanisterDeck_Assembly.iam",
+        category: "ddg",
+        type: "cad",
+        status: "Production Frame (Midship Bay)",
+        material: "Treated Naval Grade Steel",
+        tooling: "Autodesk Inventor",
+        description: "Prototype deck frame testing angled quad-pack anti-ship missile launcher mountings and blast-deflector plate angles forward of the aft exhaust stacks.",
+        spec: "Displacement: 8,300t | Length: 152m | Primary Role: Deck Launcher Clearance"
+      },
+      {
+        id: "ddg-3",
+        name: "DDG 3: Shallow Keel Littoral Hydrodynamics Model",
+        fileTag: "DDG3_ShallowKeel_Draft.iam",
+        category: "ddg",
+        type: "cad",
+        status: "Production Frame (Keel Draft)",
+        material: "Fabricated Structural Steel",
+        tooling: "Autodesk Inventor",
+        description: "Reduced-draft hull iteration engineered in Autodesk Inventor to model roll stability, bilge keel damping, and wave resistance in shallow coastal channels.",
+        spec: "Displacement: 8,000t | Length: 150m | Primary Role: Littoral Roll Stability"
+      },
+      {
+        id: "ddg-2",
+        name: "DDG 2: Early Structural Proof-of-Concept Frame",
+        fileTag: "DDG2_StructuralRibs_Assembly.iam",
+        category: "ddg",
+        type: "cad",
+        status: "Production Frame (Frame Rig)",
+        material: "Internal Web Frames & Keelson",
+        tooling: "Autodesk Inventor",
+        description: "Early secondary structural model defining transverse bulkhead spacing, longitudinal stringers, and deck plate welding geometry.",
+        spec: "Displacement: 7,800t | Length: 148m | Primary Role: Internal Structural Rib Layout"
+      },
+      {
+        id: "ddg-1",
+        name: "DDG 1: Baseline Destroyer Frame (Class Pioneer)",
+        fileTag: "DDG1_ClassPioneer.ipt",
+        category: "ddg",
+        type: "cad",
+        status: "Production Frame 1 (First Frame)",
+        material: "Baseline Autodesk Inventor Parametric Solid",
+        tooling: "Autodesk Inventor",
+        description: "The founding first structural bare frame for the entire destroyer lineage in Autodesk Inventor. Represents the original lofted hull form lines.",
+        spec: "Displacement: 7,500t | Length: 145m | Historical Note: Class Pioneer Frame 1"
+      },
+      {
+        id: "aas-10",
+        name: "AAS 10: Aviation & Amphibious Assault Ship (Flagship)",
+        fileTag: "AAS10_AssaultShip_Master.iam",
+        category: "aas",
+        type: "cad",
+        status: "Combat Ready Flagship",
+        material: "Heavy Welded Naval Steel & Thermal Flight Deck",
+        tooling: "Autodesk Inventor",
+        description: "The complete, operational flagship amphibious carrier of the HL8006 naval fleet. Battle-ready configuration featuring full-length 257m flight deck, dual island design, and floodable stern well deck.",
+        spec: "Displacement: 45,000t | Flight Deck: 257m | Air Wing: Up to 24 F-35B / KQ Jets"
+      },
+      {
+        id: "aas-9",
+        name: "AAS 9: Ski-Jump Launch Flight Deck Prototype",
+        fileTag: "AAS9_SkiJump_Deck.iam",
+        category: "aas",
+        type: "cad",
+        status: "Production Frame (Flight Deck)",
+        material: "Reinforced Deck Plate Assembly",
+        tooling: "Autodesk Inventor",
+        description: "Production trial frame evaluating a 12-degree angled bow ski-jump ramp to maximize short takeoff payload limits for KQ-series aerospace fighters.",
+        spec: "Displacement: 43,500t | Flight Deck: 252m | Primary Role: STOVL Takeoff Optimization"
+      },
+      {
+        id: "aas-8",
+        name: "AAS 8: Heavy Well-Deck Ballast Tank Frame",
+        fileTag: "AAS8_WellDeck_FloodChambers.iam",
+        category: "aas",
+        type: "cad",
+        status: "Production Frame (Ballast Flood)",
+        material: "Internal Double-Bottom Steel Tanks",
+        tooling: "Autodesk Inventor",
+        description: "Hydraulic and buoyancy simulation frame modeled in Autodesk Inventor to verify rapid stern trimming and ballasting during LCAC hovercraft launch.",
+        spec: "Displacement: 42,000t | Well-Deck: 3x LCAC | Primary Role: Ballast Trim Dynamic Rig"
+      },
+      {
+        id: "aas-7",
+        name: "AAS 7: Dual Aircraft Elevator Carrier Hull",
+        fileTag: "AAS7_DeckElevator_Assembly.iam",
+        category: "aas",
+        type: "cad",
+        status: "Production Frame (Elevators)",
+        material: "High-Capacity Steel Cantilever Trusses",
+        tooling: "Autodesk Inventor",
+        description: "Engineering assembly testing deck-edge elevator cable guides, hydraulic pistons, and hangar door pressure seals under high sea-state flex.",
+        spec: "Displacement: 40,000t | Elevator Capacity: 40,000kg | Primary Role: Deck Lift Mechanics"
+      },
+      {
+        id: "aas-6",
+        name: "AAS 6: Lower Vehicle Stowage Deck Frame",
+        fileTag: "AAS6_VehicleDeck_Ramps.iam",
+        category: "aas",
+        type: "cad",
+        status: "Production Frame (Vehicle Deck)",
+        material: "Reinforced Structural Flooring",
+        tooling: "Autodesk Inventor",
+        description: "Internal deck partition model designed to calculate axle load capacities and turning radii for heavy armored vehicles moving between lower hold and well-deck.",
+        spec: "Displacement: 38,500t | Cargo Area: 2,800 m² | Primary Role: Heavy Armor Transit"
+      },
+      {
+        id: "aas-5",
+        name: "AAS 5: Island Superstructure Aerodynamic Model",
+        fileTag: "AAS5_Island_WindTunnel.iam",
+        category: "aas",
+        type: "cad",
+        status: "Production Frame (Island Aero)",
+        material: "Composite Island Faceting",
+        tooling: "Autodesk Inventor",
+        description: "Autodesk Inventor model assessing deck turbulence and exhaust heat dissipation across the landing spots aft of the primary island flight control bridge.",
+        spec: "Displacement: 36,000t | Primary Role: Island Wake Turbulence Suppression"
+      },
+      {
+        id: "aas-4",
+        name: "AAS 4: Intermediate Cargo Ramp & Sponson Hull",
+        fileTag: "AAS4_SideRamp_Sponson.iam",
+        category: "aas",
+        type: "cad",
+        status: "Production Frame (Side Ramp)",
+        material: "High-Strength Steel Hinges & Sponsons",
+        tooling: "Autodesk Inventor",
+        description: "Pre-production hull testing side-loading stern ramps and external defensive CIWS weapon sponsons for all-weather self defense.",
+        spec: "Displacement: 34,000t | Primary Role: Pier-Side Roll-On Roll-Off Feasibility"
+      },
+      {
+        id: "aas-3",
+        name: "AAS 3: Propulsion & Podded Drive Trial Hull",
+        fileTag: "AAS3_Azipod_Mountings.iam",
+        category: "aas",
+        type: "cad",
+        status: "Production Frame (Propulsion)",
+        material: "Cast Steel Skegs & Bearing Housings",
+        tooling: "Autodesk Inventor",
+        description: "Engine room and skeg framing designed to accommodate electric drive pods, calculating thrust vector loads during close-quarters harbor berthing.",
+        spec: "Displacement: 32,000t | Primary Role: Electric Drive Mount Dynamics"
+      },
+      {
+        id: "aas-2",
+        name: "AAS 2: Scaled Envelope Midship Extrusion",
+        fileTag: "AAS2_MidshipSection_Extrusion.iam",
+        category: "aas",
+        type: "cad",
+        status: "Production Frame (Envelope)",
+        material: "Parametric Longitudinal Ribs",
+        tooling: "Autodesk Inventor",
+        description: "Secondary developmental frame establishing the internal double-hull envelope, hangar deck height clearance, and damage-control compartment boundaries.",
+        spec: "Displacement: 30,000t | Primary Role: Compartment & Hangar Sizing"
+      },
+      {
+        id: "aas-1",
+        name: "AAS 1: Baseline Amphibious Frame (Class Pioneer)",
+        fileTag: "AAS1_ClassPioneer.ipt",
+        category: "aas",
+        type: "cad",
+        status: "Production Frame 1 (First Frame)",
+        material: "Baseline Parametric Solid Hull Blank",
+        tooling: "Autodesk Inventor",
+        description: "The founding first structural bare frame for the amphibious assault carrier series in Autodesk Inventor. Defines the initial flight deck aspect ratio.",
+        spec: "Displacement: 28,000t | Length: 220m | Historical Note: Class Pioneer Frame 1"
+      },
+      {
+        id: "ffg-6",
+        name: "FFG 6: Multi-Mission Stealth Frigate (Flagship)",
+        fileTag: "FFG6_StealthFrigate_Master.iam",
+        category: "ffg",
+        type: "cad",
+        status: "Combat Ready Flagship",
+        material: "Radar-Absorbent Steel & Composite Facets",
+        tooling: "Autodesk Inventor",
+        description: "The operational battle-ready flagship frigate of the HL8006 fleet. Equipped with 32-cell strike VLS, quiet diesel-electric cruising drive, and integrated CEA-FAR radar mast.",
+        spec: "Displacement: 6,400t | Length: 146m | Weapons: 32-Cell VLS, Towed Sonar Array"
+      },
+      {
+        id: "ffg-5",
+        name: "FFG 5: Specialized ASW Acoustic Frigate Frame",
+        fileTag: "FFG5_ASW_SilencedHull.iam",
+        category: "ffg",
+        type: "cad",
+        status: "Production Frame (Acoustic Mount)",
+        material: "Rubber-Damped Engine Rafts & Steel Hull",
+        tooling: "Autodesk Inventor",
+        description: "Flight II frigate production model built in Autodesk Inventor to test floating acoustic raft isolation systems for silent submarine hunting.",
+        spec: "Displacement: 6,100t | Length: 144m | Primary Role: Radiated Noise Reduction"
+      },
+      {
+        id: "ffg-4",
+        name: "FFG 4: Australian Radar Integration Test Frame",
+        fileTag: "FFG4_CEAFAR_MastMount.iam",
+        category: "ffg",
+        type: "cad",
+        status: "Production Frame (Radar Mast)",
+        material: "Composite Mast & Welded Naval Steel",
+        tooling: "Autodesk Inventor",
+        description: "Superstructure prototype validating radar cross-section (RCS) stealth angles and cabling conduits for high-frequency active radar arrays.",
+        spec: "Displacement: 5,800t | Length: 142m | Primary Role: Radar Mast Rig Integration"
+      },
+      {
+        id: "ffg-3",
+        name: "FFG 3: Compact Tactical VLS Midship Prototype",
+        fileTag: "FFG3_TacticalVLS_Bay.iam",
+        category: "ffg",
+        type: "cad",
+        status: "Production Frame (VLS Bay)",
+        material: "Structural Deck Box Steel",
+        tooling: "Autodesk Inventor",
+        description: "Midship weapon bay test frame engineered in Autodesk Inventor to confirm hatch clearance, drainage gutters, and missile exhaust gas venting ductwork.",
+        spec: "Displacement: 5,500t | Length: 140m | Primary Role: 16-Cell Tactical Silo Mount"
+      },
+      {
+        id: "ffg-2",
+        name: "FFG 2: Waterjet & Littoral Escort Trial Hull",
+        fileTag: "FFG2_LittoralPropulsion_Hull.iam",
+        category: "ffg",
+        type: "cad",
+        status: "Production Frame (Waterjet Draft)",
+        material: "Lightweight High-Tensile Steel",
+        tooling: "Autodesk Inventor",
+        description: "Secondary production frame assessing high-speed hydrodynamics, intake tunnel cavitation, and shallow coastal escort manoeuvres.",
+        spec: "Displacement: 5,200t | Length: 136m | Primary Role: Shallow Draft Waterjet Testing"
+      },
+      {
+        id: "ffg-1",
+        name: "FFG 1: Baseline Frigate Frame (Class Pioneer)",
+        fileTag: "FFG1_ClassPioneer.ipt",
+        category: "ffg",
+        type: "cad",
+        status: "Production Frame 1 (First Frame)",
+        material: "Baseline Autodesk Inventor Frigate Solid",
+        tooling: "Autodesk Inventor",
+        description: "The founding first structural bare frame for the frigate series in Autodesk Inventor. Established the low-drag hydrodynamic entrance angle.",
+        spec: "Displacement: 4,900t | Length: 132m | Historical Note: Class Pioneer Frame 1"
+      },
+      {
+        id: "ssbn-1",
+        name: "SSBN 1: Strategic Nuclear Submarine (Ready to Fight)",
+        fileTag: "SSBN1_Dreadnought_Master.iam",
+        category: "ssbn",
+        type: "cad",
+        status: "Ready to Fight (Combat Active)",
+        material: "HY-100 High-Yield Deep Submergence Steel & Anechoic Tiles",
+        tooling: "Autodesk Inventor / Hydrodynamic Pressure Analysis",
+        description: "Fully operational, deep-diving strategic ballistic missile submarine modeled in Autodesk Inventor. Battle-ready with 16 missile tubes, shrouded pump-jet, and anechoic hull cladding.",
+        spec: "Displacement: 17,200t Submerged | Length: 160m | Weapons: 16 SLBM Tubes, 4 Torpedo Tubes"
+      },
+      {
+        id: "kq-12",
+        name: "KQ-12: 6th-Gen Air Dominance Fighter (Flagship)",
+        fileTag: "KQ12_AirDominance_Master.iam",
+        category: "kq-jets",
+        type: "cad",
+        status: "Supersonic Combat Ready",
+        material: "Carbon-Bismaleimide Composite & Radar Absorbent Skin",
+        tooling: "Autodesk Inventor / Supersonic Aerodynamics",
+        description: "The premier 6th-generation stealth air superiority fighter. Tailless swept-wing planform with 3D fluidic thrust vectoring, deep internal weapon bays, and Mach 2.4 supercruise capability.",
+        spec: "Speed: Mach 2.4+ Supercruise | Ceiling: 65,000 ft | Weapons: Internal Bay Rotary Launcher"
+      },
+      {
+        id: "kq-11",
+        name: "KQ-11: High-Altitude Mach 3+ Heavy Interceptor",
+        fileTag: "KQ11_Interceptor_Frame.iam",
+        category: "kq-jets",
+        type: "cad",
+        status: "Aero Production Frame",
+        material: "Titanium Alloy Structural Skeletal Ribs",
+        tooling: "Autodesk Inventor",
+        description: "High-altitude interceptor CAD model with variable geometry compression ramp air intakes engineered for high thermal loads above Mach 3.",
+        spec: "Speed: Mach 3.1 | Primary Role: Ballistic Missile Intercept"
+      },
+      {
+        id: "kq-10",
+        name: "KQ-10: Carrier-Based STOVL Strike Fighter",
+        fileTag: "KQ10_STOVL_CarrierVariant.iam",
+        category: "kq-jets",
+        type: "cad",
+        status: "Carrier Variant Frame",
+        material: "Reinforced Undercarriage & Salt-Resistant Skin",
+        tooling: "Autodesk Inventor",
+        description: "Short takeoff, vertical landing carrier strike fighter with swivel exhaust nozzles and lift-fan bays designed for AAS 10 flight deck compatibility.",
+        spec: "Speed: Mach 1.9 | Role: Amphibious Flight Deck STOVL Operations"
+      },
+      {
+        id: "kq-9",
+        name: "KQ-9: Dedicated Airborne Electronic Attack Airframe",
+        fileTag: "KQ9_Growler_AvionicsPod.iam",
+        category: "kq-jets",
+        type: "cad",
+        status: "Avionics Pod Model",
+        material: "Dielectric Radomes & Carbon Frame",
+        tooling: "Autodesk Inventor",
+        description: "Airframe variant modeled with wingtip wide-band receiver pods and centerline high-power radar jamming transmitters.",
+        spec: "Speed: Mach 1.8 | Role: Broad-Spectrum Radar Jamming"
+      },
+      {
+        id: "kq-8",
+        name: "KQ-8: Long-Range Hypersonic Strike Reconnaissance",
+        fileTag: "KQ8_Waverider_Fuselage.iam",
+        category: "kq-jets",
+        type: "cad",
+        status: "Scramjet Lofted Model",
+        material: "Refractory Ceramic Matrix Composites",
+        tooling: "Autodesk Inventor",
+        description: "Waverider lifting body geometry modeled in Autodesk Inventor to utilize shockwave compression for hypersonic lift generation.",
+        spec: "Speed: Mach 5.2 | Role: Hypersonic Reconnaissance"
+      },
+      {
+        id: "kq-7",
+        name: "KQ-7: Forward-Swept Wing Agility Prototype",
+        fileTag: "KQ7_ForwardSwept_Wing.iam",
+        category: "kq-jets",
+        type: "cad",
+        status: "Aero Elasticity Frame",
+        material: "Aero-Elastically Tailored Carbon Fiber",
+        tooling: "Autodesk Inventor",
+        description: "Experimental forward-swept wing planform designed to explore extreme post-stall angles of attack and vortex lift dynamics.",
+        spec: "Speed: Mach 1.6 | Role: High-Alpha Dogfight Agility"
+      },
+      {
+        id: "kq-6",
+        name: "KQ-6: Multi-Role Light Tactical Combatant",
+        fileTag: "KQ6_LightCombat_Assembly.iam",
+        category: "kq-jets",
+        type: "cad",
+        status: "Production Assembly",
+        material: "Aluminum-Lithium Alloy Skin",
+        tooling: "Autodesk Inventor",
+        description: "Single-engine cost-effective tactical fighter with modular avionics architecture and low maintenance turnaround requirements.",
+        spec: "Speed: Mach 1.8 | Role: Export-Class Light Fighter"
+      },
+      {
+        id: "kq-5",
+        name: "KQ-5: Canard-Delta Maneuverability Testbed",
+        fileTag: "KQ5_CanardDelta_Loft.iam",
+        category: "kq-jets",
+        type: "cad",
+        status: "Prototype Airframe",
+        material: "Composite Wing & Titanium Spars",
+        tooling: "Autodesk Inventor",
+        description: "Coupled close-coupled canard and delta wing design modeled in Autodesk Inventor to study pitch response and instantaneous turn rates.",
+        spec: "Speed: Mach 2.0 | Role: Unstable Pitch Dynamics Test"
+      },
+      {
+        id: "kq-4",
+        name: "KQ-4: Twin-Tail Multi-Mission Fighter Model",
+        fileTag: "KQ4_TwinTail_Chassis.iam",
+        category: "kq-jets",
+        type: "cad",
+        status: "Prototype Airframe",
+        material: "Aviation Grade 7075-T6 Aluminum",
+        tooling: "Autodesk Inventor",
+        description: "Cant-tail twin fin design modeled to examine directional stability and rudder authority at extreme angles of attack.",
+        spec: "Speed: Mach 1.7 | Role: Directional Stability Research"
+      },
+      {
+        id: "kq-3",
+        name: "KQ-3: Variable-Sweep Wing Aerodynamic Rig",
+        fileTag: "KQ3_VariableSweep_Pivot.iam",
+        category: "kq-jets",
+        type: "cad",
+        status: "Mechanical Pivot Model",
+        material: "Heavy Titanium Wing Box & Bearings",
+        tooling: "Autodesk Inventor",
+        description: "CAD mechanical assembly modeling the internal wing-pivot drive gears, sweep actuators, and leading-edge slat mechanisms.",
+        spec: "Sweep Range: 20° to 68° | Role: Low-Altitude High-Speed Dash"
+      },
+      {
+        id: "kq-2",
+        name: "KQ-2: Supersonic Lead-In Trainer Airframe",
+        fileTag: "KQ2_TandemCockpit_Loft.iam",
+        category: "kq-jets",
+        type: "cad",
+        status: "Trainer Lofted Frame",
+        material: "Riveted Sheet Aluminum & Plexiglass Canopy",
+        tooling: "Autodesk Inventor",
+        description: "Two-seat tandem cockpit trainer airframe engineered to familiarize student pilots with supersonic handling qualities and high G loads.",
+        spec: "Speed: Mach 1.3 | Role: Lead-In Jet Trainer"
+      },
+      {
+        id: "kq-1",
+        name: "KQ-1: Baseline Jet Flight Model (Aerospace Pioneer)",
+        fileTag: "KQ1_BaselineAirfoil_Solid.ipt",
+        category: "kq-jets",
+        type: "cad",
+        status: "First Generation Pioneer",
+        material: "Baseline Parametric Airfoil Solid",
+        tooling: "Autodesk Inventor",
+        description: "The founding first aerospace jet model designed in Autodesk Inventor. Established the baseline supercritical airfoil coordinates.",
+        spec: "Speed: Transonic | Historical Note: Class Pioneer Frame 1"
+      },
+      {
+        id: "super-kilo-chassis",
+        name: "Project Super Kilo: Sub-1000g Ultralight Chassis",
+        fileTag: "SuperKilo_Chassis_Assembly.iam",
+        category: "super-kilo",
+        type: "cad",
+        status: "Skeletal Prototype",
+        material: "Carbon-Epoxy Monocoque & Topology Optimized 7075 Aluminum",
+        tooling: "Autodesk Inventor / Stress FEA",
+        description: "Ultralight structural monocoque designed in Autodesk Inventor to achieve an overall mass below 1,000 grams while sustaining 40G shock loads.",
+        spec: "Target Mass: Sub-1,000g | Target Stress: 40G Impact Resistance"
+      },
+      {
+        id: "super-kilo-intake",
+        name: "Project Super Kilo: Hypersonic Intake Ducts",
+        fileTag: "SuperKilo_Aero_Intake.ipt",
+        category: "super-kilo",
+        type: "cad",
+        status: "Aerodynamic Shell",
+        material: "Wind Tunnel SLA Resin",
+        tooling: "Autodesk Inventor",
+        description: "Computational intake manifold modeling internal boundary layer bleed systems and flow expansion angles for Project Super Kilo.",
+        spec: "Mass: 84g | Boundary Layer Diversion: 94.2% Efficiency"
+      },
+      {
+        id: "super-kilo-probe",
+        name: "Project Super Kilo: Pitot-Static Sensor Probe",
+        fileTag: "SuperKilo_Aero_Probe_V3.ipt",
+        category: "super-kilo",
+        type: "cad",
+        status: "Sensor Hardware",
+        material: "Machined Marine Grade 316 Stainless Steel",
+        tooling: "Autodesk Inventor",
+        description: "High-precision dynamic pressure measuring head designed with heating elements to deliver flight control data in icing conditions.",
+        spec: "Tolerance: +/- 0.02mm | Sampling Rate: 1000Hz Output"
+      },
+      {
+        id: "cad-h2gp-j10",
+        name: "H2GP PRO: Middle Plate J10 Chassis",
+        fileTag: "Middle_Plate_J10.ipt",
+        category: "hardware",
+        type: "cad",
+        status: "Competition Active Chassis",
+        material: "Bambu Lab High-Yield PETG & Polycarbonate (PC)",
+        tooling: "Autodesk Inventor / FEA Load Rig",
+        description: "Central load-bearing chassis component for the 1:10 scale hydrogen fuel cell race car competing in the Horizon Hydrogen Grand Prix 2026. Engineered in Autodesk Inventor to absorb 40 km/h wall impacts.",
+        spec: "Impact Rating: 40 km/h Wall Force | Mass: 112g | Vehicle Target: 0.95 kg"
+      },
+      {
+        id: "cad-h2gp-aero",
+        name: "H2GP PRO: Dual Aerodynamic Ducts & Top Intake",
+        fileTag: "Aero_SideDuct_D1_Assembly.iam",
+        category: "hardware",
+        type: "cad",
+        status: "Wind Tunnel Optimized",
+        material: "Bambu Lab TPU & Impact PETG",
+        tooling: "Autodesk Inventor",
+        description: "Custom aerodynamic side ducting and ram-air roof intake cooling package. Routes ambient airflow directly over fuel cell stacks and hybrid LiPo reserves.",
+        spec: "Cooling Efficiency: +26% Mass Air Flow | Mass: 48g"
+      },
+      {
+        id: "cad-lumina-lamp",
+        name: "Project Lumina: Eco Arch Desk Lamp",
+        fileTag: "Lumina_EcoArch_Master.iam",
+        category: "hardware",
+        type: "cad",
+        status: "Physical Prototype",
+        material: "600mm Extruded Workshop Aluminum & Australian Hardwood",
+        tooling: "Autodesk Inventor",
+        description: "Environmentally sustainable desktop task lamp designed in Autodesk Inventor. Compact 5x7-inch hardwood footprint with recessed USB-C power standard.",
+        spec: "Footprint: 5x7 inches | Power Standard: Direct USB Type-C Receptacle"
+      },
+      {
+        id: "cad-qstand-max",
+        name: "ARC Technologies Q-Stand Max",
+        fileTag: "QStand_Max_Assembly.iam",
+        category: "hardware",
+        type: "cad",
+        status: "Commercial Architecture",
+        material: "Anodised Aluminium Frame & Dual Injection PC-ABS",
+        tooling: "Autodesk Inventor / Thermal Dynamics",
+        description: "Multi-functional performance laptop elevation and cooling station. Features 4 brushless thermal fans, integrated 20,000mAh lithium-polymer reserve battery, and internal 65W USB-C PD PCB hub.",
+        spec: "Thermal Reduction: -18.5°C | Fan Output: 4x 5000 RPM | Hub: Dual 4K HDMI"
+      }
+    ];
+
+    const applicationsData = [
+      {
+        id: 'poly-blast',
+        name: 'Poly Blast Puzzles!',
+        versionTag: 'v1.9.9 (Play Store)',
+        category: 'google-play',
+        type: 'code',
+        status: 'Google Play Release',
+        arch: 'Native Android Puzzle Engine',
+        offline: '100% Offline (Zero Cloud)',
+        track: 'Google Play Store',
+        licence: 'HL8006 Studios',
+        description: 'Optimised ad-free spatial block game featuring Classic (8x8), Mini (6x6), and Time Attack modes with local AES GCM match log encryption.'
+      },
+      {
+        id: 'nsnc-app',
+        name: 'NSNC Aerospace News',
+        versionTag: 'v2.6.1 (Play Store)',
+        category: 'google-play',
+        type: 'code',
+        status: 'Google Play Release',
+        arch: 'HL Assistant Neural Summariser',
+        offline: 'Cached Offline Reading',
+        track: 'Google Play Store',
+        licence: 'NSW Student News Community',
+        description: 'Official student news and aerospace innovation app with local client-side summarisation and zero advertisements.'
+      },
+      {
+        id: 'hl-clock',
+        name: 'HL Clock',
+        versionTag: 'v3.4 (Play Store)',
+        category: 'google-play',
+        type: 'code',
+        status: 'Google Play Release',
+        arch: 'Low Latency Chronometer Engine',
+        offline: '100% Offline by Design',
+        track: 'Google Play Store',
+        licence: 'HL8006 Studios',
+        description: 'Precision minimalist chronometer and alarms suite. Designed for low battery consumption with high refresh rate lap tracking, multi-zone world clocks, and floating stopwatch interfaces.'
+      },
+      {
+        id: 'mindspace',
+        name: 'MindSpace',
+        versionTag: 'v1.2 (Play Store)',
+        category: 'google-play',
+        type: 'code',
+        status: 'Google Play Release',
+        arch: 'Client-side Wellbeing Engine',
+        offline: '100% Offline (Zero Telemetry)',
+        track: 'Google Play Store',
+        licence: 'HL8006 Studios',
+        description: 'Quiet space mindfulness and student focus application. Offers distraction-free breathing exercises, binaural soundscapes, and digital wellbeing session trackers stored entirely offline.'
+      },
+      {
+        id: 'offline-ai-b1',
+        name: 'HL Offline AI (Beta V1)',
+        versionTag: 'Beta V1 Prototype',
+        category: 'ai',
+        type: 'code',
+        status: 'Prototype Model',
+        arch: 'Local Vector Pipeline',
+        offline: '100% Autonomous',
+        track: 'Android Play Beta',
+        licence: 'HL8006 Studios',
+        description: 'Initial offline natural language reasoning test build operating strictly on local mobile device storage with small memory overhead.'
+      },
+      {
+        id: 'offline-ai-b2',
+        name: 'HL Offline AI (Beta V2)',
+        versionTag: 'Beta V2 Quantised',
+        category: 'ai',
+        type: 'code',
+        status: 'Iterative Model',
+        arch: 'Quantised Transformer Weights',
+        offline: '100% Autonomous',
+        track: 'Android Play Beta',
+        licence: 'HL8006 Studios',
+        description: 'Refined local language weights with accelerated response times and contextual conversation memory buffers.'
+      },
+      {
+        id: 'offline-ai-b2x',
+        name: 'HL Offline AI (Beta V2X)',
+        versionTag: 'Beta V2X Cache',
+        category: 'ai',
+        type: 'code',
+        status: 'Extended Testing',
+        arch: 'Vector Cache Expansion',
+        offline: '100% Autonomous',
+        track: 'Android Play Beta',
+        licence: 'HL8006 Studios',
+        description: 'Enhanced context-window build designed to evaluate rapid paragraph summarisation across mid-range ARM mobile chips.'
+      },
+      {
+        id: 'offline-ai-p1',
+        name: 'HL Offline AI (Pro V1)',
+        versionTag: 'Pro V1 Production',
+        category: 'ai',
+        type: 'code',
+        status: 'Production Engine',
+        arch: 'Zero Telemetry Neural Core',
+        offline: '100% Autonomous',
+        track: 'Studio Stable Track',
+        licence: 'HL8006 Studios',
+        description: 'First production-grade offline assistant providing rapid document analysis and reasoning without external server calls.'
+      },
+      {
+        id: 'offline-ai-p2',
+        name: 'HL Offline AI (Pro V2)',
+        versionTag: 'Pro V2 Flagship',
+        category: 'ai',
+        type: 'code',
+        status: 'Flagship Edition',
+        arch: 'Advanced Neural Engine',
+        offline: '100% Autonomous',
+        track: 'Studio Stable Track',
+        licence: 'HL8006 Studios',
+        description: 'High-performance standalone model with enhanced multi-turn dialogue comprehension and low battery draw.'
+      },
+      {
+        id: 'asst-v1',
+        name: 'HL8006 Assistant (V1 Initial)',
+        versionTag: 'V1 Initial',
+        category: 'ai',
+        type: 'code',
+        status: 'Legacy Archive',
+        arch: 'Rule Base Core',
+        offline: 'Local Runtime',
+        track: 'Archive',
+        licence: 'HL8006 Studios',
+        description: 'Foundational productivity assistant engine built for basic device task execution, notes, and calculation management.'
+      },
+      {
+        id: 'asst-v2',
+        name: 'HL8006 Assistant (V2 Update)',
+        versionTag: 'V2 Update',
+        category: 'ai',
+        type: 'code',
+        status: 'Legacy Archive',
+        arch: 'Script Parser Matrix',
+        offline: 'Local Runtime',
+        track: 'Archive',
+        licence: 'HL8006 Studios',
+        description: 'Introduced structured calendar reminders and automated command processing routines for student scheduling.'
+      },
+      {
+        id: 'asst-v3',
+        name: 'HL8006 Assistant (V3 Core)',
+        versionTag: 'V3 Core',
+        category: 'ai',
+        type: 'code',
+        status: 'Legacy Archive',
+        arch: 'Contextual Engine',
+        offline: 'Local Runtime',
+        track: 'Archive',
+        licence: 'HL8006 Studios',
+        description: 'Expanded command registry with system diagnostic shortcuts and custom local file indexing routines.'
+      },
+      {
+        id: 'asst-v4',
+        name: 'HL8006 Assistant (V4 Enhanced)',
+        versionTag: 'V4 Enhanced',
+        category: 'ai',
+        type: 'code',
+        status: 'Stable Edition',
+        arch: 'Dynamic Dispatch Core',
+        offline: 'Hybrid Local',
+        track: 'Studio Stable',
+        licence: 'HL8006 Studios',
+        description: 'Integrated multi-threaded script execution for accelerated data indexing, search, and retrieval.'
+      },
+      {
+        id: 'asst-v5',
+        name: 'HL8006 Assistant (V5 Pro)',
+        versionTag: 'V5 Pro',
+        category: 'ai',
+        type: 'code',
+        status: 'Stable Edition',
+        arch: 'Agent Workflow Manager',
+        offline: 'Hybrid Local',
+        track: 'Studio Stable',
+        licence: 'HL8006 Studios',
+        description: 'Advanced desktop assistant version featuring deep document formatting and table generation integrations.'
+      },
+      {
+        id: 'asst-v6',
+        name: 'HL8006 Assistant (V6 Modern)',
+        versionTag: 'V6 Modern',
+        category: 'ai',
+        type: 'code',
+        status: 'Active Track',
+        arch: 'Modular Agent Engine',
+        offline: 'Hybrid Local',
+        track: 'Production',
+        licence: 'HL8006 Studios',
+        description: 'Optimised agent architecture supporting contextual summarisation across large student text and research bodies.'
+      },
+      {
+        id: 'asst-v9',
+        name: 'HL8006 Assistant (V9 Super)',
+        versionTag: 'V9 Super Flagship',
+        category: 'ai',
+        type: 'code',
+        status: 'Flagship Edition',
+        arch: 'High-Throughput Agent Core',
+        offline: 'Hybrid Local Context',
+        track: 'Flagship Release',
+        licence: 'HL8006 Studios',
+        description: 'Top-tier system workflow assistant offering real-time data formatting, scheduling, and workspace acceleration.'
+      },
+      {
+        id: 'agi-v5',
+        name: 'AGI 8006 (V5 Glass)',
+        versionTag: 'V5 Glass',
+        category: 'ai',
+        type: 'code',
+        status: 'Experimental Build',
+        arch: 'Glassmorphic Agent UI',
+        offline: 'Local Runtime',
+        track: 'Studio R&D',
+        licence: 'HL8006 Studios',
+        description: 'Interactive UI shell paired with autonomous agent workflows and rapid document parsing algorithms.'
+      },
+      {
+        id: 'agi-v6',
+        name: 'AGI 8006 (V6 Glass)',
+        versionTag: 'V6 Glass Next-Gen',
+        category: 'ai',
+        type: 'code',
+        status: 'Next-Gen Prototype',
+        arch: 'Hyper-Glass Agent Engine',
+        offline: 'Local Runtime',
+        track: 'Studio R&D',
+        licence: 'HL8006 Studios',
+        description: 'Refined visual transparency engine featuring reactive vector cards and rapid contextual response pipelines.'
+      },
+      {
+        id: 'super-kilo-ai',
+        name: 'Project Super Kilo: On-Device AI Core',
+        versionTag: 'Super Kilo v1.0',
+        category: 'ai',
+        type: 'code',
+        status: 'Edge Production Model',
+        arch: 'Edge Neural Trajectory Engine',
+        offline: '100% Autonomous',
+        track: 'Project Super Kilo Core',
+        licence: 'HL8006 Studios',
+        description: 'Ultra-low latency inference engine engineered for Project Super Kilo. Processes onboard IMU sensor arrays and autonomous trajectory corrections locally.'
+      },
+      {
+        id: 'race-control-v32',
+        name: 'HL8006 Race Control v3.2',
+        versionTag: 'v3.2 Base',
+        category: 'telemetry',
+        type: 'code',
+        status: 'Telemetry Engine',
+        arch: 'MediaStream API & Canvas',
+        offline: '100% Local Recording',
+        track: 'Studio Telemetry',
+        licence: 'HL8006 Studios',
+        description: 'Initial race telemetry cockpit capturing dual-lens video streams, lap delta timing, and local session exports.'
+      },
+      {
+        id: 'race-control-v35',
+        name: 'HL8006 Race Control v3.5',
+        versionTag: 'v3.5 Enhanced',
+        category: 'telemetry',
+        type: 'code',
+        status: 'Telemetry Engine',
+        arch: 'WebGL 3D & SVG Chrono',
+        offline: '100% Local Recording',
+        track: 'Studio Telemetry',
+        licence: 'HL8006 Studios',
+        description: 'Added high-precision SVG sub-millisecond stopwatch rings, setup notes editor with JSON packaging, and procedural 3D tracks.'
+      },
+      {
+        id: 'race-control-v37',
+        name: 'HL8006 Race Control v3.7',
+        versionTag: 'v3.7 Telemetry Master',
+        category: 'telemetry',
+        type: 'code',
+        status: 'Production Telemetry',
+        arch: 'WebGL 3D Engine & MediaStream vp9',
+        offline: '100% Local Storage & Export',
+        track: 'Studio Motorsport Telemetry',
+        licence: 'HL8006 Studios',
+        description: 'Comprehensive race simulation interface. Features 4K 60FPS dual-lens camera capture, real-time SVG chronometers, and procedural 3D tracks with dynamic weather.'
+      },
+      {
+        id: 'f1-w5',
+        name: 'HL8006 F1 (W5)',
+        versionTag: 'W5 Dynamics',
+        category: 'telemetry',
+        type: 'code',
+        status: 'Physics Model',
+        arch: 'Chassis Vector Matrix',
+        offline: 'Fully Standalone',
+        track: 'Motorsport Physics',
+        licence: 'HL8006 Studios',
+        description: 'Early dynamic racing simulation calculating downforce vectors, tyre surface heat, and cornering lines.'
+      },
+      {
+        id: 'f1-w6',
+        name: 'HL8006 F1 (W6)',
+        versionTag: 'W6 Aero',
+        category: 'telemetry',
+        type: 'code',
+        status: 'Physics Model',
+        arch: 'Aero Dynamics Grid',
+        offline: 'Fully Standalone',
+        track: 'Motorsport Physics',
+        licence: 'HL8006 Studios',
+        description: 'Improved aerodynamic simulations incorporating slipstream drag models, wake wash, and gear ratio optimisation.'
+      },
+      {
+        id: 'f1-w7-edge',
+        name: 'HL8006 F1 (W7 Edge)',
+        versionTag: 'W7 Edge',
+        category: 'telemetry',
+        type: 'code',
+        status: 'Performance Edition',
+        arch: 'High-G Cornering Physics',
+        offline: 'Fully Standalone',
+        track: 'Motorsport Physics',
+        licence: 'HL8006 Studios',
+        description: 'Chassis simulation tuned specifically for high lateral G-force loads and tyre compound wear across endurance stints.'
+      },
+      {
+        id: 'f1-w7-pro',
+        name: 'HL8006 F1 (W7 AI Pro)',
+        versionTag: 'W7 AI Pro',
+        category: 'telemetry',
+        type: 'code',
+        status: 'Telemetry Engine',
+        arch: 'Neural Telemetry Calculator',
+        offline: 'Fully Standalone',
+        track: 'Motorsport Physics',
+        licence: 'HL8006 Studios',
+        description: 'Coupled artificial intelligence racing line predictions with dynamic real-time tyre carcass temperature modelling.'
+      },
+      {
+        id: 'f1-w15-pro',
+        name: 'HL8006 F1 (W15 AI Pro)',
+        versionTag: 'W15 AI Pro',
+        category: 'telemetry',
+        type: 'code',
+        status: 'Active Simulation',
+        arch: 'Multidimensional Telemetry Matrix',
+        offline: 'Fully Standalone',
+        track: 'Motorsport Physics',
+        licence: 'HL8006 Studios',
+        description: 'Flagship open-wheel motorsport telemetry simulation calculating active ground-effect downforce and race setups.'
+      },
+      {
+        id: 'poly-prix-b3',
+        name: 'Poly Prix Super (Beta 3)',
+        versionTag: 'Beta 3 (F1 W3 Hybrid)',
+        category: 'telemetry',
+        type: 'code',
+        status: 'Closed Beta',
+        arch: 'Optimised Low-Poly Mesh Engine',
+        offline: 'Complete Offline Play',
+        track: 'Android Play Testing',
+        licence: 'HL8006 Studios',
+        description: 'Fast paced low-poly mobile arcade racer featuring responsive touch handling, drift mechanics, and zero cloud dependencies.'
+      },
+      {
+        id: 'fs-1',
+        name: 'HL8006 Flight Simulator (FS 1)',
+        versionTag: 'FS 1 Base',
+        category: 'telemetry',
+        type: 'code',
+        status: 'Aero Model',
+        arch: 'Lift Vector Framework',
+        offline: 'Standalone Flight Engine',
+        track: 'Flight Physics',
+        licence: 'HL8006 Studios',
+        description: 'Introductory aerodynamic lift and drag simulation modelling basic fixed-wing aircraft handling and throttle curves.'
+      },
+      {
+        id: 'fs-2',
+        name: 'HL8006 Flight Simulator (FS 2)',
+        versionTag: 'FS 2 Density',
+        category: 'telemetry',
+        type: 'code',
+        status: 'Aero Model',
+        arch: 'Atmospheric Air Density Core',
+        offline: 'Standalone Flight Engine',
+        track: 'Flight Physics',
+        licence: 'HL8006 Studios',
+        description: 'Added barometric air density lapse rate calculations across altitude layers and runway approach glide slopes.'
+      },
+      {
+        id: 'fs-3',
+        name: 'HL8006 Flight Simulator (FS 3)',
+        versionTag: 'FS 3 Avionics',
+        category: 'telemetry',
+        type: 'code',
+        status: 'Avionics Build',
+        arch: 'Navigation Instrument Matrix',
+        offline: 'Standalone Flight Engine',
+        track: 'Flight Physics',
+        licence: 'HL8006 Studios',
+        description: 'Full cockpit instrument avionics simulation featuring artificial horizon vectors, turn coordinators, and magnetic heading.'
+      },
+      {
+        id: 'fs-4',
+        name: 'HL8006 Flight Simulator (FS 4 Pro)',
+        versionTag: 'FS 4 Pro Master',
+        category: 'telemetry',
+        type: 'code',
+        status: 'Flagship Edition',
+        arch: 'Aerodynamic Vector Calculus',
+        offline: 'Standalone Flight Engine',
+        track: 'Flight Physics',
+        licence: 'HL8006 Studios',
+        description: 'Comprehensive aviation flight engine modelling Australian runway arrivals, crosswind vector patterns, and stall mechanics.'
+      },
+      {
+        id: 'cks-1',
+        name: 'HL8006 CKS 1 Orbital Kinematics',
+        versionTag: 'CKS 1 Master',
+        category: 'telemetry',
+        type: 'code',
+        status: 'Aerospace Track',
+        arch: 'Orbital Kinematics Core',
+        offline: 'Fully Standalone',
+        track: 'Aerospace Engineering',
+        licence: 'HL8006 Studios',
+        description: 'Orbital velocity, Hohmann transfers, and atmospheric reentry plasma physics calculation engine designed for space flight trajectories.'
+      },
+      {
+        id: 'raycast-car-3d',
+        name: '3D Raycast Vehicle Physics Sandbox',
+        versionTag: 'v1.4 Sandbox',
+        category: 'telemetry',
+        type: 'code',
+        status: 'Rigid Body Physics',
+        arch: 'Cannon.js & Three.js Vector Interpolation',
+        offline: '100% In-Browser Simulation',
+        track: 'Motorsport R&D',
+        licence: 'HL8006 Studios',
+        description: 'Rigid-body 3D vehicle physics engine featuring tuned suspension stiffness, damping compression, and dynamic chase camera vectors.'
+      },
+      {
+        id: 'art-pro-1',
+        name: 'HL8006 Art Pro (V1)',
+        versionTag: 'Art Pro 1',
+        category: 'creative',
+        type: 'code',
+        status: 'Early Canvas',
+        arch: 'HTML5 2D Canvas Engine',
+        offline: '100% Local File Storage',
+        track: 'Creative Suite',
+        licence: 'HL8006 Studios',
+        description: 'First generation digital drawing canvas supporting basic brush strokes, eraser tools, color picking, and instant PNG export.'
+      },
+      {
+        id: 'art-pro-2',
+        name: 'HL8006 Art Pro (V2)',
+        versionTag: 'Art Pro 2',
+        category: 'creative',
+        type: 'code',
+        status: 'Enhanced Studio',
+        arch: 'Smooth Bézier Stroke Pipeline',
+        offline: '100% Local File Storage',
+        track: 'Creative Suite',
+        licence: 'HL8006 Studios',
+        description: 'Upgraded creative canvas introducing pen pressure sensitivity curves, quadratic Bézier smoothing, and palette presets.'
+      },
+      {
+        id: 'art-pro-x9',
+        name: 'HL8006 Art Pro (X9 Studio)',
+        versionTag: 'Art Pro X9',
+        category: 'creative',
+        type: 'code',
+        status: 'Flagship Studio',
+        arch: 'React Pressure Canvas Engine',
+        offline: 'Full Offline Operation',
+        track: 'Production Web App',
+        licence: 'HL8006 Studios',
+        description: 'Full featured browser art studio featuring 30 font families, 8 page templates, custom themes, and calligraphy brush tools.'
+      },
+      {
+        id: 'docs-v1',
+        name: 'HL8006 Docs (V1 Initial)',
+        versionTag: 'Docs V1',
+        category: 'creative',
+        type: 'code',
+        status: 'Initial Markdown',
+        arch: 'Raw Text Formatter',
+        offline: '100% Local Storage',
+        track: 'Documentation',
+        licence: 'HL8006 Studios',
+        description: 'Lightweight technical notes compiler for recording development logs and project blueprints without cloud latency.'
+      },
+      {
+        id: 'docs-v2',
+        name: 'HL8006 Docs (V2 Live Preview)',
+        versionTag: 'Docs V2',
+        category: 'creative',
+        type: 'code',
+        status: 'Structured Suite',
+        arch: 'Live Preview Markdown Parser',
+        offline: '100% Local Storage',
+        track: 'Documentation',
+        licence: 'HL8006 Studios',
+        description: 'Technical writing tool equipped with split-screen live preview, markdown table compiling, and instant PDF print export.'
+      },
+      {
+        id: 'docs-v3',
+        name: 'HL8006 Docs (V3 Folio Master)',
+        versionTag: 'Docs V3 Folio',
+        category: 'creative',
+        type: 'code',
+        status: 'Production Release',
+        arch: 'Folio Specification Compiler',
+        offline: '100% Local Storage',
+        track: 'Documentation',
+        licence: 'HL8006 Studios',
+        description: 'Refined project documentation suite formatted for engineering folios, CAD drawing manifests, and BHS open notes.'
+      },
+      {
+        id: 'encryptor-v85',
+        name: 'HL8006 Encryptor V8.5',
+        versionTag: 'v8.5 Production Cipher',
+        category: 'security',
+        type: 'code',
+        status: 'Cryptographic Core',
+        arch: 'Client-side SX2P & XE4T Ciphers',
+        offline: 'Pure In-Browser Cryptography',
+        track: 'Security Tooling',
+        licence: 'HL8006 Studios',
+        description: 'High-throughput browser encryption suite handling up to 10GB files using multi-key rolling XOR ciphers and Greek character mapping.'
+      },
+      {
+        id: 'wma-1',
+        name: 'HL8006 WMA 1 Atmospheric Logger',
+        versionTag: 'WMA 1',
+        category: 'telemetry',
+        type: 'code',
+        status: 'Sensor Suite',
+        arch: 'Atmospheric Data Logger',
+        offline: 'Cached Sensor Logs',
+        track: 'Utility Deployment',
+        licence: 'HL8006 Studios',
+        description: 'Weather and atmospheric monitoring application tracking barometric air pressure and ambient temperature gradients.'
+      },
+      {
+        id: 'wma-2',
+        name: 'HL8006 WMA 2 Pro Sensor Gateway',
+        versionTag: 'WMA 2 Pro',
+        category: 'telemetry',
+        type: 'code',
+        status: 'Sensor Suite',
+        arch: 'Multi-Sensor API Gateway',
+        offline: 'Cached Sensor Logs',
+        track: 'Utility Deployment',
+        licence: 'HL8006 Studios',
+        description: 'Expanded environmental utility adding moisture metrics, relative humidity curves, and pressure trend alarms.'
+      },
+      {
+        id: 'nsnc-network',
+        name: 'NSW Student News Broadcast Engine',
+        versionTag: 'NSNC Channel V2',
+        category: 'telemetry',
+        type: 'code',
+        status: 'Regional Network',
+        arch: 'Broadcast Feed Aggregator',
+        offline: 'Cached Reading Mode',
+        track: 'Community Deployment',
+        licence: 'NSW Student News Community',
+        description: 'Communication network delivering daily student news and announcements to over 1,500 students across NSW.'
+      },
+      {
+        id: 'nsnc-ballot',
+        name: 'NSNC Admin & Ballot Engine',
+        versionTag: 'File no. 1412 System',
+        category: 'security',
+        type: 'code',
+        status: 'Ballot Infrastructure',
+        arch: 'Encrypted Form Aggregator',
+        offline: 'Encrypted Records',
+        track: 'Governance',
+        licence: 'NSW Student News Community',
+        description: 'Student voting and candidate speech platform engineered to tally monthly admin elections securely with zero tampering.'
+      }
+    ];
+
+    const masterLibraryData = [
+      ...cadProjectsData,
+      ...applicationsData
+    ];
+
+    const faqData = [
+      {
+        question: "What is the relationship between HL8006 Studios, NSNC, and BHS?",
+        answer: "HL8006 Studios is the overarching creative and engineering studio directed by Youtae Choi. It hosts the complete engineering and code library, links directly to the independent NSW Student News Community (NSNC), and supports Broadmeadow High School (BHS) academic initiatives."
+      },
+      {
+        question: "Where can I find the official NSNC platform?",
+        answer: "The official standalone NSW Student News Community platform is hosted at https://hl8006-beta.github.io/NSNC-Website/ and available on Google Play as NSNC Aerospace News."
+      },
+      {
+        question: "How does the Android closed beta testing track operate?",
+        answer: "Our dedicated Beta Testing Webpage coordinates volunteer cohorts across Australia. Testers commit to opening pre-release builds on Google Play for 3 to 10 minutes daily across a 14-day window to evaluate device performance on Android 10 to 17."
+      },
+      {
+        question: "What CAD software is used to design the naval fleet and KQ jet series?",
+        answer: "All 29 naval vessels (DDG 12 to 1, AAS 10 to 1, FFG 6 to 1, SSBN 1), the 12 KQ aerospace fighters, and the H2GP Middle Plate J10 are designed and modeled in Autodesk Inventor as parametric assemblies (.iam) and individual part files (.ipt)."
+      },
+      {
+        question: "How do HL8006 applications operate 100% offline?",
+        answer: "Applications such as Poly Blast Puzzles and the HL Offline AI series run entirely client-side on device without pinging external cloud servers. Match logs and settings are secured locally with AES GCM hardware encryption."
+      }
+    ];
+
+    let currentView = 'home';
+    let showcaseCurrentIndex = 0;
+    let featuredShowcaseList = [];
+    let isShowcasePaused = false;
+    let showcaseGlideTime = 0;
+
+    function navigateTo(viewName) {
+      currentView = viewName;
+      const views = ['home', 'library', 'beta', 'portfolio'];
+      
+      views.forEach(v => {
+        const el = document.getElementById(`view-${v}`);
+        if (!el) return;
+        if (v === viewName) {
+          el.classList.add('active-view');
+          setTimeout(() => el.classList.add('view-visible'), 20);
+        } else {
+          el.classList.remove('view-visible');
+          el.classList.remove('active-view');
+        }
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        if (btn.dataset.view === viewName) {
+          btn.classList.add('nav-btn-active');
+          btn.classList.remove('text-zinc-400');
+        } else {
+          btn.classList.remove('nav-btn-active');
+          btn.classList.add('text-zinc-400');
+        }
+      });
+
+      if (history.pushState) {
+        history.pushState(null, null, viewName === 'home' ? '#' : `#${viewName}`);
+      } else {
+        window.location.hash = viewName === 'home' ? '' : viewName;
+      }
+
+      if (viewName === 'library') {
+        filterApps();
+        renderShowcase();
+      }
+
+      setTimeout(checkScrollReveals, 60);
+    }
+
+    function handleNavAnchor(anchorId) {
+      if (currentView !== 'home') {
+        navigateTo('home');
+        setTimeout(() => {
+          const target = document.getElementById(anchorId);
+          if (target) target.scrollIntoView({ behavior: 'smooth' });
+        }, 80);
+      } else {
+        const target = document.getElementById(anchorId);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function filterApps() {
+      const searchEl = document.getElementById('searchInput');
+      const query = (searchEl?.value || '').toLowerCase().trim();
+
+      const filtered = masterLibraryData.filter(item => {
+        const matchesQuery = !query || 
+          item.name.toLowerCase().includes(query) || 
+          (item.fileTag && item.fileTag.toLowerCase().includes(query)) ||
+          (item.versionTag && item.versionTag.toLowerCase().includes(query)) || 
+          item.description.toLowerCase().includes(query) ||
+          (item.category && item.category.toLowerCase().includes(query)) ||
+          (item.tooling && item.tooling.toLowerCase().includes(query)) ||
+          (item.arch && item.arch.toLowerCase().includes(query));
+
+        return matchesQuery;
+      });
+
+      const countBadge = document.getElementById('matchCount');
+      if (countBadge) {
+        countBadge.innerText = filtered.length;
+      }
+
+      renderApps(filtered);
+    }
+
+    function renderApps(list) {
+      const grid = document.getElementById('appsGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      if (list.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full text-center py-12 bg-zinc-900 rounded-2xl p-8 border border-zinc-800 reveal-on-scroll revealed">
+            <p class="text-zinc-400 text-sm">No engineering models or software builds match this search.</p>
+          </div>
+        `;
+        return;
+      }
+
+      list.forEach((item, index) => {
+        const card = document.createElement('div');
+        const isCAD = (item.type === 'cad');
+        card.className = 'rotating-border-card p-5 sm:p-6 flex flex-col justify-between space-y-4 reveal-on-scroll';
+        card.style.transitionDelay = `${Math.min((index % 6) * 0.05, 0.3)}s`;
+
+        const fileOrTag = isCAD ? item.fileTag : (item.versionTag || 'Build');
+        const archOrTool = isCAD ? item.tooling : (item.arch || 'Autonomous Core');
+
+        card.innerHTML = `
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full border border-zinc-800 bg-zinc-950 text-zinc-300 truncate max-w-[190px]">${item.status}</span>
+              <span class="text-[10px] font-mono text-zinc-400 uppercase font-semibold">${isCAD ? 'Inventor CAD' : 'Code'}</span>
+            </div>
+            <div>
+              <h4 class="text-base font-bold text-white tracking-tight leading-snug">
+                ${item.name}
+              </h4>
+              <div class="text-[11px] font-mono text-zinc-400 mt-0.5 truncate">${fileOrTag}</div>
+            </div>
+            <p class="text-xs text-zinc-400 font-light leading-relaxed line-clamp-3">${item.description}</p>
+          </div>
+
+          <div class="pt-3 border-t border-zinc-800 flex items-center justify-between gap-2">
+            <span class="text-[10px] font-mono text-zinc-400 truncate max-w-[180px]">${archOrTool}</span>
+            <button onclick="openInspector('${item.id}')" class="btn-reactive px-3.5 py-1.5 rounded-full bg-white text-black hover:bg-zinc-200 text-xs font-semibold flex items-center gap-1">
+              <span>Overview</span>
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      setTimeout(checkScrollReveals, 30);
+    }
+
+    function renderShowcase() {
+      const rail = document.getElementById('horizontalShowcase');
+      if (!rail) return;
+      rail.innerHTML = '';
+
+      featuredShowcaseList = [
+        masterLibraryData.find(d => d.id === 'ddg-12'),
+        masterLibraryData.find(d => d.id === 'docs-v3'),
+        masterLibraryData.find(d => d.id === 'nsnc-app'),
+        masterLibraryData.find(d => d.id === 'kq-12'),
+        masterLibraryData.find(d => d.id === 'poly-blast'),
+        masterLibraryData.find(d => d.id === 'race-control-v37'),
+        masterLibraryData.find(d => d.id === 'mindspace'),
+        masterLibraryData.find(d => d.id === 'cad-h2gp-j10'),
+        masterLibraryData.find(d => d.id === 'offline-ai-p2'),
+        masterLibraryData.find(d => d.id === 'aas-10'),
+        masterLibraryData.find(d => d.id === 'encryptor-v85'),
+        masterLibraryData.find(d => d.id === 'ffg-6'),
+        masterLibraryData.find(d => d.id === 'cad-lumina-lamp'),
+        masterLibraryData.find(d => d.id === 'ssbn-1')
+      ].filter(Boolean);
+
+      featuredShowcaseList.forEach((item, idx) => {
+        const card = document.createElement('div');
+        const isCAD = (item.type === 'cad');
+        card.className = 'glabs-card p-6 min-h-[360px] flex flex-col justify-between';
+        card.dataset.index = idx;
+
+        card.innerHTML = `
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-1 pt-1">
+              <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full border border-zinc-800 bg-zinc-950 text-zinc-300 truncate max-w-[170px]">${item.status}</span>
+              <span class="text-[10px] font-mono text-zinc-400 uppercase font-semibold">${isCAD ? 'Inventor' : 'Code'}</span>
+            </div>
+
+            <div>
+              <h4 class="text-lg font-bold text-white tracking-tight leading-snug">
+                ${item.name}
+              </h4>
+              <div class="text-xs font-mono text-zinc-400 mt-1 truncate">${isCAD ? item.fileTag : item.versionTag}</div>
+            </div>
+
+            <p class="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed line-clamp-4">
+              ${item.description}
+            </p>
+          </div>
+
+          <div class="pt-5 border-t border-zinc-800 flex items-center justify-between gap-2 mt-4">
+            <span class="text-[10px] font-mono text-zinc-400 truncate max-w-[150px]">${isCAD ? item.tooling : item.arch}</span>
+            <button onclick="openInspector('${item.id}')" class="inline-flex items-center gap-1.5 text-xs font-semibold text-white hover:text-zinc-300 transition-colors group">
+              <span>Inspect Build</span>
+              <svg class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+          </div>
+        `;
+        rail.appendChild(card);
+      });
+
+      setupCarouselInteractions();
+      initVariableSpeedAutoGlide();
+    }
+
+    function scrollShowcase(offset) {
+      const rail = document.getElementById('horizontalShowcase');
+      if (!rail) return;
+      rail.scrollBy({ left: offset, behavior: 'smooth' });
+    }
+
+    function pauseShowcaseAutoScroll(paused) {
+      isShowcasePaused = paused;
+    }
+
+    function initVariableSpeedAutoGlide() {
+      const rail = document.getElementById('horizontalShowcase');
+      if (!rail || rail.dataset.gliding === 'true') return;
+      rail.dataset.gliding = 'true';
+
+      function glideLoop() {
+        if (!isShowcasePaused && currentView === 'library') {
+          showcaseGlideTime += 0.016;
+          const variableVelocity = 1.0 + Math.sin(showcaseGlideTime * 0.75) * 0.65;
+          rail.scrollLeft += variableVelocity;
+
+          if (rail.scrollLeft >= (rail.scrollWidth - rail.clientWidth - 4)) {
+            rail.scrollLeft = 2;
+          }
+        }
+        requestAnimationFrame(glideLoop);
+      }
+      requestAnimationFrame(glideLoop);
+    }
+
+    function setupCarouselInteractions() {
+      const rail = document.getElementById('horizontalShowcase');
+      if (!rail || rail.dataset.initialized === 'true') return;
+      rail.dataset.initialized = 'true';
+
+      let isDown = false;
+      let startX = 0;
+      let scrollLeft = 0;
+      let moved = false;
+
+      rail.addEventListener('mousedown', (e) => {
+        isDown = true;
+        moved = false;
+        pauseShowcaseAutoScroll(true);
+        startX = e.pageX - rail.offsetLeft;
+        scrollLeft = rail.scrollLeft;
+      });
+
+      window.addEventListener('mouseup', () => {
+        if (!isDown) return;
+        isDown = false;
+        setTimeout(() => pauseShowcaseAutoScroll(false), 800);
+      });
+
+      rail.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - rail.offsetLeft;
+        const walk = (x - startX) * 1.35;
+        if (Math.abs(walk) > 5) moved = true;
+        rail.scrollLeft = scrollLeft - walk;
+      });
+
+      rail.addEventListener('click', (e) => {
+        if (moved) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }, true);
+
+      rail.addEventListener('touchstart', () => pauseShowcaseAutoScroll(true), { passive: true });
+      rail.addEventListener('touchend', () => {
+        setTimeout(() => pauseShowcaseAutoScroll(false), 900);
+      }, { passive: true });
+    }
+
+    let revealObserver = null;
+    function initScrollRevealObserver() {
+      if ('IntersectionObserver' in window) {
+        revealObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+            }
+          });
+        }, {
+          threshold: 0.06,
+          rootMargin: '0px 0px -30px 0px'
+        });
+
+        checkScrollReveals();
+      } else {
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => el.classList.add('revealed'));
+      }
+    }
+
+    function checkScrollReveals() {
+      if (!revealObserver) return;
+      document.querySelectorAll('.reveal-on-scroll:not(.revealed)').forEach(el => {
+        revealObserver.observe(el);
+      });
+    }
+
+    window.addEventListener('scroll', () => {
+      checkScrollReveals();
+    }, { passive: true });
+
+    function renderFAQ() {
+      const container = document.getElementById('faq-container');
+      if (!container) return;
+      let html = '';
+      
+      faqData.forEach((faq, index) => {
+        html += `
+          <div class="group">
+            <button class="w-full py-5 text-left flex justify-between items-center focus:outline-none" onclick="toggleFaq(${index})">
+              <span class="font-medium text-base text-white group-hover:text-zinc-300 transition-colors pr-4">${faq.question}</span>
+              <svg id="faq-icon-${index}" class="w-5 h-5 text-zinc-500 transform transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div id="faq-content-${index}" class="faq-content">
+              <div class="faq-inner">
+                <p class="pb-5 text-sm text-zinc-400 font-light leading-relaxed">${faq.answer}</p>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+    }
+
+    function toggleFaq(index) {
+      const content = document.getElementById(`faq-content-${index}`);
+      const icon = document.getElementById(`faq-icon-${index}`);
+      
+      if (content.classList.contains('open')) {
+        content.classList.remove('open');
+        icon.style.transform = 'rotate(0deg)';
+      } else {
+        content.classList.add('open');
+        icon.style.transform = 'rotate(180deg)';
+      }
+    }
+
+    function openInspector(id) {
+      const item = masterLibraryData.find(d => d.id === id);
+      if (!item) return;
+      
+      document.getElementById('drawerTitle').innerText = item.name;
+      document.getElementById('drawerVersions').innerText = item.fileTag || item.versionTag || 'Build Spec';
+      document.getElementById('drawerDescription').innerText = item.description;
+      document.getElementById('drawerArch').innerText = item.tooling || item.arch || 'Autodesk Inventor / Code';
+      document.getElementById('drawerStatus').innerText = item.status;
+      document.getElementById('drawerSpec').innerText = item.spec || item.offline || 'Standard specification payload';
+      document.getElementById('drawerBadge').innerText = item.type === 'cad' ? 'CAD Model' : 'Code Build';
+
+      document.getElementById('inspectorDrawer').classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeInspector() {
+      document.getElementById('inspectorDrawer').classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    function copyStudioEmail() {
+      const email = document.getElementById('studio-email').innerText;
+      copyText(email);
+      showToast('Support email copied to clipboard');
+    }
+
+    function copyText(text) {
+      const temp = document.createElement('textarea');
+      temp.value = text;
+      temp.style.position = 'fixed';
+      temp.style.opacity = '0';
+      document.body.appendChild(temp);
+      temp.select();
+      try {
+        document.execCommand('copy');
+      } catch (e) {
+        console.error('Clipboard copy failed', e);
+      }
+      temp.remove();
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toastNotification');
+      const msg = document.getElementById('toastMessage');
+      msg.innerText = message;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 2500);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderApps(masterLibraryData);
+      renderShowcase();
+      renderFAQ();
+      initScrollRevealObserver();
+
+      const initialHash = window.location.hash.replace('#', '');
+      if (['library', 'beta', 'portfolio'].includes(initialHash)) {
+        navigateTo(initialHash);
+      }
+    });
+
+    function initWaveParticleEffect() {
+      const canvas = document.getElementById('waveParticleCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      let width = (canvas.width = window.innerWidth);
+      let height = (canvas.height = window.innerHeight);
+
+      const ROWS = 35;
+      let COLS = Math.max(90, Math.floor(width / 15));
+      let step = 0;
+
+      function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        COLS = Math.max(90, Math.floor(width / 15));
+      }
+      window.addEventListener('resize', resize);
+
+      function render() {
+        ctx.clearRect(0, 0, width, height);
+        step += 0.02;
+
+        const fov = 380;
+        const originX = width * 0.5;
+        const originY = height * 0.62;
+        const spreadWidth3D = width * 3.4;
+
+        for (let r = 0; r < ROWS; r++) {
+          const rowPoints = [];
+          const z3d = (r - ROWS * 0.22) * 32 + 250;
+          const scale = fov / (fov + z3d);
+
+          for (let c = 0; c < COLS; c++) {
+            const x3d = (c / (COLS - 1) - 0.5) * spreadWidth3D;
+            const waveHeight =
+              Math.sin(c * 0.15 + step * 1.3) * 28 +
+              Math.cos(r * 0.21 + step * 1.0) * 32 +
+              Math.sin((c + r) * 0.11 + step * 0.75) * 16;
+            const y3d = 95 - waveHeight;
+            const x2d = originX + x3d * scale;
+            const y2d = originY + y3d * scale;
+
+            rowPoints.push({ x: x2d, y: y2d, scale: scale, waveHeight: waveHeight });
+          }
+
+          if (rowPoints.length > 1) {
+            ctx.beginPath();
+            ctx.moveTo(rowPoints[0].x, rowPoints[0].y);
+            for (let i = 1; i < rowPoints.length; i++) {
+              ctx.lineTo(rowPoints[i].x, rowPoints[i].y);
+            }
+            const depthFactor = rowPoints[0].scale;
+            ctx.strokeStyle = `rgba(99, 102, 241, ${Math.min(0.12, depthFactor * 0.18)})`;
+            ctx.lineWidth = Math.max(0.4, depthFactor * 0.8);
+            ctx.stroke();
+          }
+
+          for (let i = 0; i < rowPoints.length; i++) {
+            const pt = rowPoints[i];
+            if (pt.x >= -40 && pt.x <= width + 40) {
+              const size = Math.max(0.6, pt.scale * 2.6);
+              const alpha = Math.min(0.8, Math.max(0.06, pt.scale * 1.1 + (pt.waveHeight + 30) / 130));
+
+              ctx.beginPath();
+              ctx.arc(pt.x, pt.y, size, 0, Math.PI * 2);
+              ctx.fillStyle = `rgba(165, 180, 252, ${alpha})`;
+              ctx.fill();
+            }
+          }
+        }
+
+        requestAnimationFrame(render);
+      }
+
+      render();
+    }
+    initWaveParticleEffect();
+  </script>
+</body>
+</html>
