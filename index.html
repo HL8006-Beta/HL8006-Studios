@@ -3,8 +3,18 @@
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HL8006 Studios | Naval Architecture, Aerospace & Software</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>HL8006 Studios</title>
+  <meta name="application-name" content="HL8006 Studios">
+  <meta name="apple-mobile-web-app-title" content="HL8006 Studios">
+  <meta property="og:site_name" content="HL8006 Studios">
+  <meta property="og:title" content="HL8006 Studios">
+  
+  <!-- HL8006 Tab Favicon & App Icons -->
+  <link rel="icon" type="image/png" href="HL8006%20Logo.png">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="HL8006%20Logo.png">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,9 +64,9 @@
   <style>
     :root {
       --bg-pitch: #070709;
-      --card-bg: #101014;
-      --card-border: rgba(255, 255, 255, 0.08);
-      --card-hover-border: rgba(255, 255, 255, 0.28);
+      --card-bg: rgba(14, 14, 20, 0.65);
+      --card-border: rgba(255, 255, 255, 0.11);
+      --card-hover-border: rgba(255, 255, 255, 0.38);
     }
 
     * {
@@ -114,11 +124,13 @@
     ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
 
     /* Top Bar Shell with Clean Glassmorphism & Motion */
+    /* Top Bar Shell with Ultra-Refined Frosted Glassmorphism & Motion */
     .site-header {
-      background: rgba(7, 7, 10, 0.78);
-      backdrop-filter: blur(28px) saturate(190%);
-      -webkit-backdrop-filter: blur(28px) saturate(190%);
+      background: rgba(7, 7, 11, 0.65);
+      backdrop-filter: blur(32px) saturate(200%);
+      -webkit-backdrop-filter: blur(32px) saturate(200%);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.8), inset 0 -1px 0 rgba(255, 255, 255, 0.04);
       transition: transform 0.48s cubic-bezier(0.16, 1, 0.3, 1),
                   opacity 0.48s cubic-bezier(0.16, 1, 0.3, 1),
                   background-color 0.3s ease;
@@ -135,16 +147,16 @@
       pointer-events: auto;
     }
 
-    /* Floating Action Toast */
+    /* Floating Action Toast with Deep Frosted Glass */
     #actionToast {
       position: fixed;
       bottom: 2rem;
       left: 50%;
       transform: translateX(-50%) translateY(120%);
-      background: rgba(18, 18, 24, 0.94);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(14, 14, 20, 0.82);
+      backdrop-filter: blur(30px) saturate(190%);
+      -webkit-backdrop-filter: blur(30px) saturate(190%);
+      border: 1px solid rgba(255, 255, 255, 0.18);
       color: #fff;
       padding: 0.75rem 1.4rem;
       border-radius: 9999px;
@@ -153,7 +165,7 @@
       display: flex;
       align-items: center;
       gap: 0.6rem;
-      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(99, 102, 241, 0.25);
+      box-shadow: 0 24px 48px -10px rgba(0, 0, 0, 0.85), inset 0 1px 1px rgba(255, 255, 255, 0.15);
       z-index: 100;
       opacity: 0;
       pointer-events: none;
@@ -165,33 +177,38 @@
       pointer-events: auto;
     }
 
-    /* Floating Capsule Dock Bar with Animated Glider Pill */
+    /* Floating Capsule Dock Bar with Luxurious Glassmorphism */
     .nav-capsule-dock {
       position: relative;
-      background: rgba(18, 18, 22, 0.88);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.11);
+      background: rgba(16, 16, 22, 0.62);
+      backdrop-filter: blur(32px) saturate(200%);
+      -webkit-backdrop-filter: blur(32px) saturate(200%);
+      border: 1px solid rgba(255, 255, 255, 0.13);
       border-radius: 9999px;
       padding: 0.32rem 0.38rem;
-      box-shadow: 0 12px 36px -10px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      box-shadow: 0 16px 45px -10px rgba(0, 0, 0, 0.85),
+                  inset 0 1px 1px 0 rgba(255, 255, 255, 0.18),
+                  inset 0 -1px 1px 0 rgba(0, 0, 0, 0.4);
       display: inline-flex;
       align-items: center;
       gap: 0.2rem;
     }
 
-    /* Sliding Glider Pill behind active nav button */
+    /* Sliding Glider Pill with Tactile Spring Physics */
     .nav-glider {
       position: absolute;
       top: 0.32rem;
       left: 0;
       height: calc(100% - 0.64rem);
-      background: #ffffff;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-radius: 9999px;
-      box-shadow: 0 4px 18px rgba(255, 255, 255, 0.35), 0 1px 2px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.4), 0 1px 3px rgba(0, 0, 0, 0.3);
       pointer-events: none;
       z-index: 1;
       transform: translateX(0);
-      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), width 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease;
+      transition: transform 0.42s cubic-bezier(0.34, 1.45, 0.64, 1), width 0.38s cubic-bezier(0.34, 1.45, 0.64, 1), opacity 0.25s ease;
     }
 
     /* Navigation Pills: sleek, smooth text color switch */
@@ -228,25 +245,28 @@
       font-weight: 600 !important;
     }
 
-    /* Interactive Filter Pills in Library */
+    /* Interactive Filter Pills in Library: White-to-Black Pill Inversion on Hover */
     .filter-pill {
       border-radius: 9999px;
-      padding: 0.4rem 0.95rem;
+      padding: 0.42rem 1.05rem;
       font-size: 0.75rem;
       font-weight: 500;
       color: #a1a1aa;
-      background: #121216;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+      background: rgba(18, 18, 24, 0.6);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1.5px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.24s cubic-bezier(0.22, 1, 0.36, 1);
       white-space: nowrap;
       cursor: pointer;
     }
 
     .filter-pill:hover {
-      color: #ffffff;
-      border-color: rgba(255, 255, 255, 0.25);
+      color: #ffffff !important;
+      background-color: #000000 !important;
+      border-color: #ffffff !important;
       transform: translateY(-2px);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 16px rgba(255, 255, 255, 0.38), 0 6px 18px rgba(0, 0, 0, 0.6) !important;
     }
 
     .filter-pill:active {
@@ -254,11 +274,18 @@
     }
 
     .filter-pill.active {
-      background: #ffffff;
-      color: #000000;
-      border-color: #ffffff;
+      background-color: #ffffff !important;
+      color: #000000 !important;
+      border-color: #ffffff !important;
       font-weight: 600;
-      box-shadow: 0 3px 14px rgba(255, 255, 255, 0.28);
+      box-shadow: 0 4px 18px rgba(255, 255, 255, 0.35);
+    }
+
+    .filter-pill.active:hover {
+      background-color: #000000 !important;
+      color: #ffffff !important;
+      border-color: #ffffff !important;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.45), 0 6px 20px rgba(0, 0, 0, 0.7) !important;
     }
 
     /* Animated Status Badges */
@@ -329,15 +356,19 @@
       overflow-x: auto;
       padding-top: 1.75rem;
       padding-bottom: 2.25rem;
+      padding-left: calc(50% - 170px);
+      padding-right: calc(50% - 170px);
       align-items: center;
       perspective: 1200px;
       scroll-behavior: smooth;
       scroll-snap-type: x mandatory;
       user-select: none;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-x: contain;
     }
 
     .glabs-card {
-      width: 310px;
+      width: 340px;
       flex-shrink: 0;
       scroll-snap-align: center;
       transform-style: preserve-3d;
@@ -348,11 +379,8 @@
                   filter 0.45s ease;
       will-change: transform, opacity;
       cursor: pointer;
-    }
-    @media (min-width: 640px) {
-      .glabs-card {
-        width: 340px;
-      }
+      touch-action: pan-x pan-y;
+      -webkit-tap-highlight-color: transparent;
     }
 
     /* Active / Middle Card State */
@@ -365,10 +393,7 @@
       z-index: 10;
     }
 
-    .glabs-card.is-middle::before {
-      opacity: 0.85;
-      animation-play-state: running;
-    }
+
 
     /* Left tiles: Tilting towards the right */
     .glabs-card.tilt-right {
@@ -384,6 +409,41 @@
       filter: brightness(0.85);
     }
 
+    /* Mobile-optimized showcase styles */
+    @media (max-width: 640px) {
+      .gallery-stage {
+        padding-left: calc(50% - 140px);
+        padding-right: calc(50% - 140px);
+        gap: 1.25rem;
+        perspective: none !important;
+      }
+      .glabs-card {
+        width: 280px !important;
+        transform-style: flat !important;
+      }
+      .glabs-card.is-middle {
+        transform: scale(1.03) !important;
+      }
+      .glabs-card.tilt-right,
+      .glabs-card.tilt-left {
+        transform: scale(0.92) !important;
+        opacity: 0.55 !important;
+      }
+    }
+
+    /* Additional mobile optimizations when is-mobile-device is active */
+    .is-mobile-device .glabs-card {
+      transform-style: flat !important;
+    }
+    .is-mobile-device .rotating-border-card,
+    .is-mobile-device .portfolio-card {
+      transform: none !important;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+    }
+    .is-mobile-device .card-specular {
+      display: none !important;
+    }
+
     /* Tactile copied button state */
     .btn-copied-state {
       background: rgba(16, 185, 129, 0.22) !important;
@@ -394,64 +454,109 @@
     }
 
     /* ================================================================= */
-    /* CINEMATIC ENTRANCE ANIMATION: BLACK SCREEN -> BLUR REVEAL -> SHINE */
+    /* HERO ENTRANCE: SIMPLE BLUR FROM LEFT TO RIGHT                     */
     /* ================================================================= */
     .hero-cinematic-wrap {
       position: relative;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
-      padding: 0.35rem 0.85rem;
-      border-radius: 1.25rem;
+      padding: 0.4rem 0.85rem;
+      border-radius: 9999px;
+      max-width: 100%;
+      overflow: visible;
+    }
+
+    /* Simplified scroll indicator glide-up entrance from bottom */
+    .scroll-indicator-slide-up {
+      opacity: 0;
+      transform: translateY(36px);
+      animation: indicatorGlideUp 1.0s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation-delay: 1.7s;
+    }
+
+    @keyframes indicatorGlideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(36px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-brand-row {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: nowrap !important;
+      white-space: nowrap !important;
+    }
+
+    .hero-logo-img {
+      width: clamp(2.25rem, 6.8vw, 5.5rem);
+      height: clamp(2.25rem, 6.8vw, 5.5rem);
+      object-fit: contain;
     }
 
     .hero-cinematic-title {
-      display: flex;
-      flex-wrap: wrap;
+      display: inline-flex;
+      flex-wrap: nowrap !important;
       align-items: center;
       justify-content: center;
-      gap: 0.25rem 0.85rem;
+      font-size: clamp(1.45rem, 5.8vw, 5.5rem);
+      line-height: 1;
+      white-space: nowrap !important;
       user-select: none;
+      color: #ffffff !important;
+      font-weight: 900;
+      letter-spacing: -0.03em;
     }
 
-    .hero-word {
-      display: inline-block;
-      opacity: 0;
-      filter: blur(28px);
-      transform: translateY(14px) scale(0.96);
-      will-change: filter, opacity, transform;
-      animation: blurRevealLeft 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    /* Simple, buttery-smooth blur entrance from left to right */
+    .hero-blur-in {
+      animation: blurLeftToRight 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+      will-change: opacity, filter, transform;
     }
 
-    .hero-word-1 {
-      animation-delay: 0.25s;
+    .hero-blur-logo {
+      animation-delay: 0.05s;
     }
 
-    .hero-word-2 {
-      animation-delay: 0.65s;
+    .hero-blur-hl8006 {
+      animation-delay: 0.18s;
     }
 
-    @keyframes blurRevealLeft {
+    .hero-blur-studios {
+      animation-delay: 0.30s;
+    }
+
+    @keyframes blurLeftToRight {
       0% {
         opacity: 0;
-        filter: blur(28px);
-        transform: translateY(14px) scale(0.96);
-      }
-      60% {
-        opacity: 0.9;
+        filter: blur(14px);
+        transform: translateX(-14px);
       }
       100% {
         opacity: 1;
         filter: blur(0px);
-        transform: translateY(0) scale(1);
+        transform: translateX(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-blur-in, .hero-delayed-item, .scroll-indicator-slide-up {
+        opacity: 1 !important;
+        filter: none !important;
+        transform: none !important;
+        animation: none !important;
       }
     }
 
     .hero-delayed-item {
-      opacity: 0;
-      animation: heroFadeInUp 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      animation-delay: 1.1s;
+      animation: heroFadeInUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-delay: 0.42s;
     }
 
     .hero-delayed-item-2 {
@@ -471,24 +576,30 @@
       }
     }
 
-    /* Rotating Border Beam Animation */
-    @keyframes rotateBorderBeam {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
 
-    /* Card Base */
+
+    /* Card Base with Enhanced Glassmorphism and Backdrop Blur */
     .rotating-border-card, .glabs-card, .portfolio-card {
       position: relative;
       border-radius: 24px;
       background-color: var(--card-bg);
+      backdrop-filter: blur(26px) saturate(190%);
+      -webkit-backdrop-filter: blur(26px) saturate(190%);
       overflow: hidden;
       isolation: isolate;
       border: 1px solid var(--card-border);
+      box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.09), 0 20px 45px -15px rgba(0, 0, 0, 0.75);
       will-change: transform, box-shadow;
       transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), 
                   box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-                  border-color 0.35s ease;
+                  border-color 0.35s ease,
+                  background-color 0.35s ease;
+    }
+
+    .rotating-border-card:hover, .portfolio-card:hover {
+      background-color: rgba(22, 22, 30, 0.82);
+      border-color: var(--card-hover-border);
+      box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.16), 0 28px 56px -12px rgba(0, 0, 0, 0.9);
     }
 
     .rotating-border-card, .glabs-card {
@@ -497,39 +608,7 @@
       justify-content: space-between;
     }
 
-    /* Conic Light Beam Rotating along Border */
-    .rotating-border-card::before, .glabs-card::before, .portfolio-card.glow-border::before {
-      content: '';
-      position: absolute;
-      width: 320%;
-      height: 320%;
-      top: -110%;
-      left: -110%;
-      background: conic-gradient(
-        from 0deg,
-        transparent 0deg,
-        transparent 160deg,
-        rgba(99, 102, 241, 0.15) 220deg,
-        rgba(255, 255, 255, 0.45) 310deg,
-        #ffffff 360deg
-      );
-      animation: rotateBorderBeam 5s linear infinite;
-      animation-play-state: paused;
-      opacity: 0;
-      transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-      z-index: -2;
-      pointer-events: none;
-    }
 
-    .rotating-border-card::after, .glabs-card::after, .portfolio-card.glow-border::after {
-      content: '';
-      position: absolute;
-      inset: 1.5px;
-      border-radius: 22.5px;
-      background-color: var(--card-bg);
-      z-index: -1;
-      pointer-events: none;
-    }
 
     /* Specular Mouse Highlight Overlay inside Cards */
     .card-specular {
@@ -559,68 +638,288 @@
       border-color: rgba(255, 255, 255, 0.28);
     }
 
-    .rotating-border-card:hover::before, .portfolio-card.glow-border:hover::before {
-      opacity: 0.75;
-      animation-play-state: running;
-    }
 
-    /* Tactile Reactive Buttons */
+
+    /* Tactile Reactive Buttons with Smooth Color Animation */
     .btn-reactive {
       position: relative;
-      background: #141417;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-bottom: 2px solid rgba(255, 255, 255, 0.25);
-      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
-                  background-color 0.18s ease,
-                  border-color 0.18s ease,
-                  box-shadow 0.22s ease;
+      background-color: #141417;
+      color: #e4e4e7;
+      border: 1.5px solid rgba(255, 255, 255, 0.14);
+      border-radius: 9999px;
       cursor: pointer;
       user-select: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  background-color 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                  color 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.32s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .btn-reactive:hover {
-      transform: translateY(-2.5px) scale(1.015);
-      background-color: #1e1e24;
-      border-color: rgba(255, 255, 255, 0.3);
-      border-bottom-color: #ffffff;
-      box-shadow: 0 10px 26px -6px rgba(0, 0, 0, 0.75), 0 0 12px rgba(255, 255, 255, 0.08);
+      transform: translateY(-2.5px) scale(1.02);
+      background-color: #000000 !important;
+      border-color: #ffffff !important;
+      color: #ffffff !important;
+      box-shadow: 0 0 18px rgba(255, 255, 255, 0.35), 0 8px 24px -4px rgba(0, 0, 0, 0.85) !important;
+    }
+
+    .btn-reactive:hover svg {
+      color: #ffffff !important;
     }
 
     .btn-reactive:active {
-      transform: translateY(2px) scale(0.95);
+      transform: translateY(1px) scale(0.96);
       box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.6);
       transition-duration: 0.08s;
     }
 
-    /* Metric Stat Card Interactive Lift */
+    /* ------------------------------------------------------------- */
+    /* PRIMARY WHITE PILL BUTTON: Smoothly inverts from White to Black with White Outline */
+    /* ------------------------------------------------------------- */
+    .btn-white-pill {
+      background-color: #ffffff !important;
+      color: #000000 !important;
+      border: 1.5px solid #ffffff !important;
+      border-radius: 9999px !important;
+      box-shadow: 0 4px 14px rgba(255, 255, 255, 0.18), 0 2px 6px rgba(0, 0, 0, 0.3) !important;
+      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  background-color 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                  color 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.32s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    }
+
+    .btn-white-pill svg {
+      color: #000000 !important;
+      transition: color 0.32s ease, transform 0.22s ease;
+    }
+
+    .btn-white-pill > * {
+      color: #000000;
+      transition: color 0.32s ease;
+    }
+
+    .btn-white-pill:hover {
+      background-color: #000000 !important;
+      color: #ffffff !important;
+      border-color: #ffffff !important;
+      box-shadow: 0 0 22px rgba(255, 255, 255, 0.45), 0 10px 28px -4px rgba(0, 0, 0, 0.9) !important;
+      transform: translateY(-2.5px) scale(1.02);
+    }
+
+    .btn-white-pill:hover svg,
+    .btn-white-pill:hover > * {
+      color: #ffffff !important;
+    }
+
+    /* ------------------------------------------------------------- */
+    /* FROSTED GLASS PILL BUTTON: Inverts to Black with White Outline on Hover */
+    /* ------------------------------------------------------------- */
+    .btn-glass-pill {
+      background: rgba(18, 18, 26, 0.62) !important;
+      backdrop-filter: blur(24px) saturate(190%) !important;
+      -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.14) !important;
+      border-radius: 9999px !important;
+      color: #e4e4e7 !important;
+      box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.12), 0 10px 24px -6px rgba(0, 0, 0, 0.7) !important;
+      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  background-color 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                  color 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.32s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    }
+
+    .btn-glass-pill:hover {
+      background-color: #000000 !important;
+      border-color: #ffffff !important;
+      color: #ffffff !important;
+      box-shadow: 0 0 18px rgba(255, 255, 255, 0.35), 0 10px 26px -6px rgba(0, 0, 0, 0.9) !important;
+      transform: translateY(-2.5px) scale(1.02);
+    }
+
+    .btn-glass-pill:hover svg {
+      color: #ffffff !important;
+    }
+
+    /* Copied State Indicator */
+    .btn-copied-state {
+      background: rgba(16, 185, 129, 0.22) !important;
+      border-color: rgba(52, 211, 153, 0.7) !important;
+      color: #34d399 !important;
+      box-shadow: 0 0 25px rgba(16, 185, 129, 0.35) !important;
+      transform: scale(1.03);
+    }
+    .btn-copied-state svg {
+      color: #34d399 !important;
+    }
+
+    /* Stat card glassmorphic hover tilt */
     .stat-card {
+      background: rgba(15, 15, 22, 0.58) !important;
+      backdrop-filter: blur(28px) saturate(200%) !important;
+      -webkit-backdrop-filter: blur(28px) saturate(200%) !important;
+      border: 1px solid rgba(255, 255, 255, 0.11) !important;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 18px 40px -12px rgba(0, 0, 0, 0.7) !important;
       transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
                   border-color 0.3s ease,
                   box-shadow 0.35s ease,
-                  background-color 0.3s ease;
+                  background-color 0.3s ease !important;
     }
     .stat-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(255, 255, 255, 0.3);
-      box-shadow: 0 16px 32px -10px rgba(0, 0, 0, 0.85), 0 0 20px -8px rgba(99, 102, 241, 0.25);
-      background-color: rgba(24, 24, 28, 0.85);
+      transform: translateY(-5px) !important;
+      border-color: rgba(255, 255, 255, 0.36) !important;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.22), 0 24px 50px -10px rgba(0, 0, 0, 0.9) !important;
+      background-color: rgba(26, 26, 38, 0.78) !important;
     }
 
-    /* View Switching Transitions */
+    /* Frosted Glass Floating Pills: Inverts to Pure Black with White Outline on Hover */
+    .btn-glass-pill {
+      background: rgba(18, 18, 26, 0.58) !important;
+      backdrop-filter: blur(24px) saturate(190%) !important;
+      -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.14) !important;
+      border-radius: 9999px !important;
+      color: #e4e4e7 !important;
+      box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.12), 0 14px 30px -8px rgba(0, 0, 0, 0.7) !important;
+      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  background-color 0.22s ease,
+                  border-color 0.22s ease,
+                  color 0.22s ease,
+                  box-shadow 0.22s ease !important;
+    }
+    .btn-glass-pill:hover {
+      background-color: #000000 !important;
+      border-color: #ffffff !important;
+      border-bottom-color: #ffffff !important;
+      color: #ffffff !important;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.38), 0 18px 36px -6px rgba(0, 0, 0, 0.9) !important;
+    }
+    .btn-glass-pill:hover svg {
+      color: #ffffff !important;
+    }
+
+    /* Library Filter Row & Search Glassmorphism */
+    #categoryFilterRow {
+      background: rgba(13, 13, 19, 0.58);
+      backdrop-filter: blur(32px) saturate(200%);
+      -webkit-backdrop-filter: blur(32px) saturate(200%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 9999px;
+      padding: 0.38rem 0.6rem;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.12), 0 18px 40px -12px rgba(0, 0, 0, 0.65);
+    }
+    #searchInput, #appSearch {
+      background: rgba(16, 16, 24, 0.58) !important;
+      backdrop-filter: blur(30px) saturate(200%) !important;
+      -webkit-backdrop-filter: blur(30px) saturate(200%) !important;
+      border: 1px solid rgba(255, 255, 255, 0.13) !important;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 12px 28px -5px rgba(0, 0, 0, 0.5) !important;
+      transition: all 0.25s ease !important;
+    }
+    #searchInput:focus, #appSearch:focus {
+      background: rgba(22, 22, 34, 0.78) !important;
+      border-color: rgba(255, 255, 255, 0.4) !important;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4), 0 0 25px rgba(255, 255, 255, 0.18) !important;
+    }
+
+    /* Glass Modals, Inspector Drawers & Mobile Dropdown */
+    .modal-card {
+      background: rgba(12, 12, 18, 0.84) !important;
+      backdrop-filter: blur(44px) saturate(210%) !important;
+      -webkit-backdrop-filter: blur(44px) saturate(210%) !important;
+      border: 1px solid rgba(255, 255, 255, 0.16) !important;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 40px 90px -15px rgba(0, 0, 0, 0.95) !important;
+    }
+    #inspectorDrawer .drawer-content {
+      background: rgba(11, 11, 16, 0.86) !important;
+      backdrop-filter: blur(44px) saturate(210%) !important;
+      -webkit-backdrop-filter: blur(44px) saturate(210%) !important;
+      border-left: 1px solid rgba(255, 255, 255, 0.15) !important;
+      box-shadow: inset 1px 0 1px rgba(255, 255, 255, 0.12), -25px 0 65px rgba(0, 0, 0, 0.95) !important;
+    }
+    #mobileMenu {
+      background: rgba(9, 9, 14, 0.85) !important;
+      backdrop-filter: blur(36px) saturate(210%) !important;
+      -webkit-backdrop-filter: blur(36px) saturate(210%) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.9) !important;
+    }
+
+    /* Micro Frosted Tab Transition Beam */
+    #tabTransitBeam {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2.5px;
+      z-index: 120;
+      pointer-events: none;
+      opacity: 0;
+      background: linear-gradient(90deg, transparent 0%, #6366f1 25%, #38bdf8 50%, #34d399 75%, transparent 100%);
+      box-shadow: 0 0 14px rgba(99, 102, 241, 0.7), 0 0 28px rgba(56, 189, 248, 0.5);
+      background-size: 200% 100%;
+      animation: transitBeamSlide 1.2s ease-in-out infinite;
+      transition: opacity 0.28s ease;
+    }
+    @keyframes transitBeamSlide {
+      0% { background-position: 100% 0; }
+      100% { background-position: -100% 0; }
+    }
+
+    /* ================================================================= */
+    /* ULTRA-SMOOTH FROSTED GLASS TAB & VIEW TRANSITIONS                 */
+    /* ================================================================= */
+    .view-stage-grid {
+      display: grid;
+      grid-template-columns: 100%;
+      grid-template-rows: 1fr;
+      width: 100%;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .view-stage-grid > .view-container {
+      grid-area: 1 / 1;
+      align-self: start;
+      width: 100%;
+    }
+
     .view-container {
       display: none;
       opacity: 0;
-      transform: translateY(16px) scale(0.992);
-      transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-                  transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-      will-change: opacity, transform;
+      filter: blur(12px);
+      transform: translateY(14px) scale(0.993);
+      transition: opacity 0.36s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.36s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 0.36s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform, filter;
+      backface-visibility: hidden;
     }
-    .active-view {
+
+    .view-container.active-view {
       display: block;
     }
-    .view-visible {
+
+    .view-container.view-visible {
       opacity: 1;
+      filter: blur(0px);
       transform: translateY(0) scale(1);
+    }
+
+    .view-container.view-exiting {
+      opacity: 0 !important;
+      filter: blur(10px) !important;
+      transform: translateY(-8px) scale(0.995) !important;
+      pointer-events: none !important;
+      transition: opacity 0.30s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.30s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 0.30s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
 
     .no-scrollbar::-webkit-scrollbar { display: none; }
@@ -637,6 +936,16 @@
     .reveal-on-scroll.revealed {
       opacity: 1;
       transform: translateY(0) scale(1);
+    }
+
+    /* Instant full loading for dedicated library elements (eliminates mobile observer lag) */
+    #view-library .reveal-on-scroll,
+    #view-library #appsGrid,
+    #view-library .rotating-border-card {
+      opacity: 1 !important;
+      transform: none !important;
+      filter: none !important;
+      visibility: visible !important;
     }
 
     /* Blur Transition Scroll Animation for Portfolio Images */
@@ -667,6 +976,8 @@
     #inspectorDrawer.is-open .drawer-content {
       transform: translateX(0);
     }
+
+    
   </style>
 </head>
 <body class="antialiased selection:bg-white selection:text-black">
@@ -677,6 +988,9 @@
   <canvas id="waveParticleCanvas" class="fixed inset-0 pointer-events-none z-0 w-full h-full opacity-0 transition-opacity duration-1000" aria-hidden="true"></canvas>
   <canvas id="portfolioParticleCanvas" class="fixed inset-0 pointer-events-none z-0 w-full h-full opacity-0 transition-opacity duration-700" aria-hidden="true"></canvas>
   <canvas id="libraryParticleCanvas" class="fixed inset-0 pointer-events-none z-0 w-full h-full opacity-0 transition-opacity duration-700" aria-hidden="true"></canvas>
+
+  <!-- Micro Frosted Tab Transition Beam across Top of Viewport -->
+  <div id="tabTransitBeam" aria-hidden="true"></div>
 
   <!-- Global Action Toast Notification -->
   <div id="actionToast">
@@ -750,6 +1064,9 @@
     </div>
   </header>
 
+  <!-- Main Views Stage Grid (Ensures Zero-Jump Overlapping Glass Crossfades) -->
+  <div id="viewsStage" class="view-stage-grid">
+
   <!-- ================================================================= -->
   <!-- VIEW 1: MAIN HOMEPAGE VIEW                                        -->
   <!-- ================================================================= -->
@@ -758,33 +1075,48 @@
     <!-- ================================================================= -->
     <!-- GREETING STAGE: MINIMALIST CINEMATIC HERO (FIRST SCREEN)          -->
     <!-- ================================================================= -->
-    <section class="min-h-screen flex flex-col justify-between items-center text-center relative px-5 sm:px-6 pt-24 pb-10" id="hero">
-      
-      <!-- Subtle Top Anchor -->
-      <div class="h-6"></div>
+    <section class="min-h-screen flex flex-col justify-between items-center text-center relative px-5 sm:px-6 pt-16 sm:pt-20 pb-8 overflow-hidden" id="hero">
 
-      <!-- Center Greeting: Minimalist, Architectural, High-Impact Cinematic Entrance -->
-      <div class="max-w-4xl mx-auto flex flex-col items-center space-y-7 my-auto">
-        <div class="space-y-4">
-          <div class="hero-cinematic-wrap">
-            <h1 class="hero-cinematic-title text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tighter text-white leading-[0.92]">
-              <span class="hero-word hero-word-1">HL8006</span>
-              <span class="hero-word hero-word-2">Studios</span>
+      <!-- Center Greeting: Shifted up into upper-middle viewport for perfect visual balance above wave canvas -->
+      <div id="heroGreetingCenter" class="max-w-5xl mx-auto flex flex-col items-center space-y-4 sm:space-y-5 mt-8 sm:mt-12 md:mt-16 mb-auto transition-transform duration-500 ease-out px-3 z-10">
+        
+        <!-- Single Unified Brand Row: Logo on Left, HL8006 Studios in One Line -->
+        <div class="hero-cinematic-wrap">
+          <div class="hero-brand-row flex items-center justify-center gap-2.5 sm:gap-4 md:gap-6 flex-nowrap select-none">
+            
+            <!-- HL8006 Logo on Left (Blur Step 1) -->
+            <div class="hero-logo-wrap hero-blur-in hero-blur-logo shrink-0 flex items-center justify-center">
+              <img 
+                src="HL8006 Logo.png" 
+                alt="HL8006 Studios Emblem" 
+                class="hero-logo-img rounded-2xl sm:rounded-3xl object-contain shadow-2xl p-1.5 sm:p-2.5 bg-zinc-900/90 border border-zinc-800 shadow-indigo-500/10 transform transition-transform duration-500 hover:scale-105 shrink-0"
+              />
+            </div>
+
+            <!-- Title in One Single Line on Right of Logo (Blur Step 2 & 3) -->
+            <h1 class="hero-cinematic-title font-black tracking-tighter text-white whitespace-nowrap flex items-center flex-nowrap">
+              <span class="hero-blur-in hero-blur-hl8006">HL8006</span>
+              <span class="hero-blur-in hero-blur-studios ml-2 sm:ml-3 md:ml-4">Studios</span>
             </h1>
+
           </div>
-          <p class="text-sm sm:text-base md:text-lg text-zinc-400 font-light max-w-xl mx-auto tracking-wide leading-relaxed hero-delayed-item">
-            Creative productions, software engineering, naval architecture &amp; autonomous offline runtimes.
-          </p>
         </div>
+
+        <p class="text-xs sm:text-base md:text-lg text-zinc-400 font-light max-w-xl mx-auto tracking-wide leading-relaxed hero-delayed-item text-center px-2">
+          Creative productions, software engineering, naval architecture &amp; autonomous offline runtimes.
+        </p>
+
       </div>
 
-      <!-- Minimalist "Scroll down" Indicator at bottom of viewport -->
-      <div id="scrollDownIndicator" class="mt-auto pt-6 flex flex-col items-center gap-2.5 cursor-pointer group select-none hero-delayed-item-2 transition-all duration-300 ease-out" onclick="scrollToHomeContent()">
-        <span class="text-[11px] font-mono tracking-widest uppercase text-zinc-400 group-hover:text-white transition-colors flex items-center gap-1.5">
+      <!-- Minimalist "Scroll down" Indicator: Simplified Triangle, No Bouncing, Glides up from Bottom -->
+      <div id="scrollDownIndicator" class="mt-auto pt-6 flex flex-col items-center gap-1.5 cursor-pointer group select-none scroll-indicator-slide-up transition-all duration-300 ease-out" onclick="scrollToHomeContent()">
+        <span class="text-[11px] font-mono tracking-wider uppercase text-zinc-400 group-hover:text-white transition-colors">
           Scroll down
         </span>
-        <div class="w-5 h-8 rounded-full border border-zinc-700/80 flex items-start justify-center p-1 group-hover:border-zinc-500 transition-colors shadow-inner">
-          <div class="w-1 h-2 bg-indigo-400 rounded-full animate-bounce"></div>
+        <div class="p-1 flex items-center justify-center text-zinc-400 group-hover:text-white transition-colors">
+          <svg class="w-3 h-3 text-zinc-400 group-hover:text-white transition-colors fill-current" viewBox="0 0 24 24">
+            <polygon points="12,17 5,7 19,7"/>
+          </svg>
         </div>
       </div>
 
@@ -795,24 +1127,24 @@
 
       <!-- Direct Shortcut Navigation Row (Integrated with Widgets Below Greeting Page) -->
       <div class="flex flex-wrap items-center justify-center gap-3.5 pb-2 reveal-on-scroll">
-        <button onclick="navigateTo('library')" class="btn-reactive px-6 py-3.5 rounded-full bg-white text-black hover:bg-zinc-100 text-xs sm:text-sm font-bold flex items-center gap-2 shadow-lg shadow-white/10">
+        <button onclick="navigateTo('library')" class="btn-reactive btn-white-pill px-6 py-3.5 rounded-full text-xs sm:text-sm font-bold flex items-center gap-2">
           <span>Explore Library</span>
           <svg class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </button>
 
         <!-- NSNC Button with Official NSNC Logo -->
-        <a href="https://hl8006-beta.github.io/NSNC-Website/" target="_blank" rel="noopener noreferrer" class="btn-reactive px-5 py-3.5 rounded-full bg-zinc-900/80 border border-zinc-800 hover:bg-zinc-800 text-white text-xs sm:text-sm font-medium flex items-center gap-2.5">
+        <a href="https://hl8006-beta.github.io/NSNC-Website/" target="_blank" rel="noopener noreferrer" class="btn-reactive btn-glass-pill px-5 py-3.5 rounded-full text-white text-xs sm:text-sm font-medium flex items-center gap-2.5">
           <img src="NSNC Logo.png" alt="NSNC Logo" class="w-4 h-4 rounded-full object-cover shrink-0">
           <span>NSNC Student News</span>
           <svg class="w-3.5 h-3.5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
         </a>
 
-        <button onclick="navigateTo('portfolio')" class="btn-reactive px-5 py-3.5 rounded-full bg-zinc-900/80 border border-zinc-800 hover:bg-zinc-800 text-zinc-300 hover:text-white text-xs sm:text-sm font-medium flex items-center gap-2">
+        <button onclick="navigateTo('portfolio')" class="btn-reactive btn-glass-pill px-5 py-3.5 rounded-full text-zinc-200 hover:text-white text-xs sm:text-sm font-medium flex items-center gap-2">
           <span>Portfolio</span>
           <svg class="w-3.5 h-3.5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         </button>
 
-        <button onclick="navigateTo('home', 'play-store')" class="btn-reactive px-5 py-3.5 rounded-full bg-zinc-900/80 border border-zinc-800 hover:bg-zinc-800 text-zinc-300 hover:text-white text-xs sm:text-sm font-medium flex items-center gap-2">
+        <button onclick="navigateTo('home', 'play-store')" class="btn-reactive btn-glass-pill px-5 py-3.5 rounded-full text-zinc-200 hover:text-white text-xs sm:text-sm font-medium flex items-center gap-2">
           <span>Google Play Releases</span>
           <svg class="w-3.5 h-3.5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
         </button>
@@ -863,25 +1195,26 @@
     <section id="branches" class="py-20 sm:py-28 border-t border-zinc-850 bg-zinc-950/60 backdrop-blur-sm">
       <div class="max-w-6xl mx-auto px-5 sm:px-6">
         <div class="mb-12 text-center max-w-2xl mx-auto reveal-on-scroll">
-          <span class="text-xs font-mono uppercase tracking-widest text-indigo-400 font-semibold bg-indigo-950/40 border border-indigo-800/40 px-3.5 py-1 rounded-full inline-block mb-3">
-            Architectural Pillars
-          </span>
           <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">Studio Branches</h2>
           <p class="text-sm sm:text-base text-zinc-400 font-light mt-2.5">Discover the operational divisions engineered under the HL8006 banner.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal-on-scroll">
           
+          <!-- Branch 01: HL8006 Productions -->
           <div class="rotating-border-card p-7 flex flex-col justify-between space-y-6">
             <div class="card-specular"></div>
             <div class="space-y-4">
-              <div class="w-10 h-10 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center justify-center font-mono font-bold text-white text-sm shadow-inner">
-                01
+              <div class="flex items-center justify-between">
+                <div class="w-10 h-10 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center justify-center font-mono font-bold text-white text-sm shadow-inner">
+                  01
+                </div>
+                <img src="HL8006 Logo.png" alt="HL8006 Productions Logo" class="w-9 h-9 rounded-xl object-contain border border-zinc-800 shadow">
               </div>
               <div>
                 <h3 class="text-xl font-bold text-white tracking-tight">HL8006 Productions</h3>
                 <p class="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed mt-2">
-                  Engineering workshop and CAD laboratory for Autodesk Inventor naval combatants, supersonic aerodynamic airframes, and 100% offline software applications.
+                  Engineering workshop and CAD laboratory for Autodesk Inventor naval combatants, aerospace engineering, and 100% offline software applications.
                 </p>
               </div>
               <ul class="space-y-2 text-xs text-zinc-400 font-light pt-2">
@@ -891,21 +1224,23 @@
                 </li>
                 <li class="flex items-center gap-2.5">
                   <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
-                  <span>Comprehensive Legacy & Latest Builds</span>
+                  <span>Comprehensive Legacy &amp; Latest Builds</span>
                 </li>
                 <li class="flex items-center gap-2.5">
                   <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
-                  <span>On-Device Trajectory & Simulation Engines</span>
+                  <span>On Device Trajectory &amp; Simulation Engines</span>
                 </li>
               </ul>
             </div>
             
-            <button onclick="navigateTo('library')" class="btn-reactive w-full py-3 rounded-full bg-white text-black hover:bg-zinc-100 text-xs font-bold flex items-center justify-center gap-2 shadow-md">
+            <button onclick="navigateTo('library')" class="btn-reactive btn-white-pill w-full py-3 rounded-full text-xs font-bold flex items-center justify-center gap-2 shadow-md">
+              <img src="HL8006 Logo.png" alt="HL8006 Logo" class="w-4 h-4 rounded-full object-contain">
               <span>Explore Library</span>
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </button>
           </div>
 
+          <!-- Branch 02: NSW Student News Community -->
           <div class="rotating-border-card p-7 flex flex-col justify-between space-y-6">
             <div class="card-specular"></div>
             <div class="space-y-4">
@@ -913,12 +1248,12 @@
                 <div class="w-10 h-10 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center justify-center font-mono font-bold text-white text-sm shadow-inner">
                   02
                 </div>
-                <img src="NSNC Logo.png" alt="NSNC Logo" class="w-9 h-9 rounded-xl object-cover border border-zinc-800 shadow">
+                <img src="NSNC Logo.png" alt="NSNC Logo" class="w-9 h-9 rounded-full object-cover border border-zinc-800 shadow">
               </div>
               <div>
                 <h3 class="text-xl font-bold text-white tracking-tight">NSW Student News Community</h3>
                 <p class="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed mt-2">
-                  Independent non-profit student journalism organisation delivering objective, verified Australian and aerospace current events to secondary students statewide.
+                  Independent non profit student journalism organisation delivering objective, verified Australian and aerospace current events to secondary students statewide.
                 </p>
               </div>
               <ul class="space-y-2 text-xs text-zinc-400 font-light pt-2">
@@ -937,18 +1272,22 @@
               </ul>
             </div>
             
-            <a href="https://hl8006-beta.github.io/NSNC-Website/" target="_blank" rel="noopener noreferrer" class="btn-reactive w-full py-3 rounded-full bg-zinc-900 hover:bg-zinc-800 text-white border border-zinc-800 text-xs font-bold flex items-center justify-center gap-2">
+            <a href="https://hl8006-beta.github.io/NSNC-Website/" target="_blank" rel="noopener noreferrer" class="btn-reactive btn-glass-pill w-full py-3 rounded-full text-xs font-bold flex items-center justify-center gap-2">
               <img src="NSNC Logo.png" alt="NSNC Logo" class="w-4 h-4 rounded-full object-cover">
               <span>Open NSNC Platform</span>
               <svg class="w-3.5 h-3.5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             </a>
           </div>
 
+          <!-- Branch 03: Broadmeadow High School -->
           <div class="rotating-border-card p-7 flex flex-col justify-between space-y-6">
             <div class="card-specular"></div>
             <div class="space-y-4">
-              <div class="w-10 h-10 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center justify-center font-mono font-bold text-white text-sm shadow-inner">
-                03
+              <div class="flex items-center justify-between">
+                <div class="w-10 h-10 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center justify-center font-mono font-bold text-white text-sm shadow-inner">
+                  03
+                </div>
+                <img src="BHS Logo.jpeg" alt="Broadmeadow High School Logo" class="w-9 h-9 rounded-xl object-cover border border-zinc-800 shadow">
               </div>
               <div>
                 <h3 class="text-xl font-bold text-white tracking-tight">Broadmeadow High School</h3>
@@ -972,7 +1311,8 @@
               </ul>
             </div>
             
-            <a href="https://bhs-official-website.my.canva.site/" target="_blank" rel="noopener noreferrer" class="btn-reactive w-full py-3 rounded-full bg-zinc-900 hover:bg-zinc-800 text-white border border-zinc-800 text-xs font-bold flex items-center justify-center gap-2">
+            <a href="https://bhs-official-website.my.canva.site/" target="_blank" rel="noopener noreferrer" class="btn-reactive btn-glass-pill w-full py-3 rounded-full text-xs font-bold flex items-center justify-center gap-2">
+              <img src="BHS Logo.jpeg" alt="BHS Logo" class="w-4 h-4 rounded-full object-cover">
               <span>Open BHS Portal</span>
               <svg class="w-3.5 h-3.5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             </a>
@@ -988,14 +1328,11 @@
         
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 reveal-on-scroll">
           <div>
-            <span class="text-xs font-mono uppercase tracking-widest text-emerald-400 font-semibold bg-emerald-950/40 border border-emerald-800/40 px-3.5 py-1 rounded-full inline-block mb-3">
-              Google Play Console Certified
-            </span>
             <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
               Official Google Play Releases
             </h2>
             <p class="text-sm sm:text-base text-zinc-400 font-light mt-2 max-w-2xl">
-              Production mobile applications engineered by HL8006 Studios. Available directly through the Google Play Store with strict offline architecture and AES GCM on-device encryption.
+              Production mobile applications engineered by HL8006 Studios. Available directly through the Google Play Store with strict offline architecture and AES GCM on device encryption.
             </p>
           </div>
           
@@ -1024,10 +1361,10 @@
                 </div>
               </div>
               <p class="text-xs sm:text-sm text-zinc-300 font-light leading-relaxed">
-                A 100% offline, optimised, ad-free spatial block puzzle game. Features Classic (8x8), Mini (6x6), and Time Attack modes with on-device AES GCM match encryption.
+                A 100% offline, optimised, ad free spatial block puzzle game. Features Classic (8x8), Mini (6x6), and Time Attack modes with on device AES GCM match encryption.
               </p>
             </div>
-            <a href="https://play.google.com/store/apps/details?id=com.hl8006.polyblastpuzzles" target="_blank" rel="noopener noreferrer" class="btn-reactive w-full py-3 rounded-full bg-white text-black hover:bg-zinc-100 text-xs font-bold flex items-center justify-center gap-2 shadow-md">
+            <a href="https://play.google.com/store/apps/details?id=com.hl8006.polyblastpuzzles" target="_blank" rel="noopener noreferrer" class="btn-reactive btn-white-pill w-full py-3.5 rounded-full text-xs font-bold flex items-center justify-center gap-2 shadow-md">
               <span>View on Google Play</span>
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             </a>
@@ -1038,7 +1375,7 @@
             <div class="card-specular"></div>
             <div class="space-y-4">
               <div class="flex items-start gap-4">
-                <img src="NSNC Logo.png" alt="NSNC Aerospace News Logo" class="w-14 h-14 rounded-2xl object-cover border border-zinc-700/80 shadow-lg shrink-0">
+                <img src="NSNC Logo.png" alt="NSNC Aerospace News Logo" class="w-14 h-14 rounded-full object-cover border border-zinc-700/80 shadow-lg shrink-0">
                 <div class="flex-1 min-w-0">
                   <div class="flex items-center justify-between gap-2">
                     <h3 class="text-2xl font-bold text-white tracking-tight truncate">NSNC Aerospace News</h3>
@@ -1049,10 +1386,10 @@
                 </div>
               </div>
               <p class="text-xs sm:text-sm text-zinc-300 font-light leading-relaxed">
-                The flagship media mobile platform from NSW Student News Community. Delivers real-time aerospace updates and global news summaries powered by the on-device HL Assistant neural summariser.
+                The flagship media mobile platform from NSW Student News Community. Delivers real time aerospace updates and global news summaries powered by the on device HL Assistant neural summariser.
               </p>
             </div>
-            <a href="https://play.google.com/store/apps/details?id=com.hl8006.hlnews" target="_blank" rel="noopener noreferrer" class="btn-reactive w-full py-3 rounded-full bg-white text-black hover:bg-zinc-100 text-xs font-bold flex items-center justify-center gap-2 shadow-md">
+            <a href="https://play.google.com/store/apps/details?id=com.hl8006.hlnews" target="_blank" rel="noopener noreferrer" class="btn-reactive btn-white-pill w-full py-3.5 rounded-full text-xs font-bold flex items-center justify-center gap-2 shadow-md">
               <span>View on Google Play</span>
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             </a>
@@ -1074,10 +1411,10 @@
                 </div>
               </div>
               <p class="text-xs sm:text-sm text-zinc-300 font-light leading-relaxed">
-                Precision minimalist chronometer and alarms suite. Designed for low battery consumption with high refresh rate lap tracking, multi-zone world clocks, and floating stopwatch interfaces.
+                Precision minimalist chronometer and alarms suite. Designed for low battery consumption with high refresh rate lap tracking, multi zone world clocks, and floating stopwatch interfaces.
               </p>
             </div>
-            <a href="https://play.google.com/store/apps/details?id=com.hl8006.clock" target="_blank" rel="noopener noreferrer" class="btn-reactive w-full py-3 rounded-full bg-white text-black hover:bg-zinc-100 text-xs font-bold flex items-center justify-center gap-2 shadow-md">
+            <a href="https://play.google.com/store/apps/details?id=com.hl8006.clock" target="_blank" rel="noopener noreferrer" class="btn-reactive btn-white-pill w-full py-3.5 rounded-full text-xs font-bold flex items-center justify-center gap-2 shadow-md">
               <span>View on Google Play</span>
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             </a>
@@ -1099,10 +1436,10 @@
                 </div>
               </div>
               <p class="text-xs sm:text-sm text-zinc-300 font-light leading-relaxed">
-                Quiet space mindfulness and student focus application. Offers distraction-free breathing exercises, binaural soundscapes, and digital wellbeing session trackers stored entirely offline.
+                Quiet space mindfulness and student focus application. Offers distraction free breathing exercises, binaural soundscapes, and digital wellbeing session trackers stored entirely offline.
               </p>
             </div>
-            <a href="https://play.google.com/store/apps/details?id=com.hl8006.mindspace" target="_blank" rel="noopener noreferrer" class="btn-reactive w-full py-3 rounded-full bg-white text-black hover:bg-zinc-100 text-xs font-bold flex items-center justify-center gap-2 shadow-md">
+            <a href="https://play.google.com/store/apps/details?id=com.hl8006.mindspace" target="_blank" rel="noopener noreferrer" class="btn-reactive btn-white-pill w-full py-3.5 rounded-full text-xs font-bold flex items-center justify-center gap-2 shadow-md">
               <span>View on Google Play</span>
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             </a>
@@ -1127,7 +1464,7 @@
               <span class="text-white font-mono text-sm" id="studio-email">support.hl8006@gmail.com</span>
             </div>
             
-            <button id="copyEmailBtn" onclick="copyStudioEmail()" class="btn-reactive px-6 py-3.5 rounded-full bg-white text-black hover:bg-zinc-100 text-sm font-bold flex items-center justify-center gap-2 shadow-lg transition-all duration-300">
+            <button id="copyEmailBtn" onclick="copyStudioEmail()" class="btn-reactive btn-white-pill px-6 py-3.5 rounded-full text-sm font-bold flex items-center justify-center gap-2 shadow-lg">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
               <span>Copy Email</span>
             </button>
@@ -1146,7 +1483,7 @@
       <div class="max-w-7xl mx-auto px-5 sm:px-6">
         
         <div class="flex items-center justify-between mb-8 pb-4 border-b border-zinc-850">
-          <button onclick="navigateTo('home')" class="nav-pill text-xs border border-zinc-800 bg-zinc-900/60 hover:bg-zinc-850">
+          <button onclick="navigateTo('home')" class="btn-reactive btn-glass-pill px-4 py-2 rounded-full text-xs font-medium inline-flex items-center gap-1.5">
             <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
             <span>Return to Studios Home</span>
           </button>
@@ -1158,11 +1495,8 @@
           </button>
         </div>
 
-        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8 reveal-on-scroll">
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
           <div class="space-y-2">
-            <span class="text-xs font-mono uppercase tracking-widest text-indigo-400 font-semibold bg-indigo-950/40 border border-indigo-800/40 px-3.5 py-1 rounded-full inline-block">
-              Engineering Archive &bull; 91 Artifacts
-            </span>
             <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white leading-tight">
               HL8006 Library
             </h1>
@@ -1186,7 +1520,7 @@
         </div>
 
         <!-- Categories Filter Row -->
-        <div class="flex items-center gap-2 overflow-x-auto pb-4 pt-1 no-scrollbar mb-8 reveal-on-scroll" id="categoryFilterRow">
+        <div class="flex items-center gap-2 overflow-x-auto pb-4 pt-1 no-scrollbar mb-8" id="categoryFilterRow">
           <button onclick="setLibraryCategory('all', this)" class="filter-pill active" data-filter="all">All</button>
           <button onclick="setLibraryCategory('naval', this)" class="filter-pill" data-filter="naval">Naval Fleet</button>
           <button onclick="setLibraryCategory('aerospace', this)" class="filter-pill" data-filter="aerospace">Aerospace</button>
@@ -1199,11 +1533,11 @@
         </div>
 
         <!-- Restored Smooth 3D Showcase Carousel (Flex Scroll Track) -->
-        <div class="pt-2 pb-14 reveal-on-scroll">
+        <div class="pt-2 pb-14">
           <div class="flex items-center justify-between mb-4">
             <span class="text-xs font-mono uppercase tracking-wider text-zinc-300 font-semibold flex items-center gap-2">
               <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></span>
-              3D Featured Showcase
+              Featured Showcase
             </span>
             <div class="text-[11px] font-mono text-zinc-400 hidden sm:block">
               Scroll or click to center &bull; Center tile reacts to mouse
@@ -1230,7 +1564,7 @@
         </div>
 
         <!-- Master Project Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 reveal-on-scroll" id="appsGrid">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="appsGrid">
           <!-- Rendered dynamically by JavaScript -->
         </div>
 
@@ -1246,21 +1580,18 @@
       <div class="max-w-4xl mx-auto px-5 sm:px-6">
         
         <div class="flex items-center justify-between mb-8 pb-4 border-b border-zinc-850">
-          <button onclick="navigateTo('home')" class="nav-pill text-xs border border-zinc-800 bg-zinc-900/60 hover:bg-zinc-850">
+          <button onclick="navigateTo('home')" class="btn-reactive btn-glass-pill px-4 py-2 rounded-full text-xs font-medium inline-flex items-center gap-1.5">
             <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
             <span>Return to Studios Home</span>
           </button>
         </div>
 
         <div class="space-y-4 mb-12 reveal-on-scroll">
-          <span class="text-xs font-mono uppercase tracking-widest text-emerald-400 font-semibold bg-emerald-950/40 border border-emerald-800/40 px-3.5 py-1 rounded-full inline-block">
-            Google Play Console Track
-          </span>
           <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white leading-tight">
             HL8006 Android Closed Beta Testing
           </h1>
           <p class="text-sm sm:text-base text-zinc-300 font-light max-w-2xl leading-relaxed">
-            Welcome to the official testing enrolment portal for pre-release builds developed by HL8006 Studios. Volunteer testers help ensure that local encryption routines, low memory models, and zero-cloud runtimes perform cleanly across verified Android hardware.
+            Welcome to the official testing enrolment portal for pre release builds developed by HL8006 Studios. Volunteer testers help ensure that local encryption routines, low memory models, and zero cloud runtimes perform cleanly across verified Android hardware.
           </p>
         </div>
 
@@ -1268,7 +1599,7 @@
           <div class="stat-card bg-zinc-900/80 p-6 rounded-2xl border border-zinc-800">
             <div class="text-[11px] font-mono text-zinc-500 uppercase">Requirement 01</div>
             <div class="text-xl font-bold text-white mt-1">3 to 10 Minutes</div>
-            <p class="text-xs text-zinc-400 font-light mt-1.5 leading-relaxed">Daily interaction window across a continuous 14-day test cycle.</p>
+            <p class="text-xs text-zinc-400 font-light mt-1.5 leading-relaxed">Daily interaction window across a continuous 14 day test cycle.</p>
           </div>
           <div class="stat-card bg-zinc-900/80 p-6 rounded-2xl border border-zinc-800">
             <div class="text-[11px] font-mono text-zinc-500 uppercase">Requirement 02</div>
@@ -1295,7 +1626,7 @@
               <div class="text-base font-semibold text-white">Google Play Closed Beta Form</div>
               <div class="text-xs text-zinc-400 font-light">Official Google Form hosted by HL8006 Studios</div>
             </div>
-            <a href="https://forms.gle/WvfUExXq2PBuV8bo6" target="_blank" rel="noopener noreferrer" class="btn-reactive px-6 py-3 rounded-full bg-white text-black hover:bg-zinc-100 text-xs font-bold flex items-center gap-2 shadow-md">
+            <a href="https://forms.gle/WvfUExXq2PBuV8bo6" target="_blank" rel="noopener noreferrer" class="btn-reactive btn-white-pill px-6 py-3 rounded-full text-xs font-bold flex items-center gap-2 shadow-md">
               <span>Open Google Form</span>
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             </a>
@@ -1315,16 +1646,10 @@
         
         <!-- Top Breadcrumb & Return -->
         <div class="flex items-center justify-between mb-10 pb-4 border-b border-zinc-850">
-          <button onclick="navigateTo('home')" class="nav-pill text-xs border border-zinc-800 bg-zinc-900/60 hover:bg-zinc-850">
+          <button onclick="navigateTo('home')" class="btn-reactive btn-glass-pill px-4 py-2 rounded-full text-xs font-medium inline-flex items-center gap-1.5">
             <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
             <span>Return to Studios Home</span>
           </button>
-          
-          <div class="hidden sm:flex items-center gap-2">
-            <span class="text-[11px] font-mono text-zinc-400 bg-zinc-900 border border-zinc-800 px-3 py-1 rounded-full">
-              Portfolio &bull; Youtae Choi
-            </span>
-          </div>
         </div>
 
         <!-- ========================================== -->
@@ -1349,7 +1674,7 @@
                     <div class="text-zinc-300 text-xs font-mono mt-0.5">HL8006 Studios Founder</div>
                   </div>
                   <span class="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-mono text-[10px] tracking-wider uppercase">
-                    NSW &bull; Australia
+                    NSW Australia
                   </span>
                 </div>
               </div>
@@ -1358,9 +1683,6 @@
             <!-- Right: Name & Who I Am -->
             <div class="lg:col-span-7 space-y-6">
               <div class="space-y-2">
-                <span class="text-xs font-mono uppercase tracking-widest text-indigo-400 font-semibold bg-indigo-950/40 border border-indigo-800/40 px-3.5 py-1 rounded-full inline-block">
-                  Aviation &bull; CAD Architecture &bull; Native Software
-                </span>
                 <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white leading-tight">
                   Youtae Choi
                 </h1>
@@ -1399,9 +1721,6 @@
           <div class="border-t border-zinc-850 pt-16">
             
             <div class="max-w-3xl mb-12 space-y-2">
-              <span class="text-xs font-mono uppercase tracking-widest text-sky-400 font-semibold bg-sky-950/40 border border-sky-800/40 px-3.5 py-1 rounded-full inline-block">
-                General Aviation &bull; RPL Flight Track
-              </span>
               <h2 class="text-3xl sm:text-5xl font-black tracking-tight text-white">
                 Pilot Records
               </h2>
@@ -1420,7 +1739,7 @@
               <div class="absolute bottom-5 sm:bottom-7 left-5 sm:left-7 right-5 sm:right-7 flex items-center justify-between pointer-events-none">
                 <h3 class="text-xl sm:text-3xl font-bold text-white tracking-tight">Pilot records</h3>
                 <span class="px-3.5 py-1 rounded-full bg-zinc-900/90 border border-zinc-700 text-xs font-mono text-zinc-200 backdrop-blur-md">
-                  VH-RNQ
+                  VH RNQ
                 </span>
               </div>
             </div>
@@ -1480,7 +1799,7 @@
                 </div>
                 <div class="p-5 sm:p-6 relative z-10 bg-zinc-950 flex items-center justify-between">
                   <h4 class="text-lg sm:text-xl font-bold text-white">Flying over the clouds</h4>
-                  <span class="text-[10px] font-mono text-indigo-400 bg-indigo-950/60 border border-indigo-800/50 px-2.5 py-1 rounded-full">In-Flight Layer</span>
+                  <span class="text-[10px] font-mono text-indigo-400 bg-indigo-950/60 border border-indigo-800/50 px-2.5 py-1 rounded-full">In Flight Layer</span>
                 </div>
               </div>
 
@@ -1512,10 +1831,13 @@
         <section class="mb-24 reveal-on-scroll">
           <div class="border-t border-zinc-850 pt-16">
             
+        <!-- ========================================== -->
+        <!-- CHAPTER 3: CAD MODELING (DDG 12 & FFG 7)   -->
+        <!-- ========================================== -->
+        <section class="mb-24 reveal-on-scroll">
+          <div class="border-t border-zinc-850 pt-16">
+            
             <div class="max-w-3xl mb-12 space-y-2">
-              <span class="text-xs font-mono uppercase tracking-widest text-indigo-400 font-semibold bg-indigo-950/40 border border-indigo-800/40 px-3.5 py-1 rounded-full inline-block">
-                Autodesk Inventor &bull; Naval Fleet
-              </span>
               <h2 class="text-3xl sm:text-5xl font-black tracking-tight text-white">
                 CAD Modeling
               </h2>
@@ -1570,9 +1892,6 @@
           <div class="border-t border-zinc-850 pt-16">
             
             <div class="max-w-3xl mb-12 space-y-2">
-              <span class="text-xs font-mono uppercase tracking-widest text-emerald-400 font-semibold bg-emerald-950/40 border border-emerald-800/40 px-3.5 py-1 rounded-full inline-block">
-                Hydrogen Fuel Cell Endurance Racing
-              </span>
               <h2 class="text-3xl sm:text-5xl font-black tracking-tight text-white">
                 H2GP PRO Hydrogen Racing
               </h2>
@@ -1621,34 +1940,31 @@
         </section>
 
         <!-- ========================================== -->
-        <!-- CHAPTER 5: OTHER ENGINEERING DISCIPLINES   -->
-        <!-- ========================================== -->
         <!-- CHAPTER 5: OTHER DISCIPLINES & SOFTWARE     -->
         <!-- ========================================== -->
         <section class="reveal-on-scroll">
           <div class="border-t border-zinc-850 pt-16">
             
             <div class="max-w-3xl mb-12 space-y-2">
-              <span class="text-xs font-mono uppercase tracking-widest text-zinc-400 font-semibold bg-zinc-900 border border-zinc-800 px-3.5 py-1 rounded-full inline-block">
-                Broader Focus
-              </span>
               <h2 class="text-3xl sm:text-5xl font-black tracking-tight text-white">
                 Other Disciplines &amp; Media
               </h2>
             </div>
 
-            <!-- 2-Column Grid: NSNC & Golf Swing Image Cards -->
+            <!-- 2-Column Grid: NSNC & Golf Image Cards -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               
-              <!-- NSNC Card with NSNC Logo as an Image -->
+              <!-- NSNC Card with Perfectly Clean Circular NSNC Emblem -->
               <div class="portfolio-card glow-border relative rounded-3xl overflow-hidden border border-zinc-800 bg-zinc-950 shadow-2xl group flex flex-col justify-between">
                 <div class="card-specular"></div>
-                <div class="relative overflow-hidden aspect-[4/3] bg-zinc-900/60 flex items-center justify-center p-8">
-                  <img 
-                    src="NSNC Logo.png" 
-                    alt="NSW Student News Community (NSNC) Official Emblem" 
-                    class="max-h-full max-w-full object-contain portfolio-scroll-img transform transition-transform duration-700 group-hover:scale-[1.05]"
-                  />
+                <div class="relative overflow-hidden aspect-[4/3] bg-black flex items-center justify-center p-6">
+                  <div class="w-52 h-52 sm:w-60 sm:h-60 rounded-full overflow-hidden border border-zinc-800/80 shadow-2xl shadow-indigo-500/10 flex items-center justify-center bg-black group-hover:border-zinc-700 transition-colors">
+                    <img 
+                      src="NSNC Logo.png" 
+                      alt="NSW Student News Community (NSNC) Official Emblem" 
+                      class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-[1.06]"
+                    />
+                  </div>
                 </div>
                 <div class="p-6 sm:p-7 relative z-10 bg-zinc-950 space-y-4">
                   <div class="flex items-center justify-between">
@@ -1656,7 +1972,7 @@
                     <span class="text-[10px] font-mono text-indigo-400 bg-indigo-950/60 border border-indigo-800/50 px-2.5 py-1 rounded-full">Journalism</span>
                   </div>
                   <p class="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
-                    An independent, student-led journalism network and digital newsroom directing and reporting verified coverage on aerospace, science, technology, and student current events across New South Wales.
+                    An independent, student led journalism network and digital newsroom directing and reporting verified coverage on aerospace, science, technology, and student current events across New South Wales.
                   </p>
                   <div class="pt-3 flex items-center justify-between border-t border-zinc-850">
                     <span class="text-[10px] font-mono text-zinc-500">Platform: NSNC Newsroom</span>
@@ -1668,24 +1984,24 @@
                 </div>
               </div>
 
-              <!-- Golf Swing Picture Card -->
+              <!-- Golf Picture Card -->
               <div class="portfolio-card glow-border relative rounded-3xl overflow-hidden border border-zinc-800 bg-zinc-950 shadow-2xl group flex flex-col justify-between">
                 <div class="card-specular"></div>
                 <div class="relative overflow-hidden aspect-[4/3] bg-zinc-900/60 flex items-center justify-center">
                   <img 
                     src="Golf swing picture.png" 
-                    alt="Golf Swing Mechanics &amp; Athletics" 
+                    alt="Golf Athletics" 
                     class="w-full h-full object-cover object-top portfolio-scroll-img transform transition-transform duration-700 group-hover:scale-[1.03]"
                   />
                   <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
                 </div>
                 <div class="p-6 sm:p-7 relative z-10 bg-zinc-950 space-y-4">
                   <div class="flex items-center justify-between">
-                    <h4 class="text-lg sm:text-xl font-bold text-white">Golf Swing &amp; Athletics</h4>
+                    <h4 class="text-lg sm:text-xl font-bold text-white">Golf</h4>
                     <span class="text-[10px] font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800/50 px-2.5 py-1 rounded-full">Athletics</span>
                   </div>
                   <p class="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
-                    Competitive athletic discipline focusing on precision golf swing biomechanics, kinematic rotation sequencing, and tournament course management.
+                    Competitive athletic discipline focusing on precision golf biomechanics, kinematic rotation sequencing, and tournament course management.
                   </p>
                   <div class="pt-3 flex items-center justify-between border-t border-zinc-850 text-[10px] font-mono text-zinc-500">
                     <span>Focus: Biomechanics &amp; Strategy</span>
@@ -1696,7 +2012,7 @@
 
             </div>
 
-            <!-- 2-Column Grid: Google Developer & Supersonic Airframes -->
+            <!-- 2-Column Grid: Google Developer & Aerospace Engineering -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               
               <!-- Verified Google Developer -->
@@ -1709,7 +2025,7 @@
                   </div>
                   <h4 class="text-lg sm:text-xl font-bold text-white">Verified Google Developer</h4>
                   <p class="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
-                    Software engineer and publisher of 4 live production packages on Google Play Console, engineered with zero-cloud local runtimes and on-device AES GCM encryption.
+                    Software engineer and publisher of 4 live production packages on Google Play Console, engineered with zero cloud local runtimes and on device AES GCM encryption.
                   </p>
                   <div class="flex items-center gap-2.5 pt-2">
                     <img src="Poly Blast Puzzles Logo.png" alt="Poly Blast" class="w-8 h-8 rounded-xl object-cover border border-zinc-700 shadow-sm" title="Poly Blast Puzzles">
@@ -1719,29 +2035,29 @@
                   </div>
                 </div>
                 <div class="pt-6">
-                  <a href="https://g.dev/hl8006" target="_blank" rel="noopener noreferrer" class="btn-reactive w-full py-3.5 rounded-full bg-white text-black hover:bg-zinc-100 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-lg">
+                  <a href="https://g.dev/hl8006" target="_blank" rel="noopener noreferrer" class="btn-reactive btn-white-pill w-full py-3.5 rounded-full text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-lg">
                     <span>View Google Developer Records</span>
-                    <span class="text-[11px] font-mono text-zinc-600 font-medium">(g.dev/hl8006)</span>
+                    <span class="text-[11px] font-mono opacity-80 font-medium">(g.dev/hl8006)</span>
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                   </a>
                 </div>
               </div>
 
-              <!-- Supersonic Airframes -->
+              <!-- Aerospace Engineering -->
               <div class="portfolio-card glow-border relative rounded-3xl overflow-hidden border border-zinc-800 bg-zinc-950 shadow-2xl group flex flex-col justify-between p-6 sm:p-7">
                 <div class="card-specular"></div>
                 <div class="space-y-4">
                   <div class="flex items-center justify-between">
-                    <span class="text-xs font-mono text-sky-400 uppercase tracking-wider font-semibold">Aerodynamics</span>
-                    <span class="text-[10px] font-mono text-sky-400 bg-sky-950/60 border border-sky-800/50 px-2.5 py-1 rounded-full">Mach 3.1+</span>
+                    <span class="text-xs font-mono text-sky-400 uppercase tracking-wider font-semibold">Aerospace</span>
+                    <span class="text-[10px] font-mono text-sky-400 bg-sky-950/60 border border-sky-800/50 px-2.5 py-1 rounded-full">Engineering</span>
                   </div>
-                  <h4 class="text-lg sm:text-xl font-bold text-white">Supersonic Airframes</h4>
+                  <h4 class="text-lg sm:text-xl font-bold text-white">Aerospace Engineering</h4>
                   <p class="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed">
-                    Parametric airframe modeling including the KQ 97 tailless 3D thrust vectoring airframe and the KQ 87 Mach 3.1 high-altitude interceptor compression intake geometries.
+                    Parametric flight modeling, aerodynamic structures, and advanced CAD assemblies engineered for aerospace performance and precision aerodynamics.
                   </p>
                   <div class="flex items-center gap-2 text-[10px] font-mono text-zinc-400 pt-2">
-                    <span class="px-2.5 py-1 rounded-lg bg-zinc-900 border border-zinc-800">KQ 97 Vectoring</span>
-                    <span class="px-2.5 py-1 rounded-lg bg-zinc-900 border border-zinc-800">KQ 87 Interceptor</span>
+                    <span class="px-2.5 py-1 rounded-lg bg-zinc-900 border border-zinc-800">Flight Modeling</span>
+                    <span class="px-2.5 py-1 rounded-lg bg-zinc-900 border border-zinc-800">Aerodynamics</span>
                   </div>
                 </div>
                 <div class="pt-6 border-t border-zinc-850 flex items-center justify-between text-[11px] font-mono text-zinc-500">
@@ -1761,6 +2077,7 @@
       </div>
     </main>
   </div>
+  </div><!-- Close #viewsStage -->
 
   <footer class="bg-black py-12 border-t border-zinc-850 relative z-40">
     <div class="max-w-7xl mx-auto px-5 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-6">
@@ -1825,8 +2142,8 @@
         <div id="drawerPrimaryActionSlot" class="mb-3">
           <!-- Populated dynamically: Google Play direct link OR Request File Access button -->
         </div>
-        <button onclick="closeInspector()" class="btn-reactive w-full py-3 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white text-xs font-medium">
-          Close Overview
+        <button onclick="closeInspector()" class="btn-reactive btn-glass-pill w-full py-3 rounded-full text-xs font-medium"><span>
+          Close Overview</span>
         </button>
       </div>
     </div>
@@ -1940,22 +2257,22 @@
 
       <!-- Quick Actions / Direct Provider Launch -->
       <div class="pt-4 border-t border-zinc-850 flex flex-col sm:flex-row items-center justify-between gap-3">
-        <button id="modalCopyEmailBtn" onclick="copyModalEmail(this)" class="btn-reactive px-5 py-3 rounded-full bg-white text-black hover:bg-zinc-100 text-xs font-bold flex items-center justify-center gap-2 shadow-lg w-full sm:w-auto">
+        <button id="modalCopyEmailBtn" onclick="copyModalEmail(this)" class="btn-reactive btn-white-pill px-5 py-3 rounded-full text-xs font-bold flex items-center justify-center gap-2 shadow-lg w-full sm:w-auto">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
           <span>Copy Email</span>
         </button>
 
         <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
-          <a id="modalGmailLink" href="https://mail.google.com/mail/?view=cm&fs=1&to=support.hl8006@gmail.com&su=File%20Access%20Granted" target="_blank" rel="noopener noreferrer" class="btn-reactive px-4 py-2.5 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-200 hover:text-white text-xs font-medium flex items-center gap-1.5 flex-1 sm:flex-none justify-center">
+          <a id="modalGmailLink" href="https://mail.google.com/mail/?view=cm&fs=1&to=support.hl8006@gmail.com&su=File%20Access%20Granted" target="_blank" rel="noopener noreferrer" class="btn-reactive btn-glass-pill px-4 py-2.5 rounded-full text-xs font-medium flex items-center gap-1.5 flex-1 sm:flex-none justify-center">
             <span>Open Gmail</span>
             <svg class="w-3.5 h-3.5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
           </a>
-          <a id="modalOutlookLink" href="https://outlook.live.com/mail/0/deeplink/compose?to=support.hl8006@gmail.com&subject=File%20Access%20Granted" target="_blank" rel="noopener noreferrer" class="btn-reactive px-4 py-2.5 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-200 hover:text-white text-xs font-medium flex items-center gap-1.5 flex-1 sm:flex-none justify-center">
+          <a id="modalOutlookLink" href="https://outlook.live.com/mail/0/deeplink/compose?to=support.hl8006@gmail.com&subject=File%20Access%20Granted" target="_blank" rel="noopener noreferrer" class="btn-reactive btn-glass-pill px-4 py-2.5 rounded-full text-xs font-medium flex items-center gap-1.5 flex-1 sm:flex-none justify-center">
             <span>Open Outlook</span>
             <svg class="w-3.5 h-3.5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
           </a>
-          <button onclick="closeFileAccessModal()" class="btn-reactive px-4 py-2.5 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white text-xs font-medium">
-            Done
+          <button onclick="closeFileAccessModal()" class="btn-reactive btn-glass-pill px-4 py-2.5 rounded-full text-xs font-medium">
+            <span>Done</span>
           </button>
         </div>
       </div>
@@ -1972,6 +2289,42 @@
   </div>
 
   <script>
+    /* Robust Mobile & Touch Device Detection Engine */
+    let isMobileDevice = false;
+
+    function checkIsMobile() {
+      const userAgentCheck = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent || '');
+      const touchCheck = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+      const widthCheck = window.innerWidth <= 768;
+      return userAgentCheck || (touchCheck && widthCheck);
+    }
+
+    function updateDeviceOptimization() {
+      isMobileDevice = checkIsMobile();
+      if (isMobileDevice) {
+        document.documentElement.classList.add('is-mobile-device');
+        document.body.classList.add('is-mobile-device');
+      } else {
+        document.documentElement.classList.remove('is-mobile-device');
+        document.body.classList.remove('is-mobile-device');
+      }
+    }
+    updateDeviceOptimization();
+    window.addEventListener('resize', () => {
+      updateDeviceOptimization();
+      if (typeof focusShowcaseIndex === 'function' && typeof currentView !== 'undefined' && currentView === 'library') {
+        focusShowcaseIndex(currentShowcaseIdx, false);
+      }
+    });
+    window.addEventListener('orientationchange', () => {
+      setTimeout(() => {
+        updateDeviceOptimization();
+        if (typeof focusShowcaseIndex === 'function' && typeof currentView !== 'undefined' && currentView === 'library') {
+          focusShowcaseIndex(currentShowcaseIdx, false);
+        }
+      }, 120);
+    });
+
     /* Comprehensive Catalog with verified nomenclature & logos */
     const masterLibraryData = [
       // -------------------------------------------------------------
@@ -1989,9 +2342,9 @@
         status: 'Google Play Release',
         arch: 'Native Android Puzzle Engine',
         offline: '100% Offline (Zero Cloud)',
-        tooling: 'Android SDK / Java / AES-GCM Encryption',
-        description: 'Spatial block puzzle engine featuring Classic (8x8 grid), Mini (6x6 high-speed), and Time Attack modes. Built-in Digital Wellbeing playtime tracker and anti-addiction analytics dashboard prompting healthy breaks. Zero-cloud save synchronization using client-side AES-GCM local encrypted alphanumeric save blocks without accounts or databases.',
-        spec: 'Modes: Classic (8x8), Mini (6x6), Time Attack | Security: Local AES-GCM Alphanumeric Save Sync | Analytics: Integrated Digital Wellbeing Tracker'
+        tooling: 'Android SDK / Java / AES GCM Encryption',
+        description: 'Spatial block puzzle engine featuring Classic (8x8 grid), Mini (6x6 high speed), and Time Attack modes. Built in Digital Wellbeing playtime tracker and anti addiction analytics dashboard prompting healthy breaks. Zero cloud save synchronization using client side AES GCM local encrypted alphanumeric save blocks without accounts or databases.',
+        spec: 'Modes: Classic (8x8), Mini (6x6), Time Attack | Security: Local AES GCM Alphanumeric Save Sync | Analytics: Integrated Digital Wellbeing Tracker'
       },
       {
         id: 'nsnc-app',
@@ -2006,8 +2359,8 @@
         arch: 'HL Assistant Neural Summariser',
         offline: 'Cached Offline Reading',
         tooling: 'Android SDK / Kotlin / SQLite / Local NLP',
-        description: 'Democratic, student-governed journalism and aerospace intelligence network with elected regional student administrators across Greater Sydney, Hunter, and South West NSW. Uncensored student news pipelines (Aerospace, Transport, Conflicts, Economics) with on-device SQLite caching & local NLP summarization for instant offline reading.',
-        spec: 'Package: com.hl8006.hlnews | Governance: Regional Student Administrators (Greater Sydney, Hunter, South West) | Cache: On-Device SQLite & Local NLP Summariser'
+        description: 'Democratic, student governed journalism and aerospace intelligence network with elected regional student administrators across Greater Sydney, Hunter, and South West NSW. Uncensored student news pipelines (Aerospace, Transport, Conflicts, Economics) with on device SQLite caching & local NLP summarization for instant offline reading.',
+        spec: 'Package: com.hl8006.hlnews | Governance: Regional Student Administrators (Greater Sydney, Hunter, South West) | Cache: On Device SQLite & Local NLP Summariser'
       },
       {
         id: 'hl-clock',
@@ -2021,9 +2374,9 @@
         status: 'Google Play Release',
         arch: 'Low Latency Chronometer Engine',
         offline: '100% Offline by Design',
-        tooling: 'Android SDK / High-Refresh Canvas / Web Audio DSP',
-        description: 'Stabilized smart timekeeping engine engineered for high-refresh sub-millisecond precision. Customizable drag-and-drop dock, Dark Theme, frosted glass morphism and 3D parallax effects, synthesized procedural Argon alarm tones with harmonic overtones, and multi-directional swipe/gesture dismissal.',
-        spec: 'Package: com.hl8006.clock | Audio: Procedural Argon Alarm Synthesis | Interface: Drag-and-Drop Dock, Parallax 3D & Frosted Glass'
+        tooling: 'Android SDK / High Refresh Canvas / Web Audio DSP',
+        description: 'Stabilized smart timekeeping engine engineered for high refresh sub millisecond precision. Customizable drag and drop dock, Dark Theme, frosted glass morphism and 3D parallax effects, synthesized procedural Argon alarm tones with harmonic overtones, and multi directional swipe/gesture dismissal.',
+        spec: 'Package: com.hl8006.clock | Audio: Procedural Argon Alarm Synthesis | Interface: Drag and Drop Dock, Parallax 3D & Frosted Glass'
       },
       {
         id: 'mindspace',
@@ -2035,11 +2388,11 @@
         playStoreUrl: 'https://play.google.com/store/apps/details?id=com.hl8006.mindspace',
         isLegacy: false,
         status: 'Google Play Release',
-        arch: 'Client-side Wellbeing Engine',
+        arch: 'Client side Wellbeing Engine',
         offline: '100% Offline (Zero Telemetry)',
         tooling: 'Android SDK / Local Gemma LLM / Audio DSP',
-        description: 'Targeted psychiatric intervention app for adolescent Generalized Anxiety Disorder (GAD) among Year 7 students transitioning to high school (addressing 1.1M affected young Australians). 100% zero-cloud local data sovereignty with zero ads/trackers. Features Mind Diary CBT journaling with longitudinal trend graphs (MindSpace Score /10), somatic grounding breathing engine (box 4-4-4, deep 4-7-8, shallow 2-1-2, equal 5-0-5), tactile particle/puzzle panic de-escalation, and on-device local LLM AI thought partner (Gemma 3 1B / Gemma 4 2B offline, optional Gemini 3.7 Flash cloud fallback).',
-        spec: 'Package: com.hl8006.mindspace | Clinical Focus: Adolescent GAD & CBT Journaling | Breathing: Box 4-4-4, Deep 4-7-8, Equal 5-0-5 | AI: Offline Gemma 3 1B/2B & Gemini 3.7 Fallback'
+        description: 'Targeted psychiatric intervention app for adolescent Generalized Anxiety Disorder (GAD) among Year 7 students transitioning to high school (addressing 1.1M affected young Australians). 100% zero cloud local data sovereignty with zero ads/trackers. Features Mind Diary CBT journaling with longitudinal trend graphs (MindSpace Score /10), somatic grounding breathing engine (box 4/4/4, deep 4/7/8, shallow 2/1/2, equal 5/0/5), tactile particle/puzzle panic de escalation, and on device local LLM AI thought partner (Gemma 3 1B / Gemma 4 2B offline, optional Gemini 3.7 Flash cloud fallback).',
+        spec: 'Package: com.hl8006.mindspace | Clinical Focus: Adolescent GAD & CBT Journaling | Breathing: Box 4/4/4, Deep 4/7/8, Equal 5/0/5 | AI: Offline Gemma 3 1B/2B & Gemini 3.7 Fallback'
       },
 
       // -------------------------------------------------------------
@@ -2053,7 +2406,7 @@
         type: "cad",
         isLegacy: false,
         status: "Operational Latest",
-        material: "HY-80 High Tensile Steel",
+        material: "HY 80 High Tensile Steel",
         tooling: "Autodesk Inventor",
         description: "Next generation guided missile destroyer. Outfitted with 96 cell strike VLS, dual band phased array superstructure, and integrated electric propulsion.",
         spec: "Displacement: 10,800t | Length: 172m | Role: DDG Guided Missile Destroyer"
@@ -2066,7 +2419,7 @@
         type: "cad",
         isLegacy: true,
         status: "Legacy Frame (Flight IV)",
-        material: "HY-80 Steel",
+        material: "HY 80 Steel",
         tooling: "Autodesk Inventor",
         description: "Flight IV pre production model used to test elevated radar superstructure weights and generator thermal loads.",
         spec: "Displacement: 10,400t | Role: DDG Guided Missile Destroyer"
@@ -2081,7 +2434,7 @@
         status: "Legacy Frame (Flight III)",
         material: "Reinforced Naval Steel",
         tooling: "Autodesk Inventor",
-        description: "Flight III midship modular bay prototype for anti-submarine torpedo tubes and RHIB deployment cranes.",
+        description: "Flight III midship modular bay prototype for anti submarine torpedo tubes and RHIB deployment cranes.",
         spec: "Displacement: 9,900t | Role: DDG Guided Missile Destroyer"
       },
       {
@@ -2107,7 +2460,7 @@
         status: "Legacy Frame",
         material: "Aluminum Superstructure",
         tooling: "Autodesk Inventor",
-        description: "Assessed topside weight stability and center of gravity for high-power sensor masts.",
+        description: "Assessed topside weight stability and center of gravity for high power sensor masts.",
         spec: "Displacement: 9,400t | Role: DDG Guided Missile Destroyer"
       },
       {
@@ -2159,7 +2512,7 @@
         status: "Legacy Frame",
         material: "Structural Deck Box Steel",
         tooling: "Autodesk Inventor",
-        description: "Quad anti-ship missile canister blast clearances and exhaust deflector angles.",
+        description: "Quad anti ship missile canister blast clearances and exhaust deflector angles.",
         spec: "Displacement: 8,300t | Role: DDG Guided Missile Destroyer"
       },
       {
@@ -2211,7 +2564,7 @@
         status: "Operational Latest",
         material: "Heavy Welded Naval Steel",
         tooling: "Autodesk Inventor",
-        description: "Tactical Amphibious Assault Ship. Full 257m flight deck, dual island design, and floodable stern well-deck for landing craft air cushion operations.",
+        description: "Tactical Amphibious Assault Ship. Full 257m flight deck, dual island design, and floodable stern well deck for landing craft air cushion operations.",
         spec: "Displacement: 45,000t | Flight Deck: 257m | Role: AAS Tactical Amphibious Assault Ship"
       },
       {
@@ -2235,7 +2588,7 @@
         type: "cad",
         isLegacy: true,
         status: "Legacy Frame",
-        material: "Double-Bottom Steel Tanks",
+        material: "Double Bottom Steel Tanks",
         tooling: "Autodesk Inventor",
         description: "Hydraulic model verifying stern trimming and ballasting for LCAC hovercraft operations.",
         spec: "Displacement: 42,000t | Role: AAS Tactical Amphibious Assault Ship"
@@ -2287,7 +2640,7 @@
         type: "cad",
         isLegacy: true,
         status: "Legacy Frame",
-        material: "High-Strength Hinges & Sponsons",
+        material: "High Strength Hinges & Sponsons",
         tooling: "Autodesk Inventor",
         description: "Tested side vehicle ramps and CIWS weapon sponson arcs.",
         spec: "Displacement: 34,000t | Role: AAS Tactical Amphibious Assault Ship"
@@ -2339,9 +2692,9 @@
         type: "cad",
         isLegacy: false,
         status: "Operational Latest",
-        material: "Radar-Absorbent Steel & Composites",
+        material: "Radar Absorbent Steel & Composites",
         tooling: "Autodesk Inventor",
-        description: "Operational Guided Missile Frigate. Outfitted with 32 cell VLS, silent electric cruising motors, and CEA-FAR phased array mast.",
+        description: "Operational Guided Missile Frigate. Outfitted with 32 cell VLS, silent electric cruising motors, and CEA FAR phased array mast.",
         spec: "Displacement: 6,400t | Length: 146m | Role: FFG Guided Missile Frigate"
       },
       {
@@ -2352,7 +2705,7 @@
         type: "cad",
         isLegacy: true,
         status: "Legacy Frame",
-        material: "Rubber-Damped Engine Rafts",
+        material: "Rubber Damped Engine Rafts",
         tooling: "Autodesk Inventor",
         description: "Floating acoustic raft isolation system designed to reduce radiated machinery noise for submarine tracking.",
         spec: "Displacement: 6,100t | Role: FFG Guided Missile Frigate"
@@ -2391,7 +2744,7 @@
         type: "cad",
         isLegacy: true,
         status: "Legacy Frame",
-        material: "High-Tensile Steel",
+        material: "High Tensile Steel",
         tooling: "Autodesk Inventor",
         description: "Assessed high speed shallow water entrance angles and intake duct cavitation.",
         spec: "Displacement: 5,200t | Role: FFG Guided Missile Frigate"
@@ -2417,7 +2770,7 @@
         type: "cad",
         isLegacy: false,
         status: "Operational Combat Latest",
-        material: "HY-100 Deep Submergence Steel",
+        material: "HY 100 Deep Submergence Steel",
         tooling: "Autodesk Inventor",
         description: "Tactical Nuclear Submarine. Outfitted with 16 tactical missile tubes, shrouded pump jet propulsion, and anechoic hull cladding.",
         spec: "Displacement: 17,200t Submerged | Length: 160m | Role: SSBN Tactical Nuclear Submarine"
@@ -2433,10 +2786,10 @@
         category: "aerospace",
         type: "cad",
         isLegacy: false,
-        status: "Supersonic Combat Latest",
-        material: "Carbon-Bismaleimide Composite",
+        status: "Aerospace Combat Latest",
+        material: "Carbon Bismaleimide Composite",
         tooling: "Autodesk Inventor",
-        description: "6th-generation stealth air dominance fighter. Tailless planform with 3D fluidic thrust vectoring, Mach 2.4 supercruise capability, and internal rotary launcher.",
+        description: "6th generation stealth air dominance fighter. Tailless planform with 3D fluidic thrust vectoring, Mach 2.4 supercruise capability, and internal rotary launcher.",
         spec: "Speed: Mach 2.4+ Supercruise | Ceiling: 65,000 ft | Weapons: Internal Rotary Launcher"
       },
       {
@@ -2449,7 +2802,7 @@
         status: "Latest Interceptor",
         material: "Titanium Structural Ribs",
         tooling: "Autodesk Inventor",
-        description: "High altitude supersonic interceptor. Variable geometry compression ramp intakes engineered to handle severe thermal friction at speeds above Mach 3.",
+        description: "High altitude interceptor. Variable geometry compression ramp intakes engineered to handle severe thermal friction at speeds above Mach 3.",
         spec: "Speed: Mach 3.1 | Ceiling: 72,000 ft | Role: High Altitude Rapid Intercept"
       },
       {
@@ -2462,7 +2815,7 @@
         status: "Latest Aerodynamics",
         material: "Wind Tunnel SLA Resin",
         tooling: "Autodesk Inventor",
-        description: "Computational intake manifold modeling internal boundary layer bleed systems and supersonic flow expansion.",
+        description: "Computational intake manifold modeling internal boundary layer bleed systems and flow expansion.",
         spec: "Mass: 84g | Boundary Layer Diversion: 94.2% Efficiency"
       },
       {
@@ -2475,7 +2828,7 @@
         status: "Latest Hardware",
         material: "316 Marine Stainless Steel",
         tooling: "Autodesk Inventor",
-        description: "Dynamic pressure measuring head with integrated anti-icing elements providing flight data.",
+        description: "Dynamic pressure measuring head with integrated anti icing elements providing flight data.",
         spec: "Tolerance: +/- 0.02mm | Sampling Rate: 1000Hz"
       },
 
@@ -2492,7 +2845,7 @@
         status: 'Latest Production Edition',
         arch: 'Advanced Neural Engine',
         tooling: 'C++ Quantised Runtime',
-        description: 'High-performance standalone model with multi-turn dialogue comprehension and zero cloud reliance.',
+        description: 'High performance standalone model with multi turn dialogue comprehension and zero cloud reliance.',
         spec: 'RAM: 420MB footprint | Response: <180ms on ARM'
       },
       {
@@ -2505,7 +2858,7 @@
         status: 'Legacy Release',
         arch: 'Zero Telemetry Neural Core',
         tooling: 'C++ / Java JNI',
-        description: 'First production-grade offline assistant providing rapid document analysis without external server calls.',
+        description: 'First production grade offline assistant providing rapid document analysis without external server calls.',
         spec: 'RAM: 550MB footprint | Legacy Build'
       },
       {
@@ -2518,7 +2871,7 @@
         status: 'Legacy Prototype',
         arch: 'Vector Cache Expansion',
         tooling: 'Experimental Vector Rig',
-        description: 'Context-window build evaluating paragraph summarisation across mid-range ARM mobile chips.',
+        description: 'Context window build evaluating paragraph summarisation across mid range ARM mobile chips.',
         spec: 'Experimental Context Buffer'
       },
       {
@@ -2555,10 +2908,10 @@
         type: 'code',
         isLegacy: false,
         status: 'Latest Production Edition',
-        arch: 'High-Throughput Agent Core',
+        arch: 'High Throughput Agent Core',
         tooling: 'Adaptive Scripting Hub',
-        description: 'Top-tier system workflow assistant offering real-time data formatting, scheduling, and workspace acceleration.',
-        spec: 'Multi-Agent Scheduling Engine'
+        description: 'Top tier system workflow assistant offering real time data formatting, scheduling, and workspace acceleration.',
+        spec: 'Multi Agent Scheduling Engine'
       },
       {
         id: 'asst-v6',
@@ -2595,8 +2948,8 @@
         isLegacy: true,
         status: 'Legacy Version',
         arch: 'Dynamic Dispatch Core',
-        tooling: 'Multi-Thread Dispatcher',
-        description: 'Integrated multi-threaded script execution for accelerated local file search.',
+        tooling: 'Multi Thread Dispatcher',
+        description: 'Integrated multi threaded script execution for accelerated local file search.',
         spec: 'Legacy Build'
       },
       {
@@ -2641,12 +2994,12 @@
       {
         id: 'agi-v6',
         name: 'AGI 8006 (V6 Glass)',
-        versionTag: 'V6 Glass Next-Gen',
+        versionTag: 'V6 Glass Next Gen',
         category: 'ai',
         type: 'code',
         isLegacy: false,
-        status: 'Next-Gen Prototype',
-        arch: 'Hyper-Glass Agent Engine',
+        status: 'Next Gen Prototype',
+        arch: 'Hyper Glass Agent Engine',
         tooling: 'Electron / WebGL Agent',
         description: 'Refined visual transparency engine featuring reactive vector cards and rapid contextual reasoning.',
         spec: 'Intelligent Agent Interface'
@@ -2661,7 +3014,7 @@
         status: 'Legacy Build',
         arch: 'Glassmorphic Agent UI',
         tooling: 'Glass Interface Prototype',
-        description: 'Interactive UI shell paired with multi-step agent workflows and rapid document parsing algorithms.',
+        description: 'Interactive UI shell paired with multi step agent workflows and rapid document parsing algorithms.',
         spec: 'Legacy Experimental Shell'
       },
       {
@@ -2674,7 +3027,7 @@
         status: 'Edge Production Model',
         arch: 'Edge Neural Trajectory Engine',
         tooling: 'Embedded C++ / Vector Matrix',
-        description: 'Ultra-low latency inference core that processes IMU sensor arrays and computes real-time trajectory corrections.',
+        description: 'Ultra low latency inference core that processes IMU sensor arrays and computes real time trajectory corrections.',
         spec: 'Latency: <8ms | Memory: 48MB'
       },
 
@@ -2691,8 +3044,8 @@
         status: 'Latest Simulation',
         arch: 'Lens Media Compositing & Web Audio DSP',
         tooling: 'MediaDevices / WebM VP9 / Web Audio API',
-        description: 'Comprehensive race simulation command suite. Features Lens Media Compositing engine utilizing navigator.mediaDevices with 30% Canvas 2D Picture-in-Picture (PiP) and WebM/VP9 recording up to 4K 60FPS. Includes official FIA 5-light start gantry with randomized 500-5000ms release, 3 split-stopwatches with sweeping CSS dials, synthesized 1100Hz dual triangle SAM radar alarms, and HTML5 Bézier track designer with JSON export.',
-        spec: 'Media: Dual Ingest 4K 60FPS WebM/VP9 | Gantry: FIA 5-Light Gantry & Radar Alarms | Mapping: Bézier Canvas Editor'
+        description: 'Comprehensive race simulation command suite. Features Lens Media Compositing engine utilizing navigator.mediaDevices with 30% Canvas 2D Picture in Picture (PiP) and WebM/VP9 recording up to 4K 60FPS. Includes official FIA 5 light start gantry with randomized 500 to 5000ms release, 3 split stopwatches with sweeping CSS dials, synthesized 1100Hz dual triangle SAM radar alarms, and HTML5 Bézier track designer with JSON export.',
+        spec: 'Media: Dual Ingest 4K 60FPS WebM/VP9 | Gantry: FIA 5 Light Gantry & Radar Alarms | Mapping: Bézier Canvas Editor'
       },
       {
         id: 'race-control-v35',
@@ -2704,7 +3057,7 @@
         status: 'Legacy Version',
         arch: 'WebGL 3D & SVG Chrono',
         tooling: 'Three.js / SVG',
-        description: 'Added high-precision SVG stopwatch rings, setup notes editor, and procedural 3D tracks.',
+        description: 'Added high precision SVG stopwatch rings, setup notes editor, and procedural 3D tracks.',
         spec: 'Legacy Build'
       },
       {
@@ -2717,7 +3070,7 @@
         status: 'Legacy Version',
         arch: 'MediaStream API & Canvas',
         tooling: 'HTML5 2D Canvas',
-        description: 'Initial race telemetry cockpit capturing dual-lens video streams and lap delta timing.',
+        description: 'Initial race telemetry cockpit capturing dual lens video streams and lap delta timing.',
         spec: 'Class Lineage Pioneer'
       },
       {
@@ -2730,8 +3083,8 @@
         status: 'Latest Simulation',
         arch: 'Three.js GLTF Engine & ACES Filmic Tone Mapping',
         tooling: 'WebGL / Three.js / SVG Telemetry HUD',
-        description: 'Flagship open-wheel motorsport simulation. Features GLTFLoader vehicle pipeline with ACES Filmic tone mapping, PCF Soft Shadows, and mathematical tire compound physics (Hyper, Edge, Velocity, Super). Incorporates dynamic weather with a 5,000-particle rain system, SVG telemetry HUD (real-time RPM, speed, nitro, 9-gear descending torque curve 0.70-0.40, slipstream drafting), and 4 tracks including Marina Bay Metro City.',
-        spec: 'Compounds: Hyper, Edge, Velocity, Super | HUD: SVG Real-Time RPM & Slipstream | Environment: 5K Rain Particles'
+        description: 'Flagship open wheel motorsport simulation. Features GLTFLoader vehicle pipeline with ACES Filmic tone mapping, PCF Soft Shadows, and mathematical tire compound physics (Hyper, Edge, Velocity, Super). Incorporates dynamic weather with a 5,000 particle rain system, SVG telemetry HUD (real time RPM, speed, nitro, 9 gear descending torque curve 0.70 to 0.40, slipstream drafting), and 4 tracks including Marina Bay Metro City.',
+        spec: 'Compounds: Hyper, Edge, Velocity, Super | HUD: SVG Real Time RPM & Slipstream | Environment: 5K Rain Particles'
       },
       {
         id: 'f1-w7-pro',
@@ -2754,9 +3107,9 @@
         type: 'code',
         isLegacy: true,
         status: 'Legacy Version',
-        arch: 'High-G Cornering Physics',
-        tooling: 'G-Force Vector Grid',
-        description: 'Tuned specifically for high lateral G-force loads and tyre compound wear across endurance stints.',
+        arch: 'High G Cornering Physics',
+        tooling: 'G Force Vector Grid',
+        description: 'Tuned specifically for high lateral G force loads and tyre compound wear across endurance stints.',
         spec: 'Legacy Build'
       },
       {
@@ -2795,7 +3148,7 @@
         status: 'Latest Simulation',
         arch: 'Three.js WebGL & Eulerian Dynamics',
         tooling: 'Three.js / WebGL / Mobile Touch',
-        description: 'Browser-based Three.js WebGL physics simulation engine. High-polygon GLTF vehicle loader with ACES Filmic tone mapping, PCF Soft Shadows, dynamic cubemap environmental reflections, mathematical tire compound physics (Hyper, Edge, Velocity, Super), dynamic time/weather with 5,000 GPU-particle rain system, SVG HUD telemetry with real-time RPM, speed, nitro, 9-gear descending torque model, slipstream drafting indicator, jump-start penalties, and multi-circuit tracks (Marina Bay Metro City, Labyrinth, Mountain Pass, Coast to Coast).',
+        description: 'Browser based Three.js WebGL physics simulation engine. High polygon GLTF vehicle loader with ACES Filmic tone mapping, PCF Soft Shadows, dynamic cubemap environmental reflections, mathematical tire compound physics (Hyper, Edge, Velocity, Super), dynamic time/weather with 5,000 GPU particle rain system, SVG HUD telemetry with real time RPM, speed, nitro, 9 gear descending torque model, slipstream drafting indicator, jump start penalties, and multi circuit tracks (Marina Bay Metro City, Labyrinth, Mountain Pass, Coast to Coast).',
         spec: 'Three.js WebGL | 4 Tire Compounds | 5K Rain Particles | Dynamic SVG HUD'
       },
       {
@@ -2806,10 +3159,10 @@
         type: 'code',
         isLegacy: false,
         status: 'Latest Flight Simulation',
-        arch: 'Mooney M20C Aerodynamic 6-DoF Physics',
+        arch: 'Mooney M20C Aerodynamic 6 DoF Physics',
         tooling: 'Eulerian Flight Model / Three.js',
-        description: 'Full 3D aerodynamic flight simulator modeling the Mooney M20C aircraft. Real-time Eulerian physics integration for 6-DoF flight dynamics (pitch, roll, yaw, AoA, slipstream), throttle staging, retractable gear actuation (G), progressive multi-stage flaps (F), stationary tarmac refueling pad logic, tuned throttle velocity curves, 10x wheel brake friction for precise short-field landings, 3x spoiler drag, runway approach lighting, airport autonomous AI aircraft, and 2D minimap radar.',
-        spec: 'Airframe: Mooney M20C | Dynamics: 6-DoF Eulerian Integration | Systems: Retracts (G), Flaps (F), Refueling'
+        description: 'Full 3D aerodynamic flight simulator modeling the Mooney M20C aircraft. Real time Eulerian physics integration for 6 DoF flight dynamics (pitch, roll, yaw, AoA, slipstream), throttle staging, retractable gear actuation (G), progressive multi stage flaps (F), stationary tarmac refueling pad logic, tuned throttle velocity curves, 10x wheel brake friction for precise short field landings, 3x spoiler drag, runway approach lighting, airport autonomous AI aircraft, and 2D minimap radar.',
+        spec: 'Airframe: Mooney M20C | Dynamics: 6 DoF Eulerian Integration | Systems: Retracts (G), Flaps (F), Refueling'
       },
       {
         id: 'fs-3',
@@ -2847,7 +3200,7 @@
         status: 'Legacy Pioneer',
         arch: 'Lift Vector Framework',
         tooling: 'Basic Lift/Drag Equation',
-        description: 'Introductory aerodynamic lift and drag simulation modelling basic fixed-wing handling.',
+        description: 'Introductory aerodynamic lift and drag simulation modelling basic fixed wing handling.',
         spec: 'Class Lineage Pioneer'
       },
       {
@@ -2873,7 +3226,7 @@
         status: 'Latest Simulation',
         arch: 'Cannon.js & Three.js Vector Interpolation',
         tooling: 'Cannon.js / Three.js',
-        description: 'Rigid-body 3D vehicle physics engine featuring tuned suspension stiffness, damping, and chase camera vectors.',
+        description: 'Rigid body 3D vehicle physics engine featuring tuned suspension stiffness, damping, and chase camera vectors.',
         spec: 'Dynamic Suspension Rig'
       },
 
@@ -2888,9 +3241,9 @@
         type: 'code',
         isLegacy: false,
         status: 'Cryptographic Core',
-        arch: 'Client-side SX2P & XE4T Ciphers',
+        arch: 'Client side SX2P & XE4T Ciphers',
         tooling: 'Web Crypto API / Rolling XOR',
-        description: 'Browser encryption suite handling up to 10GB files using multi-key rolling XOR ciphers and Greek character mapping.',
+        description: 'Browser encryption suite handling up to 10GB files using multi key rolling XOR ciphers and Greek character mapping.',
         spec: 'Zero Cloud Server Transit'
       },
       {
@@ -2903,7 +3256,7 @@
         status: 'Legacy Version',
         arch: 'Rolling XOR Pipeline',
         tooling: 'JavaScript Stream Cipher',
-        description: 'Early client-side encryption utility for local text notes and configuration archives.',
+        description: 'Early client side encryption utility for local text notes and configuration archives.',
         spec: 'Legacy Build'
       },
       {
@@ -2929,7 +3282,7 @@
         status: 'Legacy Version',
         arch: 'Live Preview Markdown Parser',
         tooling: 'Markdown Compiler',
-        description: 'Split-screen live markdown preview with PDF export capabilities.',
+        description: 'Split screen live markdown preview with PDF export capabilities.',
         spec: 'Legacy Build'
       },
       {
@@ -2992,7 +3345,7 @@
         type: 'code',
         isLegacy: false,
         status: 'Latest Utility',
-        arch: 'Multi-Sensor API Gateway',
+        arch: 'Multi Sensor API Gateway',
         tooling: 'Web Bluetooth / Barometric API',
         description: 'Environmental monitoring utility tracking barometric air pressure, moisture metrics, and temperature trends.',
         spec: 'Local Data Cache'
@@ -3035,9 +3388,9 @@
         type: 'cad',
         isLegacy: false,
         status: 'Latest Competition Chassis',
-        material: 'Bambu Lab High-Yield PETG & Polycarbonate (PC)',
+        material: 'Bambu Lab High Yield PETG & Polycarbonate (PC)',
         tooling: 'Autodesk Inventor',
-        description: 'Central load-bearing chassis component for the 1:10 scale hydrogen fuel cell race car competing in the Horizon Hydrogen Grand Prix. Engineered in Autodesk Inventor to absorb 40 km/h wall impacts.',
+        description: 'Central load bearing chassis component for the 1:10 scale hydrogen fuel cell race car competing in the Horizon Hydrogen Grand Prix. Engineered in Autodesk Inventor to absorb 40 km/h wall impacts.',
         spec: 'Impact Rating: 40 km/h Wall Force | Mass: 112g'
       },
       {
@@ -3050,7 +3403,7 @@
         status: 'Latest Aerodynamics',
         material: 'Bambu Lab TPU & Impact PETG',
         tooling: 'Autodesk Inventor',
-        description: 'Aerodynamic side ducting and ram-air roof intake cooling package routing ambient airflow directly over fuel cell stacks and hybrid LiPo reserves.',
+        description: 'Aerodynamic side ducting and ram air roof intake cooling package routing ambient airflow directly over fuel cell stacks and hybrid LiPo reserves.',
         spec: 'Cooling Efficiency: +26% Mass Air Flow | Mass: 48g'
       },
       {
@@ -3080,12 +3433,12 @@
         status: 'Latest Physical Prototype',
         material: '600mm Extruded Workshop Aluminum & Australian Hardwood',
         tooling: 'Autodesk Inventor',
-        description: 'Sustainable desktop task lamp designed in Autodesk Inventor. Compact 5x7-inch hardwood footprint with integrated USB-C power standard.',
-        spec: 'Footprint: 5x7 inches | Power Standard: Direct USB Type-C Receptacle'
+        description: 'Sustainable desktop task lamp designed in Autodesk Inventor. Compact 5x7 inch hardwood footprint with integrated USB C power standard.',
+        spec: 'Footprint: 5x7 inches | Power Standard: Direct USB Type C Receptacle'
       },
       {
         id: 'cad-qstand-max',
-        name: 'ARC Technologies Q-Stand Max',
+        name: 'ARC Technologies Q Stand Max',
         fileTag: 'QStand_Max_Assembly.iam',
         category: 'engineering',
         type: 'cad',
@@ -3093,21 +3446,21 @@
         status: 'Latest Hardware',
         material: 'CNC 6061 T6 Aluminum & PTFE Coating',
         tooling: 'Autodesk Inventor / CNC Milling',
-        description: 'Flagship ergonomic laptop elevation and active cooling station. CNC-machined 6061 T6 Aluminum passive heatsink structure with 3x 4-inch brushless fans (adaptive thermal sensors, 300 to 2,800 RPM, 18°C temperature drop). Integrated 20,000mAh (74Wh) Li-Po battery, 140W USB-C PD primary + 25W secondary output, 2x USB-A 3.2 Gen 2 (10Gbps), 3.5mm combo audio, dual UHS-II SD/MicroSD (up to 1TB), and bead-blasted PTFE insulation coating.',
-        spec: 'Material: CNC 6061 T6 Al | Cooling: 3x 4-inch Fans (300-2800 RPM, -18°C) | Battery: 20,000mAh (74Wh), 140W+25W PD | I/O: 2x USB-A 3.2, Dual SD UHS-II | Projected Target: ~$149.99 AUD'
+        description: 'Flagship ergonomic laptop elevation and active cooling station. CNC machined 6061 T6 Aluminum passive heatsink structure with 3x 4 inch brushless fans (adaptive thermal sensors, 300 to 2,800 RPM, 18°C temperature drop). Integrated 20,000mAh (74Wh) Li Po battery, 140W USB C PD primary + 25W secondary output, 2x USB A 3.2 Gen 2 (10Gbps), 3.5mm combo audio, dual UHS II SD/MicroSD (up to 1TB), and bead blasted PTFE insulation coating.',
+        spec: 'Material: CNC 6061 T6 Al | Cooling: 3x 4 inch Fans (300 to 2800 RPM, -18°C) | Battery: 20,000mAh (74Wh), 140W+25W PD | I/O: 2x USB A 3.2, Dual SD UHS II | Projected Target: ~$149.99 AUD'
       },
       {
         id: 'cad-qstand-lite',
-        name: 'ARC Technologies Q-Stand Lite',
+        name: 'ARC Technologies Q Stand Lite',
         fileTag: 'QStand_Lite_Assembly.iam',
         category: 'engineering',
         type: 'cad',
         isLegacy: false,
         status: 'Latest Hardware',
-        material: 'Injection-Molded PC-ABS (652g)',
+        material: 'Injection Molded PC ABS (652g)',
         tooling: 'Autodesk Inventor / Tooling Mold',
-        description: 'Ultra-lightweight portable workstation stand weighing just 652g with a sleek 9.1mm tapering to 5.1mm profile. Active cooling via 3x 3-inch brushless fans with physical digital crown and Bluetooth 5.3 LE manual telemetry control. Integrated 10,000mAh (37Wh) Li-Po battery pack delivering 65W + 25W dual USB-C Power Delivery (projected target ~$99.99 AUD).',
-        spec: 'Projected Target: ~$99.99 AUD | Weight: 652g | Profile: 9.1mm to 5.1mm | Cooling: 3x 3-inch Fans with Digital Crown & BLE 5.3 | Battery: 10,000mAh (37Wh), 65W+25W PD'
+        description: 'Ultra lightweight portable workstation stand weighing just 652g with a sleek 9.1mm tapering to 5.1mm profile. Active cooling via 3x 3 inch brushless fans with physical digital crown and Bluetooth 5.3 LE manual telemetry control. Integrated 10,000mAh (37Wh) Li Po battery pack delivering 65W + 25W dual USB C Power Delivery (projected target ~$99.99 AUD).',
+        spec: 'Projected Target: ~$99.99 AUD | Weight: 652g | Profile: 9.1mm to 5.1mm | Cooling: 3x 3 inch Fans with Digital Crown & BLE 5.3 | Battery: 10,000mAh (37Wh), 65W+25W PD'
       },
       {
         id: 'cad-snapcase-lite',
@@ -3119,8 +3472,8 @@
         status: 'Latest Hardware',
         material: 'Liquid Silicone & 6061 Aluminum Skeleton',
         tooling: 'Autodesk Inventor / Insert Molding',
-        description: 'Ergonomic daily-driver smartphone protection enclosure. Premium liquid silicone outer shell with oleophobic nano-coating over an internal embedded 0.4mm 6061 aluminum skeleton for torsional rigidity and direct contact thermal dissipation. Features an angled rear mechanical slide-and-lock slot for hot-swappable modular SnapGear accessories (projected target ~$16.99 AUD).',
-        spec: 'Projected Target: ~$16.99 AUD | Shell: Liquid Silicone + 0.4mm 6061 Al Skeleton | Modular System: Rear Slide-and-Lock SnapGear Mount'
+        description: 'Ergonomic daily driver smartphone protection enclosure. Premium liquid silicone outer shell with oleophobic nano coating over an internal embedded 0.4mm 6061 aluminum skeleton for torsional rigidity and direct contact thermal dissipation. Features an angled rear mechanical slide and lock slot for hot swappable modular SnapGear accessories (projected target ~$16.99 AUD).',
+        spec: 'Projected Target: ~$16.99 AUD | Shell: Liquid Silicone + 0.4mm 6061 Al Skeleton | Modular System: Rear Slide and Lock SnapGear Mount'
       },
       {
         id: 'cad-snapcase-max',
@@ -3130,10 +3483,10 @@
         type: 'cad',
         isLegacy: false,
         status: 'Latest Hardware',
-        material: 'Dual-Injected Polycarbonate & Honeycomb TPU',
-        tooling: 'Autodesk Inventor / Multi-Shot Tooling',
-        description: 'Mission-critical heavy-duty mobile armor enclosure. Dual-injected Polycarbonate (PC) outer shell with air-cushioned TPU interior borders and honeycomb impact chambers engineered for high-velocity drop protection. Embedded aluminum thermal sub-frame conducts heat evenly across the case back during sustained gaming. Integrates universal rear slide-and-lock rails for the SnapGear modular ecosystem (projected target ~$19.99 AUD).',
-        spec: 'Projected Target: ~$19.99 AUD | Armor: Dual-Injected PC + Air-Cushioned TPU Honeycomb | Thermal: Embedded Al Sub-Frame | System: SnapGear Rail Slot'
+        material: 'Dual Injected Polycarbonate & Honeycomb TPU',
+        tooling: 'Autodesk Inventor / Multi Shot Tooling',
+        description: 'Mission critical heavy duty mobile armor enclosure. Dual injected Polycarbonate (PC) outer shell with air cushioned TPU interior borders and honeycomb impact chambers engineered for high velocity drop protection. Embedded aluminum thermal sub frame conducts heat evenly across the case back during sustained gaming. Integrates universal rear slide and lock rails for the SnapGear modular ecosystem (projected target ~$19.99 AUD).',
+        spec: 'Projected Target: ~$19.99 AUD | Armor: Dual Injected PC + Air Cushioned TPU Honeycomb | Thermal: Embedded Al Sub Frame | System: SnapGear Rail Slot'
       },
       {
         id: 'cad-snapgear-wallet',
@@ -3145,7 +3498,7 @@
         status: 'Latest Hardware',
         material: 'Liquid Silicone & CNC Stamped Aluminum Core',
         tooling: 'Autodesk Inventor',
-        description: 'Ultra-slim modular wallet accessory designed for the SnapCase slide-and-lock rail mechanism. Features a CNC-stamped aluminum core enclosed in soft-touch liquid silicone, dual spring-tensioned card retention slots accommodating up to 3 cards, and integrated RFID/NFC shielding foil (projected target ~$9.99 AUD).',
+        description: 'Ultra slim modular wallet accessory designed for the SnapCase slide and lock rail mechanism. Features a CNC stamped aluminum core enclosed in soft touch liquid silicone, dual spring tensioned card retention slots accommodating up to 3 cards, and integrated RFID/NFC shielding foil (projected target ~$9.99 AUD).',
         spec: 'Projected Target: ~$9.99 AUD | Capacity: 3 Cards | Core: CNC Stamped Aluminum | Shielding: Integrated RFID/NFC Blocking Foil'
       },
       {
@@ -3156,10 +3509,10 @@
         type: 'cad',
         isLegacy: false,
         status: 'Latest Hardware',
-        material: 'Polycarbonate Shell & High-Density Li-Po Cell',
+        material: 'Polycarbonate Shell & High Density Li Po Cell',
         tooling: 'Autodesk Inventor',
-        description: 'Hot-swappable modular battery pack securing into SnapCase mounting rails. Houses a 5,000mAh high-density Li-Po cell delivering 15W Qi2 wireless magnetic power transfer and 25W bi-directional USB-C wired fast charging. Features an IP68 hermetically sealed enclosure with a four-stage LED charge gauge (projected target ~$39.99 AUD).',
-        spec: 'Projected Target: ~$39.99 AUD | Cell: 5,000mAh Li-Po | Wireless: 15W Qi2 Magnetic | Wired: 25W USB-C PD | Ingress: IP68 Sealed Enclosure'
+        description: 'Hot swappable modular battery pack securing into SnapCase mounting rails. Houses a 5,000mAh high density Li Po cell delivering 15W Qi2 wireless magnetic power transfer and 25W bi directional USB C wired fast charging. Features an IP68 hermetically sealed enclosure with a four stage LED charge gauge (projected target ~$39.99 AUD).',
+        spec: 'Projected Target: ~$39.99 AUD | Cell: 5,000mAh Li Po | Wireless: 15W Qi2 Magnetic | Wired: 25W USB C PD | Ingress: IP68 Sealed Enclosure'
       },
       {
         id: 'cad-snapgear-vault',
@@ -3169,10 +3522,10 @@
         type: 'cad',
         isLegacy: false,
         status: 'Latest Hardware',
-        material: 'Shock-Absorbing Impact TPU',
+        material: 'Shock Absorbing Impact TPU',
         tooling: 'Autodesk Inventor',
-        description: 'Ruggedized tracker carrier engineered to mechanically lock onto SnapCase rails. Securely encapsulates either an Apple AirTag or Samsung Galaxy SmartTag2 within an impact-absorbing TPU housing featuring tuned acoustic speaker pass-through channels (projected target ~$9.99 AUD).',
-        spec: 'Projected Target: ~$9.99 AUD | Compatibility: Apple AirTag & Samsung Galaxy SmartTag2 | Housing: Impact TPU with Acoustic Pass-Through'
+        description: 'Ruggedized tracker carrier engineered to mechanically lock onto SnapCase rails. Securely encapsulates either an Apple AirTag or Samsung Galaxy SmartTag2 within an impact absorbing TPU housing featuring tuned acoustic speaker pass through channels (projected target ~$9.99 AUD).',
+        spec: 'Projected Target: ~$9.99 AUD | Compatibility: Apple AirTag & Samsung Galaxy SmartTag2 | Housing: Impact TPU with Acoustic Pass Through'
       },
       {
         id: 'cad-snapgear-magsafe',
@@ -3184,7 +3537,7 @@
         status: 'Latest Hardware',
         material: 'N52 Neodymium Magnetic Array & Polycarbonate',
         tooling: 'Autodesk Inventor',
-        description: 'Magnetic mounting adapter plate that slides into the SnapCase rear mechanism. Incorporates an array of reinforced N52 neodymium magnets offering 50% higher magnetic clamping force than standard cases, ensuring rock-solid adhesion to car mounts, desk stands, and wireless pucks (projected target ~$19.99 AUD).',
+        description: 'Magnetic mounting adapter plate that slides into the SnapCase rear mechanism. Incorporates an array of reinforced N52 neodymium magnets offering 50% higher magnetic clamping force than standard cases, ensuring rock solid adhesion to car mounts, desk stands, and wireless pucks (projected target ~$19.99 AUD).',
         spec: 'Projected Target: ~$19.99 AUD | Magnets: Reinforced N52 Neodymium (+50% Clamping Force) | Mount: SnapCase Slide Rail'
       },
       {
@@ -3211,12 +3564,25 @@
 
     // Fast, buttery view switcher with smooth scale & opacity easing
     function navigateTo(viewName, scrollTargetId = null) {
+      if (viewName === currentView && !scrollTargetId) return;
+
+      const prevView = currentView;
       currentView = viewName;
       const views = ['home', 'library', 'beta', 'portfolio'];
 
+      triggerHaptic(12);
       updateGliderPosition(viewName);
 
-      // Smooth background canvas transition across all 3 custom canvases
+      // Micro frosted transit beam at top of viewport
+      const beam = document.getElementById('tabTransitBeam');
+      if (beam) {
+        beam.style.opacity = '1';
+        setTimeout(() => {
+          beam.style.opacity = '0';
+        }, 450);
+      }
+
+      // Smooth background canvas transition across custom canvases
       const waveCanvas = document.getElementById('waveParticleCanvas');
       const portfolioCanvas = document.getElementById('portfolioParticleCanvas');
       const libraryCanvas = document.getElementById('libraryParticleCanvas');
@@ -3232,35 +3598,68 @@
         if (waveCanvas) waveCanvas.style.opacity = '1';
       }
 
-      // Update header visibility immediately on view switch
       updateHeaderVisibility();
 
-      views.forEach(v => {
-        const el = document.getElementById(`view-${v}`);
-        if (!el) return;
+      const oldEl = document.getElementById(`view-${prevView}`);
+      const newEl = document.getElementById(`view-${viewName}`);
+      const scrollY = window.scrollY;
 
-        if (v === viewName) {
-          el.classList.add('active-view');
-          requestAnimationFrame(() => {
-            el.classList.add('view-visible');
-          });
-        } else {
-          el.classList.remove('view-visible');
-          setTimeout(() => {
-            if (currentView !== v) el.classList.remove('active-view');
-          }, 360);
+      // Clean up any stale views from rapid clicking
+      views.forEach(v => {
+        if (v !== viewName && v !== prevView) {
+          const el = document.getElementById(`view-${v}`);
+          if (el) {
+            el.classList.remove('active-view', 'view-visible', 'view-exiting');
+            el.style.position = '';
+            el.style.top = '';
+            el.style.transform = '';
+          }
         }
       });
 
+      // Smooth Overlapping Frosted Crossfade with pinned scroll position
+      if (oldEl && oldEl !== newEl) {
+        if (!scrollTargetId && scrollY > 20) {
+          // Pin outgoing view visually at current scroll offset so it doesn't jump
+          oldEl.style.position = 'absolute';
+          oldEl.style.top = '0';
+          oldEl.style.transform = `translate3d(0, -${scrollY}px, 0)`;
+        }
+        oldEl.classList.remove('view-visible');
+        oldEl.classList.add('view-exiting');
+
+        setTimeout(() => {
+          if (currentView !== prevView) {
+            oldEl.classList.remove('active-view', 'view-exiting');
+            oldEl.style.position = '';
+            oldEl.style.top = '';
+            oldEl.style.transform = '';
+          }
+        }, 360);
+      }
+
+      if (newEl) {
+        newEl.style.position = '';
+        newEl.style.top = '';
+        newEl.style.transform = '';
+        newEl.classList.remove('view-exiting');
+        newEl.classList.add('active-view');
+        void newEl.offsetWidth; // Trigger reflow for blur reveal
+        requestAnimationFrame(() => {
+          newEl.classList.add('view-visible');
+        });
+      }
+
+      // Reset scroll cleanly without layout collisions
       if (scrollTargetId) {
         setTimeout(() => {
           const el = document.getElementById(scrollTargetId);
           if (el) {
             el.scrollIntoView({ behavior: 'smooth' });
           }
-        }, 100);
+        }, 120);
       } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: 'instant' });
       }
 
       if (history.pushState) {
@@ -3270,6 +3669,9 @@
       if (viewName === 'library') {
         filterApps();
         renderGalleryShowcase();
+        document.querySelectorAll('#view-library .reveal-on-scroll').forEach(el => el.classList.add('revealed'));
+      } else {
+        pauseShowcaseAutoplay();
       }
 
       if (viewName === 'home') {
@@ -3280,7 +3682,7 @@
         checkScrollReveals();
         checkPortfolioImages();
         updateHeaderVisibility();
-      }, 100);
+      }, 50);
     }
 
     // Scroll to Home Content from first greeting screen
@@ -3295,13 +3697,27 @@
     function updateHeaderVisibility() {
       const header = document.querySelector('.site-header');
       const scrollIndicator = document.getElementById('scrollDownIndicator');
+      const heroCenter = document.getElementById('heroGreetingCenter');
 
-      // Hide "Scroll down" indicator as soon as user starts scrolling down
+      // Seamless scroll-linked elevation of the center hero greeting into the top-left bar
+      if (heroCenter && currentView === 'home') {
+        const scrolled = window.scrollY;
+        if (scrolled > 0) {
+          const progress = Math.min(scrolled / 130, 1);
+          heroCenter.style.opacity = `${Math.max(0, 1 - progress * 0.96)}`;
+          heroCenter.style.transform = `translateY(-${progress * 36}px) scale(${1 - progress * 0.05})`;
+        } else {
+          heroCenter.style.opacity = '1';
+          heroCenter.style.transform = 'none';
+        }
+      }
+
+      // Hide "Scroll down • Swipe down" indicator as soon as user starts scrolling down (at > 6px)
       if (scrollIndicator) {
-        if (currentView === 'home' && window.scrollY > 25) {
+        if (currentView === 'home' && window.scrollY > 6) {
           scrollIndicator.style.opacity = '0';
           scrollIndicator.style.pointerEvents = 'none';
-          scrollIndicator.style.transform = 'translateY(16px)';
+          scrollIndicator.style.transform = 'translateY(12px)';
         } else if (currentView === 'home') {
           scrollIndicator.style.opacity = '1';
           scrollIndicator.style.pointerEvents = 'auto';
@@ -3315,7 +3731,7 @@
       if (!header) return;
 
       if (currentView === 'home') {
-        if (window.scrollY > 80) {
+        if (window.scrollY > 70) {
           header.classList.remove('header-hidden');
           header.classList.add('header-visible');
         } else {
@@ -3333,8 +3749,8 @@
     // Request Access via Support.hl8006
     function handleRequestAccess() {
       const email = 'support.hl8006@gmail.com';
-      const subject = encodeURIComponent('HL8006 Studios - Access Request');
-      const body = encodeURIComponent('Hello HL8006 Studios Team,\n\nI would like to request access to HL8006 Studios private engineering projects / pre-release software builds.\n\nName: \nOrganization / Track: \nRequested Access Scope: \n\nThank you.');
+      const subject = encodeURIComponent('HL8006 Studios Access Request');
+      const body = encodeURIComponent('Hello HL8006 Studios Team,\n\nI would like to request access to HL8006 Studios private engineering projects and software builds.\n\nName: \nOrganization / Track: \nRequested Access Scope: \n\nThank you.');
 
       // Copy email to clipboard
       if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -3469,7 +3885,7 @@
 
       if (list.length === 0) {
         grid.innerHTML = `
-          <div class="col-span-full text-center py-16 bg-zinc-900/60 rounded-3xl p-8 border border-zinc-800 reveal-on-scroll revealed">
+          <div class="col-span-full text-center py-16 bg-zinc-900/60 rounded-3xl p-8 border border-zinc-800">
             <p class="text-zinc-400 text-sm">No engineering models or software releases match this filter.</p>
           </div>
         `;
@@ -3479,7 +3895,7 @@
       list.forEach((item) => {
         const card = document.createElement('div');
         const isCAD = (item.type === 'cad');
-        card.className = 'rotating-border-card p-6 flex flex-col justify-between space-y-4 reveal-on-scroll revealed';
+        card.className = 'rotating-border-card p-6 flex flex-col justify-between space-y-4';
 
         const fileOrTag = isCAD ? item.fileTag : (item.versionTag || 'Build');
         const archOrTool = isCAD ? item.tooling : (item.arch || 'Systems Core');
@@ -3540,6 +3956,7 @@
       if (!element) return;
 
       element.addEventListener('mousemove', (e) => {
+        if (isMobileDevice) return;
         const rect = element.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
@@ -3556,6 +3973,7 @@
       });
 
       element.addEventListener('mouseleave', () => {
+        if (isMobileDevice) return;
         element.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px) scale3d(1, 1, 1)`;
       });
     }
@@ -3593,6 +4011,7 @@
     let currentShowcaseIdx = 0;
     let showcaseAutoTimer = null;
     let isShowcaseScrollSyncing = false;
+    let scrollSnapRestoreTimer = null;
 
     function renderGalleryShowcase() {
       const rail = document.getElementById('horizontalShowcase');
@@ -3655,12 +4074,13 @@
           if (!e.target.closest('button')) {
             triggerHaptic(10);
             focusShowcaseIndex(idx);
+            holdShowcaseAutoplay(7000);
           }
         });
 
-        // ONLY the middle card reacts to mouse hover!
+        // ONLY the middle card reacts to mouse hover (desktop only)
         card.addEventListener('mousemove', (e) => {
-          if (!card.classList.contains('is-middle')) return;
+          if (isMobileDevice || !card.classList.contains('is-middle')) return;
 
           const rect = card.getBoundingClientRect();
           const x = e.clientX - rect.left;
@@ -3677,6 +4097,7 @@
         });
 
         card.addEventListener('mouseleave', () => {
+          if (isMobileDevice) return;
           if (card.classList.contains('is-middle')) {
             card.style.transform = `perspective(1000px) rotateY(0deg) scale(1.04)`;
           }
@@ -3690,6 +4111,7 @@
       let scrollTimeout = null;
       rail.addEventListener('scroll', () => {
         if (isShowcaseScrollSyncing) return;
+        holdShowcaseAutoplay(7000);
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
           const railCenter = rail.scrollLeft + rail.clientWidth / 2;
@@ -3704,11 +4126,20 @@
             }
           });
           updateShowcaseClasses(closestIdx);
-        }, 50);
+        }, 40);
+      }, { passive: true });
+
+      // Mobile Touch support for Autoplay pause and 7-second hold resume
+      rail.addEventListener('touchstart', () => {
+        pauseShowcaseAutoplay();
+      }, { passive: true });
+
+      rail.addEventListener('touchend', () => {
+        holdShowcaseAutoplay(7000);
       }, { passive: true });
 
       focusShowcaseIndex(0, false);
-      startShowcaseAutoplay();
+      startShowcaseAutoplay(4000);
     }
 
     function updateShowcaseClasses(activeIndex) {
@@ -3736,9 +4167,12 @@
       updateShowcaseClasses(currentShowcaseIdx);
 
       const rail = document.getElementById('horizontalShowcase');
-      const targetCard = showcaseCards[index];
+      const targetCard = showcaseCards[currentShowcaseIdx];
       if (rail && targetCard) {
         isShowcaseScrollSyncing = true;
+        // Temporarily disable scroll-snap to eliminate smooth scrollTo collision/jitter
+        rail.style.scrollSnapType = 'none';
+
         const railCenter = rail.clientWidth / 2;
         const cardCenter = targetCard.offsetLeft + targetCard.clientWidth / 2;
         const scrollTarget = Math.max(0, cardCenter - railCenter);
@@ -3748,16 +4182,57 @@
           behavior: smooth ? 'smooth' : 'auto'
         });
 
-        setTimeout(() => {
+        clearTimeout(scrollSnapRestoreTimer);
+        scrollSnapRestoreTimer = setTimeout(() => {
+          rail.style.scrollSnapType = 'x mandatory';
           isShowcaseScrollSyncing = false;
-        }, 500);
+        }, smooth ? 460 : 60);
       }
+    }
+
+    let showcaseHoldTimer = null;
+
+    function advanceShowcaseRight() {
+      if (currentView !== 'library' || showcaseCards.length === 0) return;
+      let nextIdx = (currentShowcaseIdx + 1) % showcaseCards.length;
+      focusShowcaseIndex(nextIdx);
     }
 
     function stepShowcase(direction) {
       triggerHaptic(12);
       let nextIdx = (currentShowcaseIdx + direction + showcaseCards.length) % showcaseCards.length;
       focusShowcaseIndex(nextIdx);
+      holdShowcaseAutoplay(7000);
+    }
+
+    function startShowcaseAutoplay(delay = 4000) {
+      pauseShowcaseAutoplay();
+      if (currentView !== 'library') return;
+      showcaseAutoTimer = setTimeout(function tick() {
+        advanceShowcaseRight();
+        showcaseAutoTimer = setTimeout(tick, 4000);
+      }, delay);
+    }
+
+    function holdShowcaseAutoplay(holdDuration = 7000) {
+      pauseShowcaseAutoplay();
+      if (currentView !== 'library') return;
+      showcaseHoldTimer = setTimeout(() => {
+        showcaseHoldTimer = null;
+        advanceShowcaseRight();
+        startShowcaseAutoplay(4000);
+      }, holdDuration);
+    }
+
+    function pauseShowcaseAutoplay() {
+      if (showcaseAutoTimer) {
+        clearTimeout(showcaseAutoTimer);
+        showcaseAutoTimer = null;
+      }
+      if (showcaseHoldTimer) {
+        clearTimeout(showcaseHoldTimer);
+        showcaseHoldTimer = null;
+      }
     }
 
     function triggerHaptic(duration = 12) {
@@ -3776,20 +4251,6 @@
         }
       }
     });
-
-    function startShowcaseAutoplay() {
-      if (showcaseAutoTimer) clearInterval(showcaseAutoTimer);
-      showcaseAutoTimer = setInterval(() => {
-        if (currentView === 'library') {
-          let next = (currentShowcaseIdx + 1) % showcaseCards.length;
-          focusShowcaseIndex(next);
-        }
-      }, 4400);
-    }
-
-    function pauseShowcaseAutoplay() {
-      if (showcaseAutoTimer) clearInterval(showcaseAutoTimer);
-    }
 
     // Global tactile feedback on interactive elements
     document.addEventListener('pointerdown', (e) => {
@@ -3908,7 +4369,7 @@
       if (actionSlot) {
         if (item.playStoreUrl) {
           actionSlot.innerHTML = `
-            <a href="${item.playStoreUrl}" target="_blank" rel="noopener noreferrer" class="btn-reactive w-full py-3.5 rounded-full bg-white text-black hover:bg-zinc-100 text-xs font-bold flex items-center justify-center gap-2 shadow-lg shadow-white/10 group">
+            <a href="${item.playStoreUrl}" target="_blank" rel="noopener noreferrer" class="btn-reactive btn-white-pill w-full py-3.5 rounded-full text-xs font-bold flex items-center justify-center gap-2 shadow-lg group">
               <svg class="w-4 h-4 text-emerald-600 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M3.609 1.814L13.792 12 3.61 22.186a2.03 2.03 0 0 1-.22-.964V2.778c0-.36.08-.694.22-.964zm11.233 11.234l2.584 2.584-12.03 6.945 9.446-9.529zM18.847 11.2l2.366 1.366c.787.454.787 1.214 0 1.668l-2.366 1.366-2.827-2.827 2.827-1.573zm-3.99-1.247L5.41 3.008l12.03 6.945-2.584 2.584z"/></svg>
               <span>Open on Google Play</span>
               <svg class="w-3.5 h-3.5 text-zinc-600 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
@@ -3953,7 +4414,7 @@
       }
 
       // Pre-fill deep links for Gmail and Outlook
-      const subject = encodeURIComponent(`File Access Granted - ${itemName}`);
+      const subject = encodeURIComponent(`File Access Granted: ${itemName}`);
       const body = encodeURIComponent(`Hello HL8006 Studios Support,\n\nI am requesting / granting access for the following project:\nProject: ${itemName}\n\nPlease find the access link or file details attached below.\n\nThank you.`);
 
       const gmailLink = document.getElementById('modalGmailLink');
@@ -4087,6 +4548,10 @@
     });
 
     function updateAmbientTorch() {
+      if (isMobileDevice) {
+        // Skip continuous torch loop on touch/mobile devices to optimize GPU and battery
+        return;
+      }
       torchX += (mouseX - torchX) * 0.10;
       torchY += (mouseY - torchY) * 0.10;
 
@@ -4109,14 +4574,15 @@
       let width = (canvas.width = window.innerWidth);
       let height = (canvas.height = window.innerHeight);
 
-      const ROWS = 35;
-      let COLS = Math.max(80, Math.floor(width / 16));
+      let ROWS = isMobileDevice ? 18 : 35;
+      let COLS = isMobileDevice ? Math.min(46, Math.floor(width / 22)) : Math.max(80, Math.floor(width / 16));
       let step = 0;
 
       function resize() {
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
-        COLS = Math.max(80, Math.floor(width / 16));
+        ROWS = isMobileDevice ? 18 : 35;
+        COLS = isMobileDevice ? Math.min(46, Math.floor(width / 22)) : Math.max(80, Math.floor(width / 16));
       }
       window.addEventListener('resize', resize);
 
@@ -4145,12 +4611,14 @@
             const x2d = originX + x3d * scale;
             let y2d = originY + (95 - waveHeight) * scale;
 
-            const distToMouse = Math.hypot(x2d - mouseX, y2d - mouseY);
-            if (distToMouse < 130) {
-              const mouseForce = (130 - distToMouse) / 130;
-              const ripple = Math.sin(distToMouse * 0.08 - step * 2.5) * 5 * mouseForce;
-              waveHeight += ripple;
-              y2d = originY + (95 - waveHeight) * scale;
+            if (!isMobileDevice) {
+              const distToMouse = Math.hypot(x2d - mouseX, y2d - mouseY);
+              if (distToMouse < 130) {
+                const mouseForce = (130 - distToMouse) / 130;
+                const ripple = Math.sin(distToMouse * 0.08 - step * 2.5) * 5 * mouseForce;
+                waveHeight += ripple;
+                y2d = originY + (95 - waveHeight) * scale;
+              }
             }
 
             const hue = Math.floor(((c / COLS) * 220 + (r / ROWS) * 75 + step * 38) % 360);
@@ -4208,7 +4676,7 @@
       }
       window.addEventListener('resize', resize);
 
-      const COUNT = 120;
+      const COUNT = isMobileDevice ? 50 : 120;
       const particles = [];
       const palette = [
         'rgba(56, 189, 248, ',  // Sky 400 (Aviation / Flight)
@@ -4238,7 +4706,7 @@
           time += 0.012;
 
           // 1. Subtle connecting telemetry lines between nearby nodes
-          const maxDist = 92;
+          const maxDist = isMobileDevice ? 65 : 92;
           for (let i = 0; i < particles.length; i++) {
             const p1 = particles[i];
             for (let j = i + 1; j < particles.length; j++) {
@@ -4333,7 +4801,7 @@
       window.addEventListener('resize', resize);
 
       // 3D CAD Coordinate Points Matrix
-      const COUNT = 220;
+      const COUNT = isMobileDevice ? 85 : 220;
       const points = [];
       const palette = [
         'rgba(34, 211, 238, ',  // Electric Cyan
@@ -4404,7 +4872,8 @@
           projected.sort((a, b) => b.z - a.z);
 
           // 1. Dynamic CAD Wireframe Mesh & Polygon Facets
-          const maxDist = 82;
+          const maxDist = isMobileDevice ? 52 : 82;
+          const facetThreshold = isMobileDevice ? 32 : 46;
           for (let i = 0; i < projected.length; i++) {
             const p1 = projected[i];
             for (let j = i + 1; j < projected.length; j++) {
@@ -4423,10 +4892,10 @@
                 ctx.stroke();
 
                 // Dynamic triangular polygon facet
-                if (dist < 46 && j + 1 < projected.length) {
+                if (dist < facetThreshold && j + 1 < projected.length) {
                   const p3 = projected[j + 1];
                   const d3 = Math.hypot(p1.x - p3.x, p1.y - p3.y);
-                  if (d3 < 46) {
+                  if (d3 < facetThreshold) {
                     ctx.beginPath();
                     ctx.moveTo(p1.x, p1.y);
                     ctx.lineTo(p2.x, p2.y);
@@ -4473,7 +4942,9 @@
     // -------------------------------------------------------------
     // Initialization on DOM Ready
     // -------------------------------------------------------------
+    if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
     window.addEventListener('DOMContentLoaded', () => {
+      window.scrollTo(0, 0);
       renderApps(masterLibraryData);
       renderGalleryShowcase();
       initScrollRevealObserver();
@@ -4504,6 +4975,9 @@
         navigateTo(initialHash);
       } else if (['branches', 'play-store', 'contact'].includes(initialHash)) {
         navigateTo('home', initialHash);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        updateHeaderVisibility();
       }
     });
   </script>
